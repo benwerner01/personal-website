@@ -1,0 +1,27 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: rgb(200,200,200);
+  margin: 0;
+}
+
+.navbar {
+  color: white;
+  background-color: rgb(76, 89, 118);
+  width: 500px;
+  margin: 0px auto;
+padding
+}
+
+.logo{
+  display: inline-block;
+  padding: 10px;
+}
+
+.logo:hover {
+  background-color: rgb(105, 206, 149)
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
