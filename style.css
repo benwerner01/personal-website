@@ -206,3 +206,10 @@ a {
 .dot {
 	color: rgb(242, 241, 249);
 }
+
+#mc-embedded-subscribe {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: 0;
+}
