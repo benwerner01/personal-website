@@ -54,9 +54,9 @@ btn.addEventListener("click", function button_clicked() {
 
 		btn.appendChild(div1)
 		div1.appendChild(form)
-		form.appendChild(div2)
+		// form.appendChild(div2)
 		form.appendChild(submit)
-		div2.appendChild(input2)
+		// div2.appendChild(input2)
 		setTimeout(function(){form.insertBefore(input, form.childNodes[0]); input.focus();}, 200);
 
 		x+=1
