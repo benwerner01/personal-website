@@ -24,19 +24,19 @@ var div2 = document.createElement("DIV")
 div2.setAttribute("style", "position: absolute; left: -5000px;")
 div2.setAttribute("aria-hidden", "true")
 
-var input2 = document.createElement("input")
+var input2 = document.createElement("INPUT")
 input2.setAttribute("type", "text")
 input2.setAttribute("name", "b_f28970ba51a3a8d751bd82f6b_d427d21bc1")
 input2.setAttribute("tabindex", "-1")
 input2.setAttribute("value", "")
 
 
-var submit = document.createElement("INPUT")
+var submit = document.createElement("button")
 submit.setAttribute("type", "submit")
 submit.setAttribute("name", "subscribe")
 submit.setAttribute("id", "mc-embedded-subscribe")
 submit.setAttribute("class", "submit")
-submit.setAttribute("value", "Submit")
+submit.textContent = "Submit"
 
 if (touchsupport){ // browser supports touch
     btn.classList.add("touch") // add class touch to <button>
