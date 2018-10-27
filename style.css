@@ -4,6 +4,7 @@ body {
 	margin: 0;
 	font-family: Helvetica Light, Helvetica, Arial, sans-serif;
 	font-weight: ;
+	-webkit-appearance: none;
 }
 
 p {
