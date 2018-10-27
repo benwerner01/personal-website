@@ -4,7 +4,6 @@ body {
 	margin: 0;
 	font-family: Helvetica Light, Helvetica, Arial, sans-serif;
 	font-weight: ;
-	-webkit-appearance: none;
 }
 
 p {
@@ -207,9 +206,6 @@ a {
 	color: rgb(242, 241, 249);
 }
 
-#mc-embedded-subscribe {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	border-radius: 0;
-}
+input[type="submit"],
+input[type="button"] {
+  -webkit-appearance: none;}
