@@ -122,11 +122,11 @@ input.email#emailid {
 }
 
 .submit#mc-embedded-subscribe {
-	border-radius: 0rem !important;
+/*	border-radius: 0rem;*/
 	-webkit-appearance: none !important;
 	color: rgb(63, 42, 86);
 	display: inline-block;
-	float: right !important;
+	float: right;
 	border: none;
 	font-size: 14px;
 	border-left: 0.05rem solid rgb(63, 42, 86);
