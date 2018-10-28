@@ -38,6 +38,7 @@ submit.setAttribute("name", "subscribe")
 submit.setAttribute("id", "mc-embedded-subscribe")
 submit.setAttribute("class", "submit")
 submit.setAttribute("value", "Submit")
+submit.setAttribute("style", "text-align:center;")
 
 
 if (touchsupport){ // browser supports touch
