@@ -38,7 +38,7 @@ submit.setAttribute("name", "subscribe")
 submit.setAttribute("id", "mc-embedded-subscribe")
 submit.setAttribute("class", "submit")
 submit.setAttribute("id", "submitid")
-submit.textContent = "Submit"
+submit.setAttribute("value", "Submit")
 
 if (touchsupport){ // browser supports touch
     btn.classList.add("touch") // add class touch to <button>
