@@ -73,6 +73,7 @@ p {
 /*Button to Email Input*/
 
 .button {
+	-webkit-appearance: none !important;
 	border: 1px solid rgb(63, 42, 86);
 	display: block;
 	margin-left: auto;
@@ -98,6 +99,7 @@ p {
 }
 
 input.email {
+	-webkit-appearance: none !important;
 	display: inline-block;
 	float: left;
 	margin-left: 1px;
@@ -112,7 +114,7 @@ input.email {
 }
 
 .submit {
-	-webkit-appearance: none;
+	-webkit-appearance: none !important;
 	color: rgb(63, 42, 86);
 	display: inline-block;
 	float: right;
@@ -208,4 +210,4 @@ a {
 
 input[type="submit"],
 input[type="button"] {
-  -webkit-appearance: none;}
+  -webkit-appearance: none !important;}
