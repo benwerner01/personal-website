@@ -146,7 +146,7 @@ input.email#emailid {
 }
 
 input[type=submit]{
-    text-align: center;
+    text-align: center !important;
 }
 
 /*Dynamic Formatting*/
