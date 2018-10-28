@@ -19,6 +19,7 @@ input.setAttribute("value", "")
 input.setAttribute("name", "EMAIL")
 input.setAttribute("placeholder", "me@example.com")
 input.setAttribute("class", "email mce-EMAIL")
+input.setAttribute("id", "emailid")
 
 var div2 = document.createElement("DIV")
 div2.setAttribute("style", "position: absolute; left: -5000px;")

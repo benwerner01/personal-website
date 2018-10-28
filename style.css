@@ -99,7 +99,7 @@ p {
 	width: 15.6rem;
 }
 
-input.email {
+input.email#emailid {
 	z-index: 1;
 	border-radius: 0rem !important;
 	-webkit-appearance: none !important;
