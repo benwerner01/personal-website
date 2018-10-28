@@ -121,7 +121,7 @@ input.email#emailid {
 	color: rgb(63, 42, 86);
 }
 
-.submit#submitid {
+.submit#mc-embedded-subscribe {
 	z-index: 1;
 	border-radius: 0rem !important;
 	-webkit-appearance: none !important;
@@ -133,13 +133,13 @@ input.email#emailid {
 	border-left: 0.05rem solid rgb(63, 42, 86);
 	width: 3.6rem;
 	height: 2.2rem;
-	text-align: left !important;
+	text-align: center;
 	line-height: 1.75rem;
-	transition: background-color 0.2s ;
+	transition: background-color 0.2s;
 	background-color: transparent;
 }
 
-.submit#submitid:hover {
+.submit#mc-embedded-subscribe:hover {
 	color: white;
 	background-color: rgb(63, 42, 86);
 	cursor: pointer;
