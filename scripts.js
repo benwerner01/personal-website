@@ -37,7 +37,10 @@ submit.setAttribute("type", "submit")
 submit.setAttribute("name", "subscribe")
 submit.setAttribute("id", "mc-embedded-subscribe")
 submit.setAttribute("class", "submit")
-submit.textContent = "Submit  "
+
+var submitText = document.createElement("DIV")
+submitText.setAttribute("class", "submitText")
+submitText.textContent = "Submit"
 
 if (touchsupport){ // browser supports touch
     btn.classList.add("touch") // add class touch to <button>
@@ -57,6 +60,7 @@ btn.addEventListener("click", function button_clicked() {
 		div1.appendChild(form)
 		// form.appendChild(div2)
 		form.appendChild(submit)
+		submit.appendChild(submitText)
 		// div2.appendChild(input2)
 		setTimeout(function(){form.insertBefore(input, form.childNodes[0]); input.focus();}, 200);
 
