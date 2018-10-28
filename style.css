@@ -127,13 +127,13 @@ input.email#emailid {
 	-webkit-appearance: none !important;
 	color: rgb(63, 42, 86);
 	display: inline-block;
-	float: left !important;
+	float: right !important;
 	border: none;
 	font-size: 14px;
 	border-left: 0.05rem solid rgb(63, 42, 86);
 	width: 3.6rem;
 	height: 2.2rem;
-	text-align: center;
+	text-align: center !important;
 	line-height: 1.75rem;
 	transition: background-color 0.2s;
 	background-color: transparent;
