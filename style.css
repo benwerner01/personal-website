@@ -103,6 +103,7 @@ input.email#emailid {
 	z-index: 1;
 	border-radius: 0rem !important;
 	-webkit-appearance: none !important;
+	background-color: transparent;
 	display: inline-block;
 	float: left;
 	margin-left: 0.05rem;
