@@ -122,9 +122,8 @@ input.email#emailid {
 }
 
 .submit#mc-embedded-subscribe {
-	z-index: 1;
 	border-radius: 0rem !important;
-	-webkit-appearance: none !important;
+	/*-webkit-appearance: none !important;*/
 	color: rgb(63, 42, 86);
 	display: inline-block;
 	float: right !important;

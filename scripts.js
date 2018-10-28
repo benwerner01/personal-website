@@ -21,15 +21,16 @@ input.setAttribute("placeholder", "me@example.com")
 input.setAttribute("class", "email mce-EMAIL")
 input.setAttribute("id", "emailid")
 
-var div2 = document.createElement("DIV")
-div2.setAttribute("style", "position: absolute; left: -5000px;")
-div2.setAttribute("aria-hidden", "true")
+// Spam Filter that breaks on iOS
+// var div2 = document.createElement("DIV")
+// div2.setAttribute("style", "position: absolute; left: -5000px;")
+// div2.setAttribute("aria-hidden", "true")
 
-var input2 = document.createElement("input")
-input2.setAttribute("type", "text")
-input2.setAttribute("name", "b_f28970ba51a3a8d751bd82f6b_d427d21bc1")
-input2.setAttribute("tabindex", "-1")
-input2.setAttribute("value", "")
+// var input2 = document.createElement("input")
+// input2.setAttribute("type", "text")
+// input2.setAttribute("name", "b_f28970ba51a3a8d751bd82f6b_d427d21bc1")
+// input2.setAttribute("tabindex", "-1")
+// input2.setAttribute("value", "")
 
 
 var submit = document.createElement("INPUT")
