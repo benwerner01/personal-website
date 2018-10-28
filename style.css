@@ -144,10 +144,6 @@ input.email#emailid {
 	cursor: pointer;
 }
 
-input[type=submit]{
-    text-align: center !important;
-}
-
 /*Dynamic Formatting*/
 
 @media screen and (min-width: 1200px) {
