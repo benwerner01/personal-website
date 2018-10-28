@@ -99,7 +99,7 @@ p {
 	width: 250px;
 }
 
-input.email {
+input.button.email {
 	z-index: 1;
 	border-radius: 0px !important;
 	-webkit-appearance: none !important;
@@ -116,7 +116,7 @@ input.email {
 	color: rgb(63, 42, 86);
 }
 
-.submit {
+.button.submit {
 	z-index: 1;
 	border-radius: 0px !important;
 	-webkit-appearance: none !important;
