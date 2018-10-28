@@ -99,6 +99,7 @@ p {
 }
 
 input.email {
+	border-radius: 0px;
 	-webkit-appearance: none !important;
 	display: inline-block;
 	float: left;
@@ -114,6 +115,7 @@ input.email {
 }
 
 .submit {
+	border-radius: 0px;
 	-webkit-appearance: none !important;
 	color: rgb(63, 42, 86);
 	display: inline-block;
