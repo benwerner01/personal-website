@@ -1,9 +1,5 @@
 /*General*/
 
-/** {
-	-webkit-appearance: none !important;
-}*/
-
 body {
 	margin: 0;
 	font-family: Helvetica Light, Helvetica, Arial, sans-serif;
@@ -133,6 +129,7 @@ input.email#emailid {
 	width: 3.6rem;
 	height: 2.2rem;
 	text-align: center !important;
+	text-align: -webkit-center !important;
 	line-height: 1.75rem;
 	transition: background-color 0.2s;
 	background-color: transparent;
