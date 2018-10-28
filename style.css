@@ -122,7 +122,7 @@ input.email#emailid {
 }
 
 .submit#mc-embedded-subscribe {
-/*	border-radius: 0rem;*/
+	border-radius: 0rem;
 	-webkit-appearance: none !important;
 	color: rgb(63, 42, 86);
 	display: inline-block;
