@@ -133,7 +133,7 @@ input.email#emailid {
 	border-left: 0.05rem solid rgb(63, 42, 86);
 	width: 3.6rem;
 	height: 2.2rem;
-	text-align: center !important;
+	text-align: left !important;
 	line-height: 1.75rem;
 	transition: background-color 0.2s ;
 	background-color: transparent;
