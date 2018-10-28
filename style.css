@@ -1,5 +1,9 @@
 /*General*/
 
+* {
+	-webkit-appearance: none !important;
+}
+
 body {
 	margin: 0;
 	font-family: Helvetica Light, Helvetica, Arial, sans-serif;
@@ -103,7 +107,7 @@ input.email#emailid {
 	z-index: 1;
 	border-radius: 0rem !important;
 	-webkit-appearance: none !important;
-	background-color: transparent;
+	background-color: transparent !important;
 	display: inline-block;
 	float: left;
 	margin-left: 0.05rem;
