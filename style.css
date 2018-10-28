@@ -1,8 +1,8 @@
 /*General*/
 
-* {
+/** {
 	-webkit-appearance: none !important;
-}
+}*/
 
 body {
 	margin: 0;
@@ -78,7 +78,7 @@ p {
 
 .button {
 	z-index: 10;
-	-webkit-appearance: none !important;
+	/*-webkit-appearance: none !important;*/
 	border: 0.05rem solid rgb(63, 42, 86);
 	display: block;
 	margin-left: auto;
@@ -106,7 +106,7 @@ p {
 input.email#emailid {
 	z-index: 1;
 	border-radius: 0rem !important;
-	-webkit-appearance: none !important;
+	/*-webkit-appearance: none !important;*/
 	background-color: transparent !important;
 	display: inline-block;
 	float: left;
@@ -220,7 +220,3 @@ a {
 .dot {
 	color: rgb(242, 241, 249);
 }
-
-input[type="submit"],
-input[type="button"] {
-  -webkit-appearance: none !important;}
