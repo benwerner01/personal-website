@@ -121,7 +121,7 @@ input.email#emailid {
 	border-radius: 0rem;
 	-webkit-appearance: none !important;
 	color: rgb(63, 42, 86);
-	display: inline-block;
+	/*display: inline-block;*/
 	float: right;
 	border: none;
 	font-size: 14px;
