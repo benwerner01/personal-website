@@ -128,7 +128,7 @@ input.button.email {
 	border-left: 1px solid rgb(63, 42, 86);
 	width: 59px;
 	height: 35px;
-	text-align: center;
+	text-align: center !important;
 	line-height: 28px;
 	transition: background-color 0.2s ;
 	background-color: transparent;
