@@ -68,6 +68,8 @@ input.email#emailid {
 	font-size: 14px;
 	border-left: 0.05rem solid rgb(63, 42, 86);
 	padding: 0.25rem 1.1rem;
+	width: none;
+	height: none;
 	text-align: center;
 	text-align: -moz-center !important;
 	text-align: -webkit-center !important;
