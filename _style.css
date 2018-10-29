@@ -12,6 +12,64 @@ p {
 	margin: 1px;
 }
 
+
+/*Main Components*/
+
+.background {
+	z-index: -1;
+	position: absolute;
+	padding: 0;
+    height: 400px;
+    width: 100%;
+    background-color: rgb(63, 42, 86);
+    top: 0px;
+}
+
+.heading {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 125px;
+	width: 500px;
+}
+
+.sub-heading {
+	margin-top: 20px;
+	color: white;
+	text-transform: uppercase;
+}
+
+
+
+#sub-heading-text {
+	font-size: 14px;
+	letter-spacing: 0.2em;
+}
+.sub-heading-two {
+	margin-top: 50px;
+	color: white;
+	line-height: 1.2;
+}
+
+.sub-heading-three {
+	margin-top: 150px;
+	color: rgb(63, 42, 86);
+}
+
+.logo {
+	display: block;
+	margin: 30px auto;
+	width: 100px;
+}
+
+.footer {
+	padding-top: 30px;
+	padding-bottom: 10px;
+	text-align: center;
+	width: 100%;
+	color: rgb(63, 42, 86);
+}
+
 /*Button to Email Input*/
 
 .button {
