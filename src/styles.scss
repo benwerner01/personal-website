@@ -11,6 +11,15 @@ $grey-selected: #c7c7c7;
 // Dependencies
 @import "./styles/bootstrap/scss/bootstrap.scss";
 
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 body {
   font-family: Helvetica, Arial, sans-serif;
   background-color: $grey-background;

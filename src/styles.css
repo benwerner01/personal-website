@@ -6038,6 +6038,12 @@ a.text-dark:hover, a.text-dark:focus {
   .table-bordered td {
     border: 1px solid #ddd !important; } }
 
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
 body {
   font-family: Helvetica, Arial, sans-serif;
   background-color: #484848;
@@ -6059,7 +6065,8 @@ p {
       transition: color 0.3s; }
 
 #home-page #profile {
-  color: #bbbbbb; }
+  color: #bbbbbb;
+  animation: fadein 1s; }
   #home-page #profile img {
     margin-top: 15px;
     width: 100%; }
@@ -6089,7 +6096,16 @@ p {
 #home-page #hi-there {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; }
+  justify-content: flex-end;
+  animation: fade-in-delay 1s; }
+
+@keyframes fade-in-delay {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
   #home-page #hi-there > :last-child {
     margin-bottom: 0.25rem; }
   @media (max-width: 1199.98px) {

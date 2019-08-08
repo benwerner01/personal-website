@@ -1,6 +1,7 @@
 #home-page {
   #profile {
     color: $grey-main;
+    animation: fadein 1s;
 
     img {
       margin-top: 15px;
@@ -47,6 +48,19 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    animation: fade-in-delay 1s;
+
+    @keyframes fade-in-delay {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
 
     > :last-child {
       margin-bottom: 0.25rem;
