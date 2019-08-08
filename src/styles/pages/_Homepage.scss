@@ -1,0 +1,37 @@
+#mobile-profile {
+  @include media-breakpoint-up(sm) {
+    display: none;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .content {
+    background-color: $black;
+    padding: 0.5rem;
+    // border-radius: 0 0 0.5rem 0.5rem;
+
+    #socials {
+      display: flex;
+
+      > a {
+        > svg {
+          margin-right: 0.5rem;
+          height: 1.75rem;
+          width: 1.75rem;
+          fill: $white;
+          transition: fill 0.3s;
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          > svg {
+            fill: $grey-selected;
+          }
+        }
+      }
+    }
+  }
+}

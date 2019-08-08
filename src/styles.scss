@@ -1,0 +1,18 @@
+$white: #ffffff;
+$black: #000000;
+
+$grey-background: #484848;
+$grey-selected: #c7c7c7;
+
+// Dependencies
+@import "./styles/bootstrap/scss/bootstrap.scss";
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: $grey-background;
+  margin: 0;
+  color: white;
+}
+
+// Pages
+@import "./styles/pages/Homepage";
