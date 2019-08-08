@@ -1,41 +1,59 @@
-#mobile-profile {
-  color: $grey-main;
-  @include media-breakpoint-up(sm) {
-    display: none;
-  }
+#home-page {
+  #profile {
+    color: $grey-main;
 
-  img {
-    margin-top: 15px;
-    width: 100%;
-  }
+    img {
+      margin-top: 15px;
+      width: 100%;
+    }
 
-  .content {
-    position: relative;
-    top: -1px;
-    background-color: $black;
-    padding: 0.5rem;
-    border-radius: 0 0 0.5rem 0.5rem;
+    .content {
+      position: relative;
+      top: -1px;
+      background-color: $black;
+      padding: 0.5rem;
+      border-radius: 0 0 0.5rem 0.5rem;
 
-    #socials {
-      display: flex;
+      h1 {
+        margin-bottom: 0;
+      }
 
-      > a {
-        > svg {
-          margin-right: 0.5rem;
+      #socials {
+        display: flex;
+
+        > a {
           height: 1.75rem;
-          width: 1.75rem;
-          fill: $grey-main;
-          transition: fill 0.3s;
-        }
-
-        &:hover {
-          cursor: pointer;
-
           > svg {
-            fill: $white;
+            margin-right: 0.5rem;
+            height: 1.75rem;
+            width: 1.75rem;
+            fill: $grey-main;
+            transition: fill 0.3s;
+          }
+
+          &:hover {
+            cursor: pointer;
+
+            > svg {
+              fill: $white;
+            }
           }
         }
       }
+    }
+  }
+
+  #hi-there {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    > :last-child {
+      margin-bottom: 0.25rem;
+    }
+
+    @include media-breakpoint-down(lg) {
+      margin-top: 1.5rem;
     }
   }
 }

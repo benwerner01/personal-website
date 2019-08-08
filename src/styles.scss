@@ -2,6 +2,7 @@ $white: #ffffff;
 $black: #000000;
 
 $blue: #4762ff;
+$blue-light: #6e84ff;
 
 $grey-main: #bbbbbb;
 $grey-background: #484848;
@@ -15,6 +16,24 @@ body {
   background-color: $grey-background;
   margin: 0;
   color: white;
+}
+
+b {
+  color: $blue-light;
+}
+
+p {
+  font-size: 1.2rem;
+  a {
+    color: inherit;
+    border-bottom: 0.25rem solid $blue-light;
+    transition: color 0.3s;
+    &:hover {
+      text-decoration: none;
+      color: $blue-light;
+      transition: color 0.3s;
+    }
+  }
 }
 
 // Pages
