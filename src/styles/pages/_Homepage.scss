@@ -1,16 +1,20 @@
 #mobile-profile {
+  color: $grey-main;
   @include media-breakpoint-up(sm) {
     display: none;
   }
 
   img {
+    margin-top: 15px;
     width: 100%;
   }
 
   .content {
+    position: relative;
+    top: -1px;
     background-color: $black;
     padding: 0.5rem;
-    // border-radius: 0 0 0.5rem 0.5rem;
+    border-radius: 0 0 0.5rem 0.5rem;
 
     #socials {
       display: flex;
@@ -20,7 +24,7 @@
           margin-right: 0.5rem;
           height: 1.75rem;
           width: 1.75rem;
-          fill: $white;
+          fill: $grey-main;
           transition: fill 0.3s;
         }
 
@@ -28,7 +32,7 @@
           cursor: pointer;
 
           > svg {
-            fill: $grey-selected;
+            fill: $white;
           }
         }
       }
