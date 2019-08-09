@@ -9,6 +9,77 @@
 	],
 "creatorBuild": "31491",
 "files": {
+	"/assets/android-chrome-96x96.png": {
+		"ft": 32768,
+		"iS": 3645,
+		"oA": 0,
+		"oAP": "/assets/android-chrome-96x96.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/assets/apple-touch-icon.png": {
+		"ft": 32768,
+		"iS": 1563,
+		"oA": 0,
+		"oAP": "/assets/apple-touch-icon.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/assets/browserconfig.xml": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/assets/browserconfig.xml",
+		"oF": 0
+		},
+	"/assets/favicon-16x16.png": {
+		"ft": 32768,
+		"iS": 920,
+		"oA": 0,
+		"oAP": "/assets/favicon-16x16.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/assets/favicon-32x32.png": {
+		"ft": 32768,
+		"iS": 1569,
+		"oA": 0,
+		"oAP": "/assets/favicon-32x32.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/assets/favicon.ico": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/assets/favicon.ico",
+		"oF": 0
+		},
+	"/assets/mstile-150x150.png": {
+		"ft": 32768,
+		"iS": 2204,
+		"oA": 0,
+		"oAP": "/assets/mstile-150x150.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"/assets/profile_picture.png": {
 		"ft": 32768,
 		"iS": 485154,
@@ -19,6 +90,24 @@
 		"opt": 1,
 		"oT": 1,
 		"q": 100
+		},
+	"/assets/safari-pinned-tab.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/assets/safari-pinned-tab.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 52780316221407,
+		"prP": 0
+		},
+	"/assets/site.webmanifest": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/assets/site.webmanifest",
+		"oF": 0
 		},
 	"/CNAME": {
 		"cB": 0,
@@ -1160,7 +1249,7 @@
 	"creationDate": 586918366.83541,
 	"displayValue": "benwerner01.github.io",
 	"displayValueWasSetByUser": 0,
-	"iconImageName": "brackets-red",
+	"iconImageName": "/assets/apple-touch-icon.png",
 	"iconImageWasSetByUser": 0
 	},
 "projectSettings": {
