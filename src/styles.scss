@@ -11,11 +11,23 @@ $grey-selected: #c7c7c7;
 // Dependencies
 @import "./styles/bootstrap/scss/bootstrap.scss";
 
-@keyframes fadein {
+@keyframes fade-in {
   from {
     opacity: 0;
   }
   to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-delay {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }
@@ -33,6 +45,7 @@ b {
 
 p {
   font-size: 1.2rem;
+  margin-bottom: 0;
   a {
     color: inherit;
     border-bottom: 0.25rem solid $blue-light;
@@ -43,6 +56,14 @@ p {
       transition: color 0.3s;
     }
   }
+}
+
+ul {
+  margin-top: 5px;
+}
+
+li {
+  font-size: 1.2rem;
 }
 
 // Pages

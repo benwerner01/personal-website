@@ -1,7 +1,14 @@
 #home-page {
+  .row:not(:first-child) {
+    margin-top: 60px;
+    @include media-breakpoint-down(lg) {
+      margin-top: 30px;
+    }
+  }
+
   #profile {
     color: $grey-main;
-    animation: fadein 1s;
+    animation: fade-in 1s;
 
     img {
       margin-top: 15px;
@@ -50,24 +57,28 @@
     justify-content: flex-end;
     animation: fade-in-delay 1s;
 
-    @keyframes fade-in-delay {
-      0% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-
     > :last-child {
       margin-bottom: 0.25rem;
     }
 
     @include media-breakpoint-down(lg) {
-      margin-top: 1.5rem;
+      margin-top: 30px;
+    }
+  }
+
+  #work {
+    animation: fade-in-delay 1.5s;
+
+    ul {
+      list-style-type: none;
+      padding-left: 2rem;
+      li {
+        margin: 0.5rem 0;
+        display: flex;
+        > span {
+          margin-right: 1rem;
+        }
+      }
     }
   }
 }
