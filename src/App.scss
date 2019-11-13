@@ -45,16 +45,21 @@ b {
 
 p {
   font-size: 1.2rem;
-  margin-bottom: 0;
   a {
     color: inherit;
     border-bottom: 0.25rem solid $blue-light;
-    transition: color 0.3s;
     &:hover {
-      text-decoration: none;
       color: $blue-light;
-      transition: color 0.3s;
     }
+  }
+}
+
+a {
+  transition: color 0.3s;
+
+  &:hover {
+    text-decoration: none;
+    transition: color 0.3s;
   }
 }
 
@@ -65,6 +70,42 @@ ul {
 li {
   font-size: 1.2rem;
 }
+
+.row:not(:first-child) {
+  margin-top: 30px;
+  @include media-breakpoint-down(lg) {
+    margin-top: 30px;
+  }
+}
+
+ul.icons {
+  list-style-type: none;
+  padding-left: 2rem;
+  p {
+    margin-bottom: 0;
+  }
+  li {
+    margin: 0.5rem 0;
+    display: flex;
+    > span,
+    > svg {
+      margin-right: 1rem;
+    }
+    > svg {
+      margin-top: 0.35rem;
+      width: 1.5rem;
+      fill: #fff;
+    }
+  }
+}
+
+.page {
+  animation: fade-in 1s;
+}
+
+// Layout
+@import "./styles/layout/Headers";
+@import "./styles/layout/NavBar";
 
 // Pages
 @import "./styles/pages/Homepage";

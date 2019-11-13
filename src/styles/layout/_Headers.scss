@@ -1,0 +1,75 @@
+#header {
+  > div.col-12 > nav {
+    margin-top: 8px;
+    display: none;
+    @include media-breakpoint-down(md) {
+      display: flex;
+    }
+  }
+
+  #Headshot {
+    color: $grey-main;
+
+    img {
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    .content {
+      position: relative;
+      top: -1px;
+      background-color: $black;
+      padding: 0.5rem;
+      border-radius: 0 0 0.5rem 0.5rem;
+
+      h1 {
+        margin-bottom: 0;
+      }
+
+      #socials {
+        display: flex;
+
+        > a {
+          height: 1.75rem;
+          > svg {
+            margin-right: 0.5rem;
+            height: 1.75rem;
+            width: 1.75rem;
+            fill: $grey-main;
+            transition: fill 0.3s;
+          }
+
+          &:hover {
+            cursor: pointer;
+
+            > svg {
+              fill: $white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #hi-there {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    p {
+      margin-bottom: 0;
+    }
+
+    nav {
+      margin-top: 0.75rem;
+    }
+
+    > :last-child {
+      margin-bottom: 0.25rem;
+    }
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+}
