@@ -3,7 +3,6 @@ import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 
 const NavBar: React.FC<RouteComponentProps> = props => (
   <nav>
-    {console.log(props)}
     <span>
       <Link
         className={props.location.pathname === "/" ? "current" : undefined}
