@@ -56,13 +56,13 @@ const Header: React.FC = () => (
         <h3>Hi there,</h3>
         <p>
           I'm a <b>programmer</b> studying computer science at King's College
-          London, and a product architect at{" "}
+          London, currently building 
           <a
-            href="https://sohostrategy.com"
+            href="https://cortexnotes.com"
             rel="noopener noreferrer"
             target="_blank"
           >
-            Soho Strategy
+            Cortex
           </a>
           .
         </p>
