@@ -19,33 +19,6 @@ const HomePage: React.FC = () => (
           .
         </p>
       </div>
-      <h3>My primary tools:</h3>
-      <ul className="icons">
-        <li>
-          <span role="img" aria-label="Spanner">
-            🔧
-          </span>
-          <p>Node Microservices</p>
-        </li>
-        <li>
-          <span role="img" aria-label="Hammer">
-            🔨
-          </span>
-          <p>React JS</p>
-        </li>
-        <li>
-          <span role="img" aria-label="Box">
-            📦
-          </span>
-          <p>Docker Containerisation</p>
-        </li>
-        <li>
-          <span role="img" aria-label="Copyright">
-            ⚙️
-          </span>
-          <p>AWS Hosting</p>
-        </li>
-      </ul>
     </div>
   </div>
 );

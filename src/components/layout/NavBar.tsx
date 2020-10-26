@@ -10,12 +10,6 @@ const NavBar: React.FC<RouteComponentProps> = props => (
       >
         Home
       </Link>
-      <Link
-        className={props.location.pathname === "/blog" ? "current" : undefined}
-        to="/blog"
-      >
-        Blog
-      </Link>
     </span>
     <span>
       <Link
