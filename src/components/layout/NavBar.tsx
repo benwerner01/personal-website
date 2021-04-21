@@ -1,11 +1,11 @@
-import React from "react";
-import { Link, withRouter, RouteComponentProps } from "react-router-dom";
+import React from 'react';
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 
-const NavBar: React.FC<RouteComponentProps> = props => (
+const NavBar: React.FC<RouteComponentProps> = ({ location }) => (
   <nav>
     <span>
       <Link
-        className={props.location.pathname === "/" ? "current" : undefined}
+        className={location.pathname === '/' ? 'current' : undefined}
         to="/"
       >
         Home
@@ -14,7 +14,7 @@ const NavBar: React.FC<RouteComponentProps> = props => (
     <span>
       <Link
         className={
-          props.location.pathname === "/contact" ? "current" : undefined
+          location.pathname === '/contact' ? 'current' : undefined
         }
         to="/contact"
       >
