@@ -1,8 +1,0 @@
-#home-page {
-  #hi-there {
-    display: none;
-    @include media-breakpoint-down(md) {
-      display: block;
-    }
-  }
-}
