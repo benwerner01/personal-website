@@ -72,9 +72,9 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({ collection, ite
         <Link href="/gallery"><a>Gallery</a></Link>
         {' > '}
         <Link href={`/gallery/${collection.slug}`}><a>{collection.name}</a></Link>
-        {' >'}
+        {' > '}
+        {item.slug}
       </Typography>
-      <Typography variant="h1">{item.slug}</Typography>
       <Box className={classes.imageWrapper} flexGrow={1}>
         <Image
           src={`/gallery/${collection.slug}/${item.slug}.jpeg`}
