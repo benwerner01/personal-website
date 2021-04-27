@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -32,10 +31,6 @@ export const getStaticProps: GetStaticProps<CollectionPageProps, ParsedQueryURL>
 
 const CollectionPage: React.FC<CollectionPageProps> = ({ collection }) => (
   <Container>
-    <Typography variant="h5">
-      <Link href="/gallery"><a>Gallery</a></Link>
-      {' >'}
-    </Typography>
     <Typography variant="h1">{collection.name}</Typography>
     <CollectionPreview collection={collection} />
   </Container>

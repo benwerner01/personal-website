@@ -69,8 +69,6 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({ collection, ite
   return (
     <Container classes={{ root: classes.containerRoot }}>
       <Typography gutterBottom variant="h5">
-        <Link href="/gallery"><a>Gallery</a></Link>
-        {' > '}
         <Link href={`/gallery/${collection.slug}`}><a>{collection.name}</a></Link>
         {' > '}
         {item.slug}
