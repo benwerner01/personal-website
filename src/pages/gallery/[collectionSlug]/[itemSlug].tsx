@@ -10,6 +10,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import gallery, { Collection, CollectionItem } from '../../../lib/gallery';
+import { NAV_BAR_HEIGHT } from '../../../components/NavBar';
 
 type ParsedQueryURL = {
   collectionSlug: string;
@@ -47,7 +48,7 @@ export const getStaticProps: GetStaticProps<CollectionItemPageProps, ParsedQuery
 
 const useCollectionItemStyles = makeStyles(() => ({
   containerRoot: {
-    height: '100%',
+    height: `calc(100% - ${NAV_BAR_HEIGHT}px)`,
     display: 'flex',
     flexDirection: 'column',
   },
