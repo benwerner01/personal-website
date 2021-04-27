@@ -21,6 +21,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "jsx-a11y/anchor-is-valid": "off",
         "react/prop-types": "off",
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": ["error"],

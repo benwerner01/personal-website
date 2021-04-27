@@ -2,7 +2,7 @@ import { AppProps } from 'next/app';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../lib/theme';
-import '../../styles/globals.css';
+import '../lib/styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

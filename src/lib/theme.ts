@@ -15,6 +15,19 @@ const palette = {
 
 export default createMuiTheme({
   typography: {
+    h5: {
+      '& a': {
+        fontWeight: 800,
+        borderBottom: 4,
+        borderBottomStyle: 'solid',
+        borderBottomColor: 'transparent',
+        color: defaultTheme.palette.common.black,
+        transition: defaultTheme.transitions.create(['border-bottom-color', 'color']),
+        '&:hover': {
+          borderBottomColor: defaultTheme.palette.common.black,
+        },
+      },
+    },
     h1: {
       fontSize: 75,
       fontWeight: 800,
