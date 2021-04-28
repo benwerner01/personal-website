@@ -60,8 +60,9 @@ const Home = () => {
         <Typography>Hi, my name is</Typography>
         <Typography className={classes.title} variant="h1">Ben Werner</Typography>
         <Box display="flex" mb={1}>
-          {SOCIALS.map(({ url, icon }) => (
+          {SOCIALS.map(({ name, url, icon }) => (
             <a
+              key={name}
               className={classes.social}
               href={url}
               rel="noopener noreferrer"

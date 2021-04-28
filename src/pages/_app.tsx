@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../lib/theme';
 import '../lib/styles/globals.css';
 import NavBar from '../components/NavBar';
+import BackgroundAnimation from '../components/BackgroundAnimation';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -11,6 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <CssBaseline />
       <NavBar />
       <Component {...pageProps} />
+      <BackgroundAnimation />
     </ThemeProvider>
   );
 }
