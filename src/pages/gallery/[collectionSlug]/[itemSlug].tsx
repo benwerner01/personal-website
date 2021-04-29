@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Image from 'next/image';
@@ -59,6 +60,7 @@ const useCollectionItemStyles = makeStyles(() => ({
 
 const CollectionItemPage: React.FC<CollectionItemPageProps> = ({ collection, item }) => {
   const classes = useCollectionItemStyles();
+  const router = useRouter();
 
   const itemIndex = collection.items.findIndex(({ slug }) => slug === item.slug);
 
@@ -66,6 +68,21 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({ collection, ite
   const nextItemIndex = itemIndex < collection.items.length - 1 ? itemIndex + 1 : 0;
   const previousItem = collection.items[previousItemIndex];
   const nextItem = collection.items[nextItemIndex];
+
+  const onKeyDown = ({ key }: KeyboardEvent) => {
+    if (key === 'ArrowLeft') {
+      router.push(`/gallery/${collection.slug}/${previousItem.slug}`);
+    } else if (key === 'ArrowRight') {
+      router.push(`/gallery/${collection.slug}/${nextItem.slug}`);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [onKeyDown]);
 
   return (
     <Container classes={{ root: classes.containerRoot }}>
