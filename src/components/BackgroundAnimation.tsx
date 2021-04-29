@@ -8,6 +8,7 @@ import {
   forceCollide,
   forceManyBody, forceSimulation, SimulationNodeDatum,
 } from 'd3-force';
+import debounce from 'lodash.debounce';
 
 const MIN_BLOB_RADIUS = 100;
 const MAX_BLOB_RADIUS = 300;
@@ -81,17 +82,16 @@ const BackgroundAnimation: FC = () => {
 
   const simulation = useMemo(() => forceSimulation()
     .force('collision', forceCollide<NodeDatum>()
-      .radius((d) => (d.variant === 'pointer' ? 0 : d.radius + 1)))
-    .velocityDecay(0.6), []);
+      .radius((d) => (d.variant === 'pointer' ? 0 : d.radius + 1))), []);
 
-  const onMouseMove = useCallback(({ x, y }: MouseEvent) => {
+  const onMouseMove = useCallback(debounce(({ x, y }: MouseEvent) => {
     d3Pointer.datum((d) => {
       d.x = x;
       d.y = y;
       return d;
     });
     simulation.alpha(0.1);
-  }, [d3Pointer]);
+  }, 300), [d3Pointer]);
 
   useEffect(() => {
     if (d3Pointer) {
