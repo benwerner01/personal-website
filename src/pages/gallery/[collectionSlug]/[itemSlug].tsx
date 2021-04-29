@@ -7,7 +7,7 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import gallery, { Collection, CollectionItem } from '../../../lib/gallery';
 import { NAV_BAR_HEIGHT } from '../../../components/NavBar';

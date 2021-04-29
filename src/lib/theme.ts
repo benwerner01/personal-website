@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const defaultTheme = createMuiTheme();
 
@@ -14,20 +14,24 @@ const palette = {
 };
 
 export default createMuiTheme({
-  typography: {
-    h5: {
-      '& a': {
-        fontWeight: 800,
-        borderBottom: 4,
-        borderBottomStyle: 'solid',
-        borderBottomColor: 'transparent',
-        color: defaultTheme.palette.common.black,
-        transition: defaultTheme.transitions.create(['border-bottom-color', 'color']),
-        '&:hover': {
-          borderBottomColor: defaultTheme.palette.common.black,
+  overrides: {
+    MuiTypography: {
+      root: {
+        '& a': {
+          fontWeight: 800,
+          borderBottom: 4,
+          borderBottomStyle: 'solid',
+          borderBottomColor: 'transparent',
+          color: defaultTheme.palette.common.black,
+          transition: defaultTheme.transitions.create(['border-bottom-color', 'color']),
+          '&:hover': {
+            borderBottomColor: defaultTheme.palette.common.black,
+          },
         },
       },
     },
+  },
+  typography: {
     h1: {
       fontSize: 75,
       fontWeight: 800,
