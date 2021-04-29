@@ -2,7 +2,7 @@ import React from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import gallery, { Collection } from '../../../lib/gallery';
+import { Collection, getCollectionItems, STATIC_COLLECTIONS } from '../../../lib/gallery';
 import CollectionPreview from '../../../components/CollectionPreview';
 
 type ParsedQueryURL = {
@@ -14,7 +14,7 @@ type CollectionPageProps = {
 }
 
 export const getStaticPaths: GetStaticPaths<ParsedQueryURL> = async () => ({
-  paths: gallery.map(({ slug }) => ({ params: { collectionSlug: slug } })),
+  paths: STATIC_COLLECTIONS.map(({ slug }) => ({ params: { collectionSlug: slug } })),
   fallback: false,
 });
 
@@ -24,7 +24,10 @@ export const getStaticProps: GetStaticProps<CollectionPageProps, ParsedQueryURL>
   const { collectionSlug } = params;
   return {
     props: {
-      collection: gallery.find(({ slug }) => slug === collectionSlug),
+      collection: {
+        ...STATIC_COLLECTIONS.find(({ slug }) => slug === collectionSlug),
+        items: getCollectionItems(collectionSlug),
+      },
     },
   };
 };

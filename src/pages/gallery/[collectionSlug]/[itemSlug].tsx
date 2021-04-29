@@ -10,7 +10,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import gallery, { Collection, CollectionItem } from '../../../lib/gallery';
+import {
+  getGallery, Collection, CollectionItem, STATIC_COLLECTIONS, getCollectionItems,
+} from '../../../lib/gallery';
 import { NAV_BAR_HEIGHT } from '../../../components/NavBar';
 
 type ParsedQueryURL = {
@@ -24,7 +26,7 @@ type CollectionItemPageProps = {
 }
 
 export const getStaticPaths: GetStaticPaths<ParsedQueryURL> = async () => ({
-  paths: gallery.map(({ slug, items }) => items.map((item) => ({
+  paths: getGallery().map(({ slug, items }) => items.map((item) => ({
     params: {
       collectionSlug: slug,
       itemSlug: item.slug,
@@ -37,12 +39,16 @@ export const getStaticProps: GetStaticProps<CollectionItemPageProps, ParsedQuery
   params,
 }) => {
   const { collectionSlug, itemSlug } = params;
-  const collection = gallery.find(({ slug }) => slug === collectionSlug);
+
+  const collection = {
+    ...STATIC_COLLECTIONS.find(({ slug }) => slug === collectionSlug),
+    items: getCollectionItems(collectionSlug),
+  };
+
   return {
     props: {
       collection,
-      item: collection.items
-        .find((item) => item.slug === itemSlug),
+      item: collection.items.find((item) => item.slug === itemSlug),
     },
   };
 };

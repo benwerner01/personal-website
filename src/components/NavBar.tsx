@@ -25,8 +25,8 @@ const NavBar: React.FC = () => {
         </Box>
         <Box m={1}>
           <Typography>
-            <Link href="/work">
-              <a style={{ fontWeight: pathname === '/work' ? 800 : 400 }}>Work</a>
+            <Link href="/gallery">
+              <a style={{ fontWeight: pathname === '/gallery' ? 800 : 400 }}>Gallery</a>
             </Link>
           </Typography>
         </Box>
