@@ -1,8 +1,12 @@
 import { readdirSync } from 'fs';
 import sizeOf from 'image-size';
+import { decode } from 'blurhash';
+import { createCanvas } from 'canvas';
+import blurdata from '../../public/gallery/blurdata.json';
 
 export type CollectionImage = {
   variant: 'image';
+  blurhash?: string;
   slug: string;
   width: number;
   height: number;
@@ -50,10 +54,14 @@ export const getCollectionItems = (
 ): CollectionItem[] => readdirSync(`public/gallery/${slug}`)
   .filter((fileName) => fileName.endsWith('.jpeg'))
   .map((fileName) => {
-    const { width, height } = sizeOf(`public/gallery/${slug}/${fileName}`);
+    const imageURL = `public/gallery/${slug}/${fileName}`;
+
+    const { width, height } = sizeOf(imageURL);
+
     return ({
       variant: 'image',
       slug: fileName.replace(/\.[^/.]+$/, ''),
+      blurhash: blurdata[imageURL],
       width,
       height,
     });
@@ -76,3 +84,22 @@ export const STATIC_COLLECTIONS = [
 
 export const getGallery = (): Gallery => STATIC_COLLECTIONS
   .map((collection) => ({ ...collection, items: getCollectionItems(collection.slug) }));
+
+export const parseBlurDataURLFromCollectionImage = (image: CollectionImage): string | undefined => {
+  const { blurhash } = image;
+
+  if (!blurhash) return undefined;
+
+  const width = 32;
+  const height = 32;
+
+  const pixels = decode(blurhash, width, height);
+
+  const canvas = createCanvas(width, height);
+  const ctx = canvas.getContext('2d');
+  const imageData = ctx.createImageData(width, height);
+  imageData.data.set(pixels);
+  ctx.putImageData(imageData, 0, 0);
+
+  return canvas.toDataURL();
+};

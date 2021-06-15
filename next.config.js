@@ -8,6 +8,7 @@ module.exports = {
         fallback: {
           ...config.resolve.fallback,
           fs: false,
+          child_process: false,
         },
       };
     }
