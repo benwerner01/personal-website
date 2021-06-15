@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 import TwitterIcon from '../components/icons/TwitterIcon';
-import MailIcon from '../components/icons/MailIcon';
 import LinkedInIcon from '../components/icons/LinkedInIcon';
 
 type ContactMethod = {
@@ -14,11 +13,6 @@ type ContactMethod = {
 }
 
 const CONTACT_METHODS: ContactMethod[] = [
-  {
-    name: 'ben.werner01@gmail.com',
-    href: 'mailto:ben.werner01@gmail.com',
-    Icon: MailIcon,
-  },
   {
     name: 'LinkedIn',
     href: 'https://twitter.com/benwerner01',
