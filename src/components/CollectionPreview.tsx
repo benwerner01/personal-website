@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { Collection, CollectionImage, parseBlurDataURLFromCollectionImage } from '../lib/gallery';
+import { Collection, CollectionImage } from '../lib/gallery';
 import theme from '../lib/theme';
 
 const IMAGE_HEIGHT = 400;
@@ -29,8 +29,6 @@ const CollectionImageComponent: React.FC<CollectionImageComponentProps> = ({
 }) => {
   const classes = useCollectionImageStyles();
 
-  const blurDataURL = parseBlurDataURLFromCollectionImage(image);
-
   return (
     <Box m={1}>
       <Link href={`/gallery/${collectionSlug}/${image.slug}`}>
@@ -41,8 +39,8 @@ const CollectionImageComponent: React.FC<CollectionImageComponentProps> = ({
             src={`/gallery/${collectionSlug}/${image.slug}.jpeg`}
             width={(IMAGE_HEIGHT / image.height) * image.width}
             height={IMAGE_HEIGHT}
-            blurDataURL={blurDataURL}
-            placeholder={blurDataURL ? 'blur' : undefined}
+            blurDataURL={image.blurDataURL}
+            placeholder={image.blurDataURL ? 'blur' : undefined}
           />
         </a>
       </Link>

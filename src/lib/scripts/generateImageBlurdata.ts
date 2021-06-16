@@ -1,6 +1,5 @@
 import { readdirSync, readFileSync, writeFileSync } from 'fs';
 import sharp from 'sharp';
-import { encode } from 'blurhash';
 
 const BLUR_DATA_PATH = 'public/gallery/blurdata.json';
 
@@ -24,21 +23,18 @@ const updateBlurData = async () => {
   console.log(`${freshImageURLs.length} fresh image${freshImageURLs.length === 1 ? '' : 's'} found`);
 
   const updatedBlurData = await freshImageURLs.reduce(async (prev, imageURL) => {
-    const { data, info } = await sharp(imageURL)
-      .raw()
-      .ensureAlpha()
-      .toBuffer({ resolveWithObject: true });
-
-    const { width, height } = info;
-
-    const blurdata = encode(new Uint8ClampedArray(data), width, height, 4, 4);
+    const blurredImage = await sharp(imageURL)
+      .blur()
+      .resize(32)
+      .jpeg()
+      .toBuffer();
 
     // eslint-disable-next-line no-console
     console.log(`✅ ${imageURL}`);
 
     return {
       ...(await prev),
-      [imageURL]: blurdata,
+      [imageURL]: `data:image/jpeg;base64,${blurredImage.toString('base64')}`,
     };
   }, Promise.resolve(previousBlurData));
 
