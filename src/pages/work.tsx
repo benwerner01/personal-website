@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import {
   WORK_ITEMS, WorkVariant, tbdIsWorkVariant,
 } from '../lib/work';
-import CodeProjectPreview from '../components/work/CodeProjectPreview';
+import CodeProjectCard from '../components/work/CodeProjectCard';
 
 const parseCurrentVariant = (router: NextRouter): WorkVariant | undefined => {
   const { asPath } = router;
@@ -48,7 +48,7 @@ const WorkPage: React.FC = () => {
         .filter(({ variant }) => (currentVariant ? variant === currentVariant : true))
         .map((item) => (
           item.variant === 'code'
-            ? <CodeProjectPreview key={item.name} project={item} />
+            ? <CodeProjectCard key={item.name} project={item} />
             : <></>
         ))}
     </Container>
