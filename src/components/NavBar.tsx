@@ -6,6 +6,19 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+type NavBarItem = {
+  href: string;
+  label: string;
+  position: 'left' | 'right';
+}
+
+const NAV_BAR_ITEMS: NavBarItem[] = [
+  { href: '/', label: 'BW', position: 'left' },
+  { href: '/work', label: 'Work', position: 'left' },
+  { href: '/gallery', label: 'Gallery', position: 'left' },
+  { href: '/contact', label: 'Contact', position: 'right' },
+];
+
 export const NAV_BAR_HEIGHT = 40;
 
 const NavBar: React.FC = () => {
@@ -13,34 +26,27 @@ const NavBar: React.FC = () => {
   const theme = useTheme();
   const xs = useMediaQuery(theme.breakpoints.down('xs'));
 
+  const mapNavBarItemToElement = ({ label, href }: NavBarItem) => (
+    <Box m={1} key={label}>
+      <Typography>
+        <Link href={href}>
+          <a style={{ fontWeight: pathname === href ? 800 : 400 }}>{label}</a>
+        </Link>
+      </Typography>
+    </Box>
+  );
+
   return (
     <Box display="flex" justifyContent="space-between" px={xs ? 1 : 2} height={40}>
       <Box display="flex">
-        <Box m={1}>
-          <Typography>
-            <Link href="/">
-              <a style={{ fontWeight: pathname === '/' ? 800 : 400 }}>BW</a>
-            </Link>
-          </Typography>
-        </Box>
-        <Box m={1}>
-          <Typography>
-            <Link href="/gallery">
-              <a style={{ fontWeight: pathname === '/gallery' ? 800 : 400 }}>Gallery</a>
-            </Link>
-          </Typography>
-        </Box>
+        {NAV_BAR_ITEMS
+          .filter(({ position }) => position === 'left')
+          .map(mapNavBarItemToElement)}
       </Box>
       <Box display="flex">
-        <Box m={1}>
-          <Typography>
-            <Link href="/contact">
-              <a style={{ fontWeight: pathname === '/contact' ? 800 : 400 }}>
-                Contact
-              </a>
-            </Link>
-          </Typography>
-        </Box>
+        {NAV_BAR_ITEMS
+          .filter(({ position }) => position === 'right')
+          .map(mapNavBarItemToElement)}
       </Box>
     </Box>
   );

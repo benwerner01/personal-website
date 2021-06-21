@@ -15,6 +15,22 @@ const palette = {
 
 export default createMuiTheme({
   overrides: {
+    MuiButton: {
+      endIcon: {
+        marginLeft: defaultTheme.spacing(0.5),
+      },
+      outlined: {
+        padding: defaultTheme.spacing(0.5, 1),
+      },
+    },
+    MuiPaper: {
+      rounded: {
+        borderRadius: 8,
+      },
+      elevation1: {
+        boxShadow: '0 5px 10px rgba(0,0,0,0.12)',
+      },
+    },
     MuiTypography: {
       root: {
         '& a': {
@@ -28,6 +44,12 @@ export default createMuiTheme({
             borderBottomColor: defaultTheme.palette.common.black,
           },
         },
+      },
+    },
+    MuiIconButton: {
+      root: {
+        padding: defaultTheme.spacing(0.5),
+        borderRadius: 8,
       },
     },
   },
