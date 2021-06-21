@@ -1,5 +1,22 @@
 import React, { ReactNode } from 'react';
 
+export type ImagePreview = {
+  variant: 'image';
+}
+
+export type VideoPreview = {
+  variant: 'video';
+  type: string;
+}
+
+export type PreviewItem = {
+  fileName: string;
+  width: number;
+  height: number;
+  title?: string;
+  caption?: string | ReactNode;
+} & (ImagePreview | VideoPreview);
+
 export type Repository = {
   slug: string;
   comment?: string;
@@ -25,6 +42,7 @@ export type CodeProject = {
   slug: string;
   blurb?: string | ReactNode;
   url?: string;
+  previews?: PreviewItem[];
   related?: Related[];
   repositories?: Repository[];
 }

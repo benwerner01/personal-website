@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { CODE_PROJECTS } from '../../../lib/work/code';
 import CodeProjectRepositories from '../../../components/work/CodeProjectRepositories';
 import CodeProjectRelated from '../../../components/work/CodeProjectRelated';
+import CodeProjectPreview from '../../../components/work/CodeProjectPreview';
 
 type ParsedQueryURL = {
   codeProjectSlug: string;
@@ -55,6 +56,14 @@ const CodeProjectPage: NextPage<CodeProjectPageProps> = ({ codeProjectSlug }) =>
       {project.related && project.related.length > 0 && (
         <CodeProjectRelated related={project.related} />
       )}
+      {project.previews && project.previews.map((preview) => (
+        <Box mt={4} key={preview.fileName}>
+          <CodeProjectPreview
+            codeProjectSlug={codeProjectSlug}
+            preview={preview}
+          />
+        </Box>
+      ))}
     </Container>
   );
 };
