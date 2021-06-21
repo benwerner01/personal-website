@@ -2,8 +2,8 @@ import React from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { Collection, getCollectionItems, STATIC_COLLECTIONS } from '../../../lib/gallery';
-import CollectionPreview from '../../../components/CollectionPreview';
+import { Collection, getCollectionItems, STATIC_COLLECTIONS } from '../../lib/gallery';
+import CollectionPreview from '../../components/CollectionPreview';
 
 type ParsedQueryURL = {
   collectionSlug: string;
