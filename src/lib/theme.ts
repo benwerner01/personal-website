@@ -15,6 +15,12 @@ const palette = {
 
 export default createMuiTheme({
   overrides: {
+    MuiContainer: {
+      root: {
+        paddingTop: defaultTheme.spacing(2),
+        paddingBottom: defaultTheme.spacing(2),
+      },
+    },
     MuiButton: {
       endIcon: {
         marginLeft: defaultTheme.spacing(0.5),

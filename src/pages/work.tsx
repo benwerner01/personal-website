@@ -1,15 +1,10 @@
 import React, { useMemo } from 'react';
 import { NextRouter, useRouter } from 'next/router';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 import {
   WORK_ITEMS, WorkVariant, tbdIsWorkVariant,
 } from '../lib/work';
 import CodeProjectPreview from '../components/work/CodeProjectPreview';
-
-type WorkPageProps = {
-
-}
 
 const parseCurrentVariant = (router: NextRouter): WorkVariant | undefined => {
   const { asPath } = router;
@@ -23,7 +18,7 @@ const parseCurrentVariant = (router: NextRouter): WorkVariant | undefined => {
   return tbdIsWorkVariant(variant) ? variant : undefined;
 };
 
-const WorkPage: React.FC<WorkPageProps> = () => {
+const WorkPage: React.FC = () => {
   const router = useRouter();
 
   const currentVariant = useMemo(() => parseCurrentVariant(router), [router.asPath]);
@@ -49,15 +44,13 @@ const WorkPage: React.FC<WorkPageProps> = () => {
           </Link>
         ))}
       </Box> */}
-      <Box mt={1}>
-        {WORK_ITEMS
-          .filter(({ variant }) => (currentVariant ? variant === currentVariant : true))
-          .map((item) => (
-            item.variant === 'code'
-              ? <CodeProjectPreview key={item.name} project={item} />
-              : <></>
-          ))}
-      </Box>
+      {WORK_ITEMS
+        .filter(({ variant }) => (currentVariant ? variant === currentVariant : true))
+        .map((item) => (
+          item.variant === 'code'
+            ? <CodeProjectPreview key={item.name} project={item} />
+            : <></>
+        ))}
     </Container>
   );
 };

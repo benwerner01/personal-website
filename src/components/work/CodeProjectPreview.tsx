@@ -15,7 +15,12 @@ import CodeProjectRelated from './CodeProjectRelated';
 
 const useStyles = makeStyles((theme) => ({
   cardRoot: {
-    marginBottom: theme.spacing(4),
+    '&:not(:last-child)': {
+      marginBottom: theme.spacing(4),
+      [theme.breakpoints.down('sm')]: {
+        marginBottom: theme.spacing(2),
+      },
+    },
   },
   blurb: {
     marginTop: theme.spacing(1),
