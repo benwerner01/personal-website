@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps<CollectionPageProps, ParsedQueryURL>
 
 const CollectionPage: React.FC<CollectionPageProps> = ({ collection }) => (
   <Container>
-    <Typography variant="h1">{collection.name}</Typography>
+    <Typography variant="h3" component="h1">{collection.name}</Typography>
     <CollectionPreview collection={collection} />
   </Container>
 );

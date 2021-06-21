@@ -51,6 +51,9 @@ export default createMuiTheme({
           },
         },
       },
+      h3: {
+        fontWeight: 800,
+      },
     },
     MuiIconButton: {
       root: {
