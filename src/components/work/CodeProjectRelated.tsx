@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import DescriptionIcon from '@material-ui/icons/Description';
 import { Related } from '../../lib/work/code';
 
@@ -23,16 +24,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type CodeProjectRelatedProps = {
-  related: Related[]
+  mt?: number;
+  related: Related[];
 }
 
 const CodeProjectRelated: React.FC<CodeProjectRelatedProps> = ({
-  related,
+  mt, related,
 }) => {
   const classes = useStyles();
 
   return (
-    <>
+    <Box mt={mt}>
       <Typography variant="h6" className={classes.heading}>
         Related
       </Typography>
@@ -52,7 +54,7 @@ const CodeProjectRelated: React.FC<CodeProjectRelatedProps> = ({
           </li>
         ))}
       </ul>
-    </>
+    </Box>
   );
 };
 

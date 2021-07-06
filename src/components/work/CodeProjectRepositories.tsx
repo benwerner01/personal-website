@@ -20,16 +20,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 type CodeProjectRepositoriesProps = {
-  repositories: Repository[]
+  mt?: number;
+  repositories: Repository[];
 }
 
 const CodeProjectRepositories: React.FC<CodeProjectRepositoriesProps> = ({
-  repositories,
+  mt, repositories,
 }) => {
   const classes = useStyles();
 
   return (
-    <>
+    <Box mt={mt}>
       <Typography variant="h6" className={classes.heading}>
         {`Repositor${repositories.length === 1 ? 'y' : 'ies'}`}
       </Typography>
@@ -52,7 +53,7 @@ const CodeProjectRepositories: React.FC<CodeProjectRepositoriesProps> = ({
           </Box>
         ))}
       </Box>
-    </>
+    </Box>
   );
 };
 
