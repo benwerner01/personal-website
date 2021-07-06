@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     top: 6,
     position: 'absolute',
     [theme.breakpoints.down('sm')]: {
-      top: 1,
+      top: 0,
       left: 2,
     },
     '& span': {
