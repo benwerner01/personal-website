@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import MacOSWindow from '../MacOSWindow';
 import { PreviewItem } from '../../lib/work/code';
 
@@ -35,7 +36,13 @@ const CodeProjectImagePreview: React.FC<CodeProjectImagePreviewProps> = ({
           </video>
         )}
     </MacOSWindow>
-    {preview.caption && <Typography align="center">{preview.caption}</Typography>}
+    {preview.caption && (
+      <Box mt={1} width="100%" display="flex" justifyContent="center">
+        <Box maxWidth={500}>
+          <Typography align="center">{preview.caption}</Typography>
+        </Box>
+      </Box>
+    )}
   </>
 );
 
