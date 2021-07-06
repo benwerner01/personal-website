@@ -25,15 +25,16 @@ const CodeProjectImagePreview: React.FC<CodeProjectImagePreviewProps> = ({
           />
         ) : (
           <video
+            src={`/work/code/${codeProjectSlug}/${preview.fileName}`}
             style={{ width: '100%', height: `calc(100% * (${preview.width} / ${preview.height}))` }}
             width={preview.width}
             height={preview.height}
             autoPlay
             loop
             muted
-          >
-            <source src={`/work/code/${codeProjectSlug}/${preview.fileName}`} type={preview.type} />
-          </video>
+            playsInline
+            controls={false}
+          />
         )}
     </MacOSWindow>
     {preview.caption && (
