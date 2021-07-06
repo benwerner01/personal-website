@@ -52,7 +52,7 @@ export type Gallery = Collection[]
 
 export const getCollectionItems = (
   slug: string,
-): CollectionItem[] => readdirSync(`${serverRuntimeConfig.PROJECT_ROOT}/public/gallery/${slug}`)
+): CollectionItem[] => readdirSync(`${serverRuntimeConfig.PROJECT_ROOT}/public/gallery/${slug}/`)
   .filter((fileName) => fileName.endsWith('.jpeg'))
   .map((fileName) => {
     const imageURL = `public/gallery/${slug}/${fileName}`;
