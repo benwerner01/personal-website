@@ -1,9 +1,7 @@
 import { readdirSync } from 'fs';
 import sizeOf from 'image-size';
-import getConfig from 'next/config';
+import path from 'path';
 import blurdata from '../../public/gallery/blurdata.json';
-
-const { serverRuntimeConfig } = getConfig();
 
 export type CollectionImage = {
   variant: 'image';
@@ -50,9 +48,11 @@ export const formatCollectionTimeRange = (collection: Collection) => {
 
 export type Gallery = Collection[]
 
+const publicDirectory = path.resolve(process.cwd(), 'public');
+
 export const getCollectionItems = (
   slug: string,
-): CollectionItem[] => readdirSync(`${serverRuntimeConfig.PROJECT_ROOT}/public/gallery/${slug}/`)
+): CollectionItem[] => readdirSync(path.join(publicDirectory, `gallery/${slug}/`))
   .filter((fileName) => fileName.endsWith('.jpeg'))
   .map((fileName) => {
     const imageURL = `public/gallery/${slug}/${fileName}`;
