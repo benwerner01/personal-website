@@ -50,20 +50,20 @@ const CodeProjectPage: NextPage<CodeProjectPageProps> = ({ codeProjectSlug }) =>
       <Typography>
         {project.blurb}
       </Typography>
-      {project.repositories && project.repositories.length > 0 && (
-        <CodeProjectRepositories repositories={project.repositories} />
-      )}
-      {project.related && project.related.length > 0 && (
-        <CodeProjectRelated related={project.related} />
-      )}
       {project.previews && project.previews.map((preview) => (
-        <Box mt={4} key={preview.fileName}>
+        <Box mt={2} key={preview.fileName}>
           <CodeProjectPreview
             codeProjectSlug={codeProjectSlug}
             preview={preview}
           />
         </Box>
       ))}
+      {project.repositories && project.repositories.length > 0 && (
+        <CodeProjectRepositories mt={4} repositories={project.repositories} />
+      )}
+      {project.related && project.related.length > 0 && (
+        <CodeProjectRelated related={project.related} />
+      )}
     </Container>
   );
 };
