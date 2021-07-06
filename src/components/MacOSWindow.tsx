@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
     left: 3,
     top: 6,
     position: 'absolute',
+    [theme.breakpoints.down('sm')]: {
+      top: 1,
+      left: 2,
+    },
     '& span': {
       display: 'inline-block',
       width: 12,
@@ -37,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'rgb(98, 196, 84)',
         borderColor: Color('rgb(98, 196, 84)').darken(0.1).rgb().string(),
       },
+      [theme.breakpoints.down('sm')]: {
+        marginLeft: 6,
+        width: 10,
+        height: 10,
+      },
     },
   },
   header: {
@@ -44,10 +53,18 @@ const useStyles = makeStyles((theme) => ({
     borderBottomColor: theme.palette.grey[300],
     borderBottomWidth: 1,
     borderBottomStyle: 'solid',
+    [theme.breakpoints.down('sm')]: {
+      height: 20,
+    },
   },
   content: {
     overflow: 'hidden',
     marginBottom: -5,
+  },
+  headerTypography: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+    },
   },
 }));
 
@@ -68,7 +85,7 @@ const MacOSWindow: React.FC<MacOSWindowProps> = ({
         <span />
       </Box>
       <Box display="flex" justifyContent="center" className={classes.header}>
-        <Typography variant="h6">{title}</Typography>
+        {title && <Typography className={classes.headerTypography} variant="h6">{title}</Typography>}
       </Box>
       <Box className={classes.content}>
         {children}
