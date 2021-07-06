@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next';
 import xml from 'xml';
 import { CODE_PROJECTS } from '../lib/work/code';
-import { getGallery } from '../lib/gallery';
+// import { getGallery } from '../lib/gallery';
 
 const BASE_URL = 'https://ben-werner.com/';
 
@@ -28,10 +28,11 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
         url: `work/code/${slug}`,
       })),
       { url: 'gallery' },
-      ...(await getGallery()).map(({ slug, items }) => [
-        { url: `gallery/${slug}` },
-        ...items.map((item) => ({ url: `gallery/${slug}/${item.slug}` })),
-      ]).flat(),
+      // temporarily remove due to vercel runtime issue
+      // ...(await getGallery()).map(({ slug, items }) => [
+      //   { url: `gallery/${slug}` },
+      //   ...items.map((item) => ({ url: `gallery/${slug}/${item.slug}` })),
+      // ]).flat(),
       { url: 'contact' },
     ];
     res.setHeader('Content-Type', 'text/xml');

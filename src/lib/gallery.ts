@@ -1,6 +1,5 @@
 import { readdirSync } from 'fs';
 import sizeOf from 'image-size';
-import path from 'path';
 import blurdata from '../../public/gallery/blurdata.json';
 
 export type CollectionImage = {
@@ -48,11 +47,9 @@ export const formatCollectionTimeRange = (collection: Collection) => {
 
 export type Gallery = Collection[]
 
-const publicDirectory = path.resolve(process.cwd(), 'public');
-
 export const getCollectionItems = (
   slug: string,
-): CollectionItem[] => readdirSync(path.join(publicDirectory, `gallery/${slug}/`))
+): CollectionItem[] => readdirSync(`public/gallery/${slug}/`)
   .filter((fileName) => fileName.endsWith('.jpeg'))
   .map((fileName) => {
     const imageURL = `public/gallery/${slug}/${fileName}`;
