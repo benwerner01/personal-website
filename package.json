@@ -17,6 +17,7 @@
     "d3-force": "^2.1.1",
     "d3-geo": "2",
     "d3-selection": "^2.0.0",
+    "d3-zoom": "^2.0.0",
     "geojson": "^0.5.0",
     "image-size": "^1.0.0",
     "lodash.debounce": "^4.0.8",
@@ -24,7 +25,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "sharp": "^0.28.3",
-    "topojson-client": "^3.1.0"
+    "topojson-client": "^3.1.0",
+    "xml": "^1.0.1"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
@@ -32,12 +34,14 @@
     "@types/d3-force": "^2.1.1",
     "@types/d3-geo": "2",
     "@types/d3-selection": "^2.0.0",
+    "@types/d3-zoom": "^2.0.1",
     "@types/geojson": "^7946.0.7",
     "@types/image-size": "^0.8.0",
     "@types/lodash.debounce": "^4.0.6",
     "@types/react": "^17.0.3",
     "@types/sharp": "^0.28.3",
     "@types/topojson-client": "^3.1.0",
+    "@types/xml": "^1.0.6",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.24.0",
