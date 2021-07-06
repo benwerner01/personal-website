@@ -1,12 +1,11 @@
-import React from 'react';
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import xml from 'xml';
 import { CODE_PROJECTS } from '../lib/work/code';
 import { getGallery } from '../lib/gallery';
 
 const BASE_URL = 'https://ben-werner.com/';
 
-const SiteMapPage: NextPage = () => <></>;
+const SiteMapPage: NextPage = () => null;
 
 type SiteMapURL = {
   url: string;
@@ -20,7 +19,7 @@ const prefixZero = (number: number) => (number < 10 ? `0${number}` : number);
 // eslint-disable-next-line no-unused-vars
 const formatLastMod = (date: Date) => `${date.getFullYear()}-${prefixZero(date.getMonth() + 1)}-${prefixZero(date.getDate())}`;
 
-SiteMapPage.getInitialProps = async ({ res }) => {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   if (res) {
     const urls: SiteMapURL[] = [
       { url: '' },
@@ -59,7 +58,7 @@ SiteMapPage.getInitialProps = async ({ res }) => {
     res.end();
   }
 
-  return {};
+  return { props: {} };
 };
 
 export default SiteMapPage;
