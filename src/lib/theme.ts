@@ -17,8 +17,13 @@ export default createMuiTheme({
   overrides: {
     MuiContainer: {
       root: {
-        paddingTop: defaultTheme.spacing(2),
-        paddingBottom: defaultTheme.spacing(2),
+        paddingTop: defaultTheme.spacing(4),
+        paddingBottom: defaultTheme.spacing(4),
+        transition: defaultTheme.transitions.create(['padding-top', 'padding-bottom']),
+        [defaultTheme.breakpoints.down('sm')]: {
+          paddingTop: defaultTheme.spacing(2),
+          paddingBottom: defaultTheme.spacing(2),
+        },
       },
     },
     MuiButton: {
