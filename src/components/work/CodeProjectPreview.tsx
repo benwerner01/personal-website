@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -17,7 +17,7 @@ const CodeProjectImagePreview: React.FC<CodeProjectImagePreviewProps> = ({
 
   const [width, setWidth] = useState<number>(0);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (wrapperRef.current) {
       const calculateWidth = () => setWidth(wrapperRef.current.clientWidth);
 
