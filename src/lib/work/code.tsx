@@ -6,6 +6,7 @@ export type ImagePreview = {
 
 export type VideoPreview = {
   variant: 'video';
+  posterFileName: string;
 }
 
 export type PreviewItem = {
@@ -85,6 +86,7 @@ export const CODE_PROJECTS: CodeProject[] = [
       {
         variant: 'video',
         fileName: 'editor-recording.mp4',
+        posterFileName: 'editor-recording.jpeg',
         width: 2904,
         height: 1762,
         caption: (

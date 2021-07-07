@@ -26,6 +26,7 @@ const CodeProjectImagePreview: React.FC<CodeProjectImagePreviewProps> = ({
         ) : (
           <video
             src={`/work/code/${codeProjectSlug}/${preview.fileName}`}
+            poster={`/work/code/${codeProjectSlug}/${preview.posterFileName}`}
             style={{ width: '100%', height: `calc(100% * (${preview.width} / ${preview.height}))` }}
             width={preview.width}
             height={preview.height}
