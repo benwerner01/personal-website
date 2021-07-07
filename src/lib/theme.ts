@@ -22,7 +22,6 @@ export default createMuiTheme({
         transition: defaultTheme.transitions.create(['padding-top', 'padding-bottom']),
         [defaultTheme.breakpoints.down('sm')]: {
           paddingTop: defaultTheme.spacing(2),
-          paddingBottom: defaultTheme.spacing(2),
         },
       },
     },
