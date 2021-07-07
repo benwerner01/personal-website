@@ -15,7 +15,7 @@ type ContactMethod = {
 const CONTACT_METHODS: ContactMethod[] = [
   {
     name: 'LinkedIn',
-    href: 'https://twitter.com/benwerner01',
+    href: 'https://www.linkedin.com/in/ben-werner/',
     Icon: LinkedInIcon,
   },
   {
