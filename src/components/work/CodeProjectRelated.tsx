@@ -17,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
   li: {
     display: 'flex',
+    marginTop: theme.spacing(1),
   },
   title: {
-    marginLeft: theme.spacing(0.5),
+    // marginLeft: theme.spacing(0.5),
   },
 }));
 
@@ -42,15 +43,20 @@ const CodeProjectRelated: React.FC<CodeProjectRelatedProps> = ({
         {related.map((relatedItem) => (
           <li key={relatedItem.title} className={classes.li}>
             <DescriptionIcon />
-            <Typography className={classes.title}>
-              <a href={relatedItem.url} rel="noopener noreferrer" target="_blank">{relatedItem.title}</a>
-              {relatedItem.variant !== 'Misc' && (
+            <Box ml={1}>
+              <Typography className={classes.title}>
+                <a href={relatedItem.url} rel="noopener noreferrer" target="_blank">{relatedItem.title}</a>
+                {relatedItem.variant === 'Paper' && relatedItem.book && (
                 <>
-                  {' '}
-                  <i>{relatedItem.variant}</i>
+                  {' published in '}
+                  <a href={relatedItem.book.url} rel="noopener noreferrer" target="_blank">{relatedItem.book.name}</a>
                 </>
+                )}
+              </Typography>
+              {relatedItem.variant !== 'Misc' && (
+                <Typography><i>{relatedItem.type || relatedItem.variant}</i></Typography>
               )}
-            </Typography>
+            </Box>
           </li>
         ))}
       </ul>

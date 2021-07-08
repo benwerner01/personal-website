@@ -22,10 +22,18 @@ export type Repository = {
   comment?: string;
 }
 
+type PaperBook = {
+  name: string;
+  url: string;
+  year: string;
+}
+
 export type Paper = {
   variant: 'Paper';
+  type?: string;
   title: string;
   url: string;
+  book?: PaperBook;
 }
 
 export type MiscWriting = {
@@ -73,8 +81,14 @@ export const CODE_PROJECTS: CodeProject[] = [
     related: [
       {
         variant: 'Paper',
-        title: 'ProvViz: An Intuitive PROV Editory and Visualiser',
-        url: 'https://ben-werner.com/papers/provviz-an-intuitive-prov-editor-and-visualiser.pdf',
+        type: 'Conference Paper',
+        title: 'ProvViz: An Intuitive Prov Editor and Visualiser',
+        url: 'https://link.springer.com/chapter/10.1007%2F978-3-030-80960-7_18',
+        book: {
+          name: 'Provenance and Annotation of Data and Processes',
+          url: 'https://link.springer.com/book/10.1007/978-3-030-80960-7',
+          year: '2021',
+        },
       },
       {
         variant: 'Misc',
