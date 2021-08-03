@@ -45,7 +45,7 @@ const ContactPage: React.FC = () => {
   const classes = useStyles();
   return (
     <Container>
-      <Typography variant="h3" component="h1">Contact Me</Typography>
+      <Typography variant="h1">Contact Me</Typography>
       <ul className={classes.ul}>
         {CONTACT_METHODS.map(({ Icon, href, name }) => (
           <li className={classes.li}>

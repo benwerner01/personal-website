@@ -38,7 +38,7 @@ const CodeProjectPage: NextPage<CodeProjectPageProps> = ({ codeProjectSlug }) =>
   return (
     <Container maxWidth="md">
       <Box display="flex" justifyContent="space-between">
-        <Typography variant="h3" component="h1">{project.name}</Typography>
+        <Typography variant="h1">{project.name}</Typography>
         {project.url && (
         <a href={project.url} rel="noopener noreferrer" target="_blank">
           <Button variant="outlined">

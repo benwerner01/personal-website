@@ -55,8 +55,24 @@ export default createMuiTheme({
           },
         },
       },
-      h3: {
+      h1: {
+        fontSize: '3rem',
         fontWeight: 800,
+      },
+      h2: {
+        fontSize: '2.5rem',
+      },
+      h3: {
+        fontSize: '2rem',
+      },
+      h4: {
+        fontSize: '1.75rem',
+      },
+      h5: {
+        fontSize: '1.5rem',
+      },
+      h6: {
+        fontSize: '1.25rem',
       },
     },
     MuiIconButton: {
@@ -67,10 +83,6 @@ export default createMuiTheme({
     },
   },
   typography: {
-    h1: {
-      fontSize: 75,
-      fontWeight: 800,
-    },
     fontFamily: '"Manrope", "Roboto", "Helvetica", "Arial", sans-serif',
   },
   palette,
