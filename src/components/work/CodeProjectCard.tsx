@@ -63,6 +63,7 @@ const CodePreviewsCarousel: VoidFunctionComponent<CodePreviewsCarouselProps> = (
           showStatus={false}
           showIndicators={false}
           className={classes.carousel}
+          labels={{ leftArrow: 'previous', rightArrow: 'next', item: 'preview' }}
           renderArrowNext={(onClickHandler, hasNext, label) => (
             hasNext && (
             <IconButton
