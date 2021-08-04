@@ -19,7 +19,7 @@ import CodeProjectPreview from './CodeProjectPreview';
 
 const useCodePreviewsCarouselStyles = makeStyles((theme) => ({
   carousel: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(2),
   },
   arrowIconButton: {
     position: 'absolute',
@@ -114,7 +114,7 @@ const CodePreviewsCarousel: VoidFunctionComponent<CodePreviewsCarouselProps> = (
         </Carousel>
       )
       : (
-        <Box className={classes.previewWrapper} mt={4}>
+        <Box className={classes.previewWrapper} mt={2}>
           <CodeProjectPreview
             shadow={false}
             displayCaption={false}
