@@ -48,8 +48,9 @@ const CodePreviewsCarousel: VoidFunctionComponent<CodePreviewsCarouselProps> = (
   const [selectedItem, setSelectedItem] = useState<number>(0);
   const [autoIncrement, setAutoIncrement] = useState<boolean>(true);
 
-  const handleButtonClick = () => {
+  const handleChange = (i: number) => {
     setAutoIncrement(false);
+    setSelectedItem(i);
   };
 
   return (
@@ -57,7 +58,7 @@ const CodePreviewsCarousel: VoidFunctionComponent<CodePreviewsCarouselProps> = (
       ? (
         <Carousel
           selectedItem={selectedItem}
-          onChange={setSelectedItem}
+          onChange={handleChange}
           infiniteLoop
           showThumbs={false}
           showStatus={false}
@@ -67,10 +68,7 @@ const CodePreviewsCarousel: VoidFunctionComponent<CodePreviewsCarouselProps> = (
           renderArrowNext={(onClickHandler, hasNext, label) => (
             hasNext && (
             <IconButton
-              onClick={() => {
-                handleButtonClick();
-                onClickHandler();
-              }}
+              onClick={onClickHandler}
               title={label}
               className={classes.arrowIconButton}
               style={{ right: 0 }}
@@ -82,10 +80,7 @@ const CodePreviewsCarousel: VoidFunctionComponent<CodePreviewsCarouselProps> = (
           renderArrowPrev={(onClickHandler, hasNext, label) => (
             hasNext && (
             <IconButton
-              onClick={() => {
-                handleButtonClick();
-                onClickHandler();
-              }}
+              onClick={onClickHandler}
               title={label}
               className={classes.arrowIconButton}
               style={{ left: 0, transform: 'scale(-1)' }}
