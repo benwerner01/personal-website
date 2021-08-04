@@ -8,12 +8,13 @@ import { PreviewItem } from '../../lib/work/code';
 type CodeProjectPreviewProps = {
   codeProjectSlug: string;
   preview: PreviewItem;
+  displayCaption?: boolean;
   shadow?: boolean;
   onVideoEnded?: () => void;
 }
 
 const CodeProjectPreview: React.FC<CodeProjectPreviewProps> = ({
-  codeProjectSlug, preview, onVideoEnded, shadow = true,
+  codeProjectSlug, preview, onVideoEnded, displayCaption = true, shadow = true,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -71,7 +72,7 @@ const CodeProjectPreview: React.FC<CodeProjectPreviewProps> = ({
             )}
         </div>
       </MacOSWindow>
-      {preview.caption && (
+      {displayCaption && preview.caption && (
       <Box mt={1} width="100%" display="flex" justifyContent="center">
         <Box maxWidth={500}>
           <Typography align="center">{preview.caption}</Typography>

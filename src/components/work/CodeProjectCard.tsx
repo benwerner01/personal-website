@@ -99,6 +99,7 @@ const CodePreviewsCarousel: VoidFunctionComponent<CodePreviewsCarouselProps> = (
             <Box key={preview.fileName} className={classes.previewWrapper}>
               <CodeProjectPreview
                 shadow={false}
+                displayCaption={false}
                 codeProjectSlug={codeProjectSlug}
                 preview={preview}
                 onVideoEnded={() => {
@@ -121,6 +122,7 @@ const CodePreviewsCarousel: VoidFunctionComponent<CodePreviewsCarouselProps> = (
         <Box className={classes.previewWrapper} mt={4}>
           <CodeProjectPreview
             shadow={false}
+            displayCaption={false}
             codeProjectSlug={codeProjectSlug}
             preview={previews[0]}
           />
