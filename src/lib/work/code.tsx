@@ -154,6 +154,20 @@ export const CODE_PROJECTS: CodeProject[] = [
           </>
         ),
       },
+      {
+        variant: 'video',
+        fileName: 'note.mp4',
+        posterFileName: 'note.jpeg',
+        width: 2878,
+        height: 1590,
+        caption: (
+          <>
+            {'Create '}
+            <strong>notes</strong>
+            {' about the entities in your knowledge graph'}
+          </>
+        ),
+      },
     ],
   },
 ];
