@@ -139,6 +139,21 @@ export const CODE_PROJECTS: CodeProject[] = [
           </>
         ),
       },
+      {
+        variant: 'video',
+        fileName: 'create-relationships.mp4',
+        posterFileName: 'create-relationships.jpeg',
+        width: 2880,
+        height: 1592,
+        caption: (
+          <>
+            {'Intuitively create '}
+            <strong>relationships</strong>
+            {' between '}
+            <strong>entities</strong>
+          </>
+        ),
+      },
     ],
   },
 ];

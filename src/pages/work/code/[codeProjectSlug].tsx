@@ -51,7 +51,7 @@ const CodeProjectPage: NextPage<CodeProjectPageProps> = ({ codeProjectSlug }) =>
         {project.blurb}
       </Typography>
       {project.previews && project.previews.map((preview) => (
-        <Box mt={2} key={preview.fileName}>
+        <Box mt={4} key={preview.fileName}>
           <CodeProjectPreview
             codeProjectSlug={codeProjectSlug}
             preview={preview}
