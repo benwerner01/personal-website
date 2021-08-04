@@ -5,13 +5,15 @@ import Box from '@material-ui/core/Box';
 import MacOSWindow from '../MacOSWindow';
 import { PreviewItem } from '../../lib/work/code';
 
-type CodeProjectImagePreviewProps = {
+type CodeProjectPreviewProps = {
   codeProjectSlug: string;
   preview: PreviewItem;
+  shadow?: boolean;
+  onVideoEnded?: () => void;
 }
 
-const CodeProjectImagePreview: React.FC<CodeProjectImagePreviewProps> = ({
-  codeProjectSlug, preview,
+const CodeProjectPreview: React.FC<CodeProjectPreviewProps> = ({
+  codeProjectSlug, preview, onVideoEnded, shadow = true,
 }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +36,7 @@ const CodeProjectImagePreview: React.FC<CodeProjectImagePreviewProps> = ({
 
   return (
     <>
-      <MacOSWindow title={preview.title}>
+      <MacOSWindow title={preview.title} shadow={shadow}>
         <div
           ref={wrapperRef}
           style={{
@@ -58,10 +60,13 @@ const CodeProjectImagePreview: React.FC<CodeProjectImagePreviewProps> = ({
                 width={preview.width}
                 height={preview.height}
                 autoPlay
-                loop
                 muted
                 playsInline
                 controls={false}
+                onEnded={({ target }) => {
+                  if (onVideoEnded) onVideoEnded();
+                  (target as HTMLVideoElement).play();
+                }}
               />
             )}
         </div>
@@ -77,4 +82,4 @@ const CodeProjectImagePreview: React.FC<CodeProjectImagePreviewProps> = ({
   );
 };
 
-export default React.memo(CodeProjectImagePreview);
+export default React.memo(CodeProjectPreview);

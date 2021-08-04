@@ -5,14 +5,19 @@ import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import Color from 'color';
 
+type StyleProps = {
+  shadow: boolean;
+}
+
 const useStyles = makeStyles((theme) => ({
-  paperRoot: {
+  paperRoot: ({ shadow }: StyleProps) => ({
     position: 'relative',
     overflow: 'hidden',
     borderColor: theme.palette.grey[300],
     borderWidth: 1,
     borderStyle: 'solid',
-  },
+    boxShadow: shadow ? undefined : 'none',
+  }),
   fakeButtons: {
     left: 3,
     top: 6,
@@ -70,12 +75,13 @@ const useStyles = makeStyles((theme) => ({
 
 type MacOSWindowProps = {
   title?: string;
+  shadow?: boolean;
 }
 
 const MacOSWindow: React.FC<MacOSWindowProps> = ({
-  children, title,
+  children, title, shadow = true,
 }) => {
-  const classes = useStyles();
+  const classes = useStyles({ shadow });
 
   return (
     <Paper className={classes.paperRoot}>
