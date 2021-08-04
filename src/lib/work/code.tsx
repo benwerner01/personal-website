@@ -125,5 +125,20 @@ export const CODE_PROJECTS: CodeProject[] = [
       </>
     ),
     url: 'https://cortexnotes.com',
+    previews: [
+      {
+        variant: 'video',
+        fileName: 'graph.mp4',
+        posterFileName: 'graph.jpeg',
+        width: 2878,
+        height: 1584,
+        caption: (
+          <>
+            {'Create and explore your '}
+            <strong>personal knowledge graph</strong>
+          </>
+        ),
+      },
+    ],
   },
 ];
