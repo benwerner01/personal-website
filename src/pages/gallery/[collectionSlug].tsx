@@ -1,26 +1,33 @@
-import React from 'react';
-import { GetStaticProps, GetStaticPaths } from 'next';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import { Collection, getCollectionItems, STATIC_COLLECTIONS } from '../../lib/gallery';
-import CollectionPreview from '../../components/CollectionPreview';
+import React from "react";
+import { GetStaticProps, GetStaticPaths } from "next";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import {
+  Collection,
+  getCollectionItems,
+  STATIC_COLLECTIONS,
+} from "../../lib/gallery";
+import CollectionPreview from "../../components/CollectionPreview";
 
 type ParsedQueryURL = {
   collectionSlug: string;
-}
+};
 
 type CollectionPageProps = {
   collection: Collection;
-}
+};
 
 export const getStaticPaths: GetStaticPaths<ParsedQueryURL> = async () => ({
-  paths: STATIC_COLLECTIONS.map(({ slug }) => ({ params: { collectionSlug: slug } })),
+  paths: STATIC_COLLECTIONS.map(({ slug }) => ({
+    params: { collectionSlug: slug },
+  })),
   fallback: false,
 });
 
-export const getStaticProps: GetStaticProps<CollectionPageProps, ParsedQueryURL> = async ({
-  params,
-}) => {
+export const getStaticProps: GetStaticProps<
+  CollectionPageProps,
+  ParsedQueryURL
+> = async ({ params }) => {
   const { collectionSlug } = params;
   return {
     props: {

@@ -1,12 +1,12 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from "@material-ui/core/styles";
 
 const defaultTheme = createMuiTheme();
 
 const palette = {
   primary: {
-    main: '#257DC3',
-    dark: '#1B4F94',
-    light: '#48a7da',
+    main: "#257DC3",
+    dark: "#1B4F94",
+    light: "#48a7da",
   },
   background: {
     default: defaultTheme.palette.grey[50],
@@ -19,8 +19,11 @@ export default createMuiTheme({
       root: {
         paddingTop: defaultTheme.spacing(4),
         paddingBottom: defaultTheme.spacing(4),
-        transition: defaultTheme.transitions.create(['padding-top', 'padding-bottom']),
-        [defaultTheme.breakpoints.down('sm')]: {
+        transition: defaultTheme.transitions.create([
+          "padding-top",
+          "padding-bottom",
+        ]),
+        [defaultTheme.breakpoints.down("sm")]: {
           paddingTop: defaultTheme.spacing(2),
         },
       },
@@ -38,41 +41,44 @@ export default createMuiTheme({
         borderRadius: 8,
       },
       elevation1: {
-        boxShadow: '0 5px 10px rgba(0,0,0,0.12)',
+        boxShadow: "0 5px 10px rgba(0,0,0,0.12)",
       },
     },
     MuiTypography: {
       root: {
-        '& a': {
+        "& a": {
           fontWeight: 800,
           borderBottom: 4,
-          borderBottomStyle: 'solid',
-          borderBottomColor: 'transparent',
+          borderBottomStyle: "solid",
+          borderBottomColor: "transparent",
           color: defaultTheme.palette.common.black,
-          transition: defaultTheme.transitions.create(['border-bottom-color', 'color']),
-          '&:hover': {
+          transition: defaultTheme.transitions.create([
+            "border-bottom-color",
+            "color",
+          ]),
+          "&:hover": {
             borderBottomColor: defaultTheme.palette.common.black,
           },
         },
       },
       h1: {
-        fontSize: '3rem',
+        fontSize: "3rem",
         fontWeight: 800,
       },
       h2: {
-        fontSize: '2.5rem',
+        fontSize: "2.5rem",
       },
       h3: {
-        fontSize: '2rem',
+        fontSize: "2rem",
       },
       h4: {
-        fontSize: '1.75rem',
+        fontSize: "1.75rem",
       },
       h5: {
-        fontSize: '1.5rem',
+        fontSize: "1.5rem",
       },
       h6: {
-        fontSize: '1.25rem',
+        fontSize: "1.25rem",
       },
     },
     MuiIconButton: {

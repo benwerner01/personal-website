@@ -1,49 +1,43 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "rules": {
-        "no-nested-ternary": "off",
-        "jsx-a11y/anchor-is-valid": "off",
-        "react/prop-types": "off",
-        "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": ["error"],
-        "react/react-in-jsx-scope": "off",
-        "react/jsx-props-no-spreading": "off",
-        "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }]
-    },
-    "overrides": [
-        {
-            "files": ["*.tsx", "*.ts"],
-            "rules": {
-                "react/jsx-filename-extension": "off",
-                "import/extensions": "off"
-            }
-        }
-    ],
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "extensions": [".js", ".jsx", ".ts", ".tsx"]
-            }
-        }
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "no-nested-ternary": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/prop-types": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }]
+  },
+  "overrides": [
+    {
+      "files": ["*.tsx", "*.ts"],
+      "rules": {
+        "react/jsx-filename-extension": "off",
+        "import/extensions": "off"
+      }
     }
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
 }

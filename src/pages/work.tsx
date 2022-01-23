@@ -1,15 +1,13 @@
-import React, { useMemo } from 'react';
-import { NextRouter, useRouter } from 'next/router';
-import Container from '@material-ui/core/Container';
-import {
-  WORK_ITEMS, WorkVariant, tbdIsWorkVariant,
-} from '../lib/work';
-import CodeProjectCard from '../components/work/CodeProjectCard';
+import React, { useMemo } from "react";
+import { NextRouter, useRouter } from "next/router";
+import Container from "@material-ui/core/Container";
+import { WORK_ITEMS, WorkVariant, tbdIsWorkVariant } from "../lib/work";
+import CodeProjectCard from "../components/work/CodeProjectCard";
 
 const parseCurrentVariant = (router: NextRouter): WorkVariant | undefined => {
   const { asPath } = router;
 
-  const hashIndex = asPath.indexOf('#');
+  const hashIndex = asPath.indexOf("#");
 
   if (hashIndex < 0) return undefined;
 
@@ -21,7 +19,10 @@ const parseCurrentVariant = (router: NextRouter): WorkVariant | undefined => {
 const WorkPage: React.FC = () => {
   const router = useRouter();
 
-  const currentVariant = useMemo(() => parseCurrentVariant(router), [router.asPath]);
+  const currentVariant = useMemo(
+    () => parseCurrentVariant(router),
+    [router.asPath]
+  );
 
   return (
     <Container maxWidth="md">
@@ -44,13 +45,15 @@ const WorkPage: React.FC = () => {
           </Link>
         ))}
       </Box> */}
-      {WORK_ITEMS
-        .filter(({ variant }) => (currentVariant ? variant === currentVariant : true))
-        .map((item) => (
-          item.variant === 'code'
-            ? <CodeProjectCard key={item.name} project={item} />
-            : <></>
-        ))}
+      {WORK_ITEMS.filter(({ variant }) =>
+        currentVariant ? variant === currentVariant : true
+      ).map((item) =>
+        item.variant === "code" ? (
+          <CodeProjectCard key={item.name} project={item} />
+        ) : (
+          <></>
+        )
+      )}
     </Container>
   );
 };

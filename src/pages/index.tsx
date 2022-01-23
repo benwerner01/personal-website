@@ -1,33 +1,33 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { SvgIconProps } from '@material-ui/core/SvgIcon';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import GitHubIcon from '../components/icons/GitHubIcon';
-import LinkedInIcon from '../components/icons/LinkedInIcon';
-import TwitterIcon from '../components/icons/TwitterIcon';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { SvgIconProps } from "@material-ui/core/SvgIcon";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import Box from "@material-ui/core/Box";
+import GitHubIcon from "../components/icons/GitHubIcon";
+import LinkedInIcon from "../components/icons/LinkedInIcon";
+import TwitterIcon from "../components/icons/TwitterIcon";
 
 type Social = {
   name: string;
   url: string;
   Icon: React.FC<SvgIconProps>;
-}
+};
 
 const SOCIALS: Social[] = [
   {
-    name: 'GitHub',
-    url: 'https://github.com/benwerner01',
+    name: "GitHub",
+    url: "https://github.com/benwerner01",
     Icon: GitHubIcon,
   },
   {
-    name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/ben-werner',
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/ben-werner",
     Icon: LinkedInIcon,
   },
   {
-    name: 'Twitter',
-    url: 'https://twitter.com/benwerner01',
+    name: "Twitter",
+    url: "https://twitter.com/benwerner01",
     Icon: TwitterIcon,
   },
 ];
@@ -35,12 +35,12 @@ const SOCIALS: Social[] = [
 const useHomeStyles = makeStyles((theme) => ({
   social: {
     marginRight: theme.spacing(1),
-    '& svg': {
+    "& svg": {
       width: 30,
       height: 30,
       opacity: 1,
-      transition: theme.transitions.create('opacity'),
-      '&:hover': {
+      transition: theme.transitions.create("opacity"),
+      "&:hover": {
         opacity: 0.75,
       },
     },
@@ -49,7 +49,7 @@ const useHomeStyles = makeStyles((theme) => ({
     fontSize: 100,
     marginLeft: -5,
     marginBottom: -10,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       fontSize: 60,
       marginLeft: -2,
       marginBottom: -5,
@@ -63,7 +63,9 @@ const Home = () => {
     <Container>
       <Box my={10}>
         <Typography>Hi, my name is</Typography>
-        <Typography className={classes.title} variant="h1">Ben Werner</Typography>
+        <Typography className={classes.title} variant="h1">
+          Ben Werner
+        </Typography>
         <Box display="flex" mb={1}>
           {SOCIALS.map(({ name, url, Icon }) => (
             <a
