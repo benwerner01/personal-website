@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { makeStyles } from "@mui/styles";
+import Box from "@mui/material/Box";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { Theme } from "@mui/material";
 import { Collection, CollectionImage } from "../lib/gallery";
 import theme from "../lib/theme";
 
@@ -14,7 +15,7 @@ type CollectionImageComponentProps = {
   collectionSlug: string;
 };
 
-const useCollectionImageStyles = makeStyles({
+const useCollectionImageStyles = makeStyles<Theme>({
   image: {
     opacity: 1,
     transition: theme.transitions.create("opacity"),

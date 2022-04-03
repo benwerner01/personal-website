@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { NextRouter, useRouter } from "next/router";
-import Container from "@material-ui/core/Container";
+import Container from "@mui/material/Container";
 import { WORK_ITEMS, WorkVariant, tbdIsWorkVariant } from "../lib/work";
 import CodeProjectCard from "../components/work/CodeProjectCard";
 

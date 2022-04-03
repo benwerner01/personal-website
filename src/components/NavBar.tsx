@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useTheme } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 type NavBarItem = {
   href: string;

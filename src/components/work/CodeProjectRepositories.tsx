@@ -1,11 +1,12 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@mui/styles";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { Theme } from "@mui/material";
 import { Repository } from "../../lib/work/code";
 import GitHubIcon from "../icons/GitHubIcon";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   heading: {
     marginTop: theme.spacing(1),
   },

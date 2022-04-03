@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 import { select, Selection } from "d3-selection";
 import {
   forceCollide,
@@ -39,7 +40,7 @@ type BlobDatum = {
 
 type NodeDatum = PointerDatum | BlobDatum;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles<Theme>({
   svg: {
     zIndex: -1,
     top: 0,

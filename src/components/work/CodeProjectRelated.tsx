@@ -1,11 +1,12 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import DescriptionIcon from "@material-ui/icons/Description";
+import { makeStyles } from "@mui/styles";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import DescriptionIcon from "@mui/icons-material/Description";
+import { Theme } from "@mui/material";
 import { Related } from "../../lib/work/code";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   heading: {
     marginTop: theme.spacing(1),
   },

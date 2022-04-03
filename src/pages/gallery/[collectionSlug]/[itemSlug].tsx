@@ -3,13 +3,14 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Image from "next/image";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Button from "@material-ui/core/Button";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import { makeStyles } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { makeStyles } from "@mui/styles";
+import Box from "@mui/material/Box";
+import { Theme } from "@mui/material";
 import {
   getGallery,
   Collection,
@@ -62,7 +63,7 @@ export const getStaticProps: GetStaticProps<
   };
 };
 
-const useCollectionItemStyles = makeStyles(() => ({
+const useCollectionItemStyles = makeStyles<Theme>(() => ({
   containerRoot: {
     height: `calc(100% - ${NAV_BAR_HEIGHT}px)`,
     display: "flex",

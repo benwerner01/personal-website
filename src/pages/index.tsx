@@ -1,9 +1,10 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { SvgIconProps } from "@material-ui/core/SvgIcon";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
+import { makeStyles } from "@mui/styles";
+import { SvgIconProps } from "@mui/material/SvgIcon";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import { Theme } from "@mui/material";
 import GitHubIcon from "../components/icons/GitHubIcon";
 import LinkedInIcon from "../components/icons/LinkedInIcon";
 import TwitterIcon from "../components/icons/TwitterIcon";
@@ -32,7 +33,7 @@ const SOCIALS: Social[] = [
   },
 ];
 
-const useHomeStyles = makeStyles((theme) => ({
+const useHomeStyles = makeStyles<Theme>((theme) => ({
   social: {
     marginRight: theme.spacing(1),
     "& svg": {

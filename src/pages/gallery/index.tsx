@@ -1,9 +1,9 @@
 import React from "react";
 import { GetStaticProps } from "next";
 import Link from "next/link";
-import Container from "@material-ui/core/Container";
-import Box from "@material-ui/core/Box";
-import Typography from "@material-ui/core/Typography";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import {
   getGallery,
   formatCollectionTimeRange,

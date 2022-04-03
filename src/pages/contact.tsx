@@ -1,8 +1,9 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import { SvgIconProps } from "@material-ui/core/SvgIcon";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
+import { SvgIconProps } from "@mui/material/SvgIcon";
+import { Theme } from "@mui/material";
 import TwitterIcon from "../components/icons/TwitterIcon";
 import LinkedInIcon from "../components/icons/LinkedInIcon";
 
@@ -25,7 +26,7 @@ const CONTACT_METHODS: ContactMethod[] = [
   },
 ];
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   ul: {
     paddingLeft: 0,
   },

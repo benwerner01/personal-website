@@ -1,9 +1,9 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import React from "react";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { CODE_PROJECTS } from "../../../lib/work/code";
 import CodeProjectRepositories from "../../../components/work/CodeProjectRepositories";
 import CodeProjectRelated from "../../../components/work/CodeProjectRelated";

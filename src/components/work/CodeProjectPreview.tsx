@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import MacOSWindow from "../MacOSWindow";
 import { PreviewItem } from "../../lib/work/code";
 
