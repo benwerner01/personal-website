@@ -47,11 +47,17 @@ const XAxis: FC<{
         fill="none"
         stroke="currentColor"
       />
-      {races.map(({ round }) => (
+      {races.map(({ raceName, round }) => (
         <g key={round} transform={`translate(${pointSale(round)}, 0)`}>
           <line y2="6" stroke="currentColor" />
-          <text fontSize={10} textAnchor="middle" y={20}>
-            {round}
+          <text
+            fontSize={10}
+            textAnchor="end"
+            y={10}
+            x={-10}
+            transform="rotate(-45)"
+          >
+            {raceName.replace("Grand Prix", "GP")}
           </text>
         </g>
       ))}
@@ -96,7 +102,7 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
 
   const x1 = 50;
   const x2 = svgWidth - 50;
-  const y1 = svgHeight - 50;
+  const y1 = svgHeight - 100;
   const y2 = 50;
 
   const xPointScale = useMemo(
