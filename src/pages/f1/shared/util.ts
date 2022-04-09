@@ -1,3 +1,5 @@
+export const f1Color = "#e10600";
+
 export const DATA_POINT_RADIUS = 2;
 
 export const constructorColoursByYear = {

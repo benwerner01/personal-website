@@ -9,6 +9,7 @@ import {
   SeasonRaces,
 } from "./shared/ergastF1Api";
 import DriverRaceResultsLineGraph from "./shared/DriverRaceResultsLineGraph";
+import { f1Color } from "./shared/util";
 
 type F1PageProps = {
   year;
@@ -50,8 +51,8 @@ const F1Page: NextPage<F1PageProps> = ({
 }) => {
   return (
     <Container sx={{ position: "relative" }}>
-      <Typography variant="h1">
-        {seasonRaceResults.season} Race Results
+      <Typography variant="h1" sx={{ color: f1Color }}>
+        {seasonRaceResults.season} F1 Season
       </Typography>
       <DriverRaceResultsLineGraph
         year={year}
