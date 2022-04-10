@@ -4,8 +4,8 @@ import {
   Button,
   styled,
   Container,
-  Typography,
-  ButtonProps,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import {
@@ -19,6 +19,7 @@ import {
 import DriverRaceResultsLineGraph from "./shared/DriverRaceResultsLineGraph";
 import { f1Color } from "./shared/util";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const F1RedButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(f1Color),
@@ -73,17 +74,26 @@ const F1Page: NextPage<F1PageProps> = ({
   seasonRaceResultsByDriver,
   seasonRaces,
 }) => {
+  const router = useRouter();
+
   const yearAsNumber = parseInt(year, 10);
+  const currentYear = new Date().getFullYear();
+
+  const possibleYears = Array.from(
+    { length: currentYear - 1950 + 1 },
+    (_, i) => currentYear - i
+  );
 
   return (
     <Container sx={{ position: "relative" }}>
-      <Box display="flex">
+      <Box display="flex" position="relative" alignItems="stretch">
         <Link href={`/f1/${yearAsNumber - 1}`}>
           <a>
             <F1RedButton
               variant="contained"
               sx={{
                 px: 1,
+                height: "100%",
                 minWidth: "unset",
                 borderTopRightRadius: 0,
                 borderBottomRightRadius: 0,
@@ -96,20 +106,40 @@ const F1Page: NextPage<F1PageProps> = ({
         </Link>
         <Box
           sx={{
-            width: 75,
             borderColor: f1Color,
             borderStyle: "solid",
             borderTopWidth: 1,
             borderBottomWidth: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            borderRightWidth: 0,
+            borderLeftWidth: 0,
+            borderRadius: 0,
           }}
         >
-          <Typography sx={{ color: f1Color }}>
-            <strong>{seasonRaceResults.season}</strong>
-          </Typography>
+          <Select
+            value={year}
+            onChange={({ target }) => router.push(`/f1/${target.value}`)}
+            sx={{
+              height: "100%",
+              width: 75,
+              position: "relative",
+            }}
+            inputProps={{
+              sx: {
+                py: 0.5,
+                px: 1,
+              },
+            }}
+            disableUnderline
+            variant="standard"
+          >
+            {possibleYears.map((possibleYear) => (
+              <MenuItem key={possibleYear} value={possibleYear}>
+                {possibleYear}
+              </MenuItem>
+            ))}
+          </Select>
         </Box>
+
         <Link href={`/f1/${yearAsNumber + 1}`}>
           <a>
             <F1RedButton
@@ -118,6 +148,7 @@ const F1Page: NextPage<F1PageProps> = ({
               sx={{
                 px: 1,
                 minWidth: "unset",
+                height: "100%",
                 borderTopLeftRadius: 0,
                 borderBottomLeftRadius: 0,
               }}
