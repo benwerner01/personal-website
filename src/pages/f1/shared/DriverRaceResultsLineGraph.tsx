@@ -20,10 +20,11 @@ import {
   Checkbox,
   Fade,
   FormControlLabel,
-  Switch,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { animated, useSprings, useSpring, useTransition } from "react-spring";
+import { interpolatePath } from "d3-interpolate-path";
 
 const driverListWidth = 75;
 
@@ -36,81 +37,106 @@ const YAxis: FC<{
   const ticks = linearScale.ticks();
 
   const [springs, set] = useSprings(ticks.length, (i) => ({
-    transform: `translate(0, ${linearScale(0)})`,
+    transform: `translate(${x}, ${linearScale(0)})`,
   }));
 
   useEffect(() => {
     set((i) => ({
-      transform: `translate(0, ${linearScale(ticks[i])})`,
+      transform: `translate(${x}, ${linearScale(ticks[i])})`,
     }));
   }, [ticks]);
 
   return (
-    <g transform={`translate(${[x, 0].join(",")})`}>
-      <path
-        d={["M", 0, y1, "V", y2].join(" ")}
-        fill="none"
-        stroke="currentColor"
-      />
+    <>
       {springs.map(({ transform }, i) => {
         return (
           <animated.g key={i} transform={transform}>
-            <line x2="-6" stroke="currentColor" />
             <text textAnchor="end" x={-20} y={3} fontSize={10}>
               {ticks[i]}
             </text>
           </animated.g>
         );
       })}
-    </g>
+    </>
   );
 };
 
 const XAxis: FC<{
   races: Omit<Race, "Results">[];
   pointSale: ScalePoint<string>;
-  y: number;
+  y2: number;
+  y1: number;
   x1: number;
   x2: number;
-}> = ({ races, pointSale, y, x1, x2 }) => {
+}> = ({ races, pointSale, y1, y2, x1, x2 }) => {
+  const { palette } = useTheme();
   return (
-    <g transform={`translate(${[0, y].join(",")})`}>
-      <path
-        d={["M", x1, 0, "H", x2].join(" ")}
-        fill="none"
-        stroke="currentColor"
-      />
-      {races.map(({ raceName, round }) => (
-        <g key={round} transform={`translate(${pointSale(round)}, 0)`}>
-          <line y2="6" stroke="currentColor" />
-          <text
-            fontSize={10}
-            textAnchor="end"
-            y={10}
-            x={-10}
-            transform="rotate(-45)"
-          >
-            {raceName.replace("Grand Prix", "GP")}
-          </text>
-        </g>
-      ))}
-    </g>
+    <>
+      {races.map(({ raceName, round }) => {
+        const x = pointSale(round);
+        return (
+          <React.Fragment key={round}>
+            <line
+              x1={x}
+              x2={x}
+              y1={y1}
+              y2={y2}
+              stroke={palette.grey[300]}
+              strokeDasharray="5,5"
+            />
+            <g transform={`translate(${x}, ${y1})`}>
+              <text
+                fontSize={10}
+                textAnchor="end"
+                y={10}
+                x={-10}
+                transform="rotate(-45)"
+              >
+                {raceName.replace("Grand Prix", "GP")}
+              </text>
+            </g>
+          </React.Fragment>
+        );
+      })}
+    </>
   );
 };
+
+const mapCoordinatesToPathD = (coordinates: number[][]) =>
+  coordinates
+    .map(([x, y], i, all) => `${i === 0 ? "M" : "L"}${x},${y}`)
+    .join(" ");
 
 const AnimatedPath: FC<{
   coordinates: number[][];
   stroke: string;
 }> = ({ coordinates, stroke }) => {
-  const { d } = useSpring({
-    d: coordinates
-      .map(([x, y], i) => `${i === 0 ? "M" : "L"} ${x} ${y}`)
-      .join(" "),
+  const prevPathDRef = useRef<string>(null);
+
+  const interpolator = useMemo(() => {
+    const updatedPathD = mapCoordinatesToPathD(coordinates);
+    const prevPathD = prevPathDRef.current;
+    prevPathDRef.current = updatedPathD;
+    if (prevPathD) {
+      return interpolatePath(prevPathD, updatedPathD);
+    }
+    return () => updatedPathD;
+  }, [coordinates]);
+
+  const animatedPathProps = useSpring({
+    from: { x: 0 },
+    to: {
+      x: 1,
+    },
+    config: {
+      clamp: true, // interpolation function can't go above 1
+    },
+    reset: true,
   });
 
   return (
     <animated.path
-      d={d}
+      d={animatedPathProps.x.to(interpolator)}
       fill="none"
       strokeWidth={DATA_POINT_RADIUS * 2}
       opacity={0.25}
@@ -248,7 +274,7 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
   seasonRaces,
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
-  console.log(seasonRaceResultsByDriver);
+
   const [svgSize, setSvgSize] = useState<{ width: number; height: number }>({
     width: 0,
     height: 0,
@@ -325,6 +351,15 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
           height: 750,
         }}
       >
+        <YAxis linearScale={yAxisLinearScale} x={50} y1={y1} y2={y2} />
+        <XAxis
+          races={allRaces}
+          pointSale={xPointScale}
+          x1={x1}
+          x2={x2}
+          y1={y1}
+          y2={y2}
+        />
         {seasonRaceResultsByDriver.map(({ driverId, Results, Constructor }) => {
           const isDisplayingDriver = displayingDrivers.includes(driverId);
           let totalPoints = 0;
@@ -358,14 +393,6 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
             </Box>
           );
         })}
-        <YAxis linearScale={yAxisLinearScale} x={50} y1={y1} y2={y2} />
-        <XAxis
-          races={allRaces}
-          pointSale={xPointScale}
-          y={y1}
-          x1={x1}
-          x2={x2}
-        />
       </svg>
       <DriverList
         displayingDrivers={displayingDrivers}
