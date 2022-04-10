@@ -40,9 +40,13 @@ type F1PageProps = {
 type ParsedQueryParams = { year: string };
 
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
+  const currentYear = new Date().getFullYear();
+  const yearsToRender = Array.from({ length: 10 }, (_, i) =>
+    (currentYear - i).toString()
+  );
   return {
     fallback: "blocking",
-    paths: ["2021", "2022"].map(() => ({ params: { year: "2022" } })),
+    paths: yearsToRender.map((year) => ({ params: { year } })),
   };
 };
 
@@ -59,6 +63,7 @@ export const getStaticProps: GetStaticProps<
       seasonRaceResultsByDriver: await fetchSeasonRaceResultsByDriver({ year }),
       seasonRaces: await fetchSeasonRaces({ year }),
     },
+    revalidate: 100,
   };
 };
 
