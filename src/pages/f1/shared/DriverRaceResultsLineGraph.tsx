@@ -8,7 +8,11 @@ import React, {
 } from "react";
 import { ScaleLinear, scaleLinear, ScalePoint, scalePoint } from "d3-scale";
 import { useEventListener, useIsomorphicLayoutEffect } from "usehooks-ts";
-import { constructorColoursByYear, DATA_POINT_RADIUS } from "./util";
+import {
+  constructorColoursByYear,
+  DATA_POINT_RADIUS,
+  getConstructorColor,
+} from "./util";
 import {
   Race,
   RaceDriverWithResultsAndConstructor,
@@ -238,7 +242,7 @@ const DriverList: FC<{
                 />
               }
               labelPlacement="start"
-              label={item.code}
+              label={item.code ?? "-"}
             />
           </animated.div>
         ))}
@@ -373,9 +377,10 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
             yAxisLinearScale(isDisplayingDriver ? totalPoints : 0),
           ]);
 
+          const { constructorId } = Constructor;
+
           const color =
-            constructorColoursByYear[year]?.[Constructor.constructorId] ??
-            "currentColor";
+            getConstructorColor({ year, constructorId }) ?? "currentColor";
 
           return (
             <Box

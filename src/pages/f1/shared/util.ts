@@ -28,3 +28,19 @@ export const constructorColoursByYear = {
     williams: "#005AFF",
   },
 } as const;
+
+export const getConstructorColor = (params: {
+  year: string;
+  constructorId: string;
+}) => {
+  const { year, constructorId } = params;
+  const exactMatch = constructorColoursByYear[year]?.[constructorId];
+
+  if (exactMatch) return exactMatch;
+
+  for (const backupYear of Object.keys(constructorColoursByYear)) {
+    const backupMatch = constructorColoursByYear[backupYear][constructorId];
+    if (backupMatch) return backupMatch;
+  }
+  return undefined;
+};

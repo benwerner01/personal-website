@@ -22,7 +22,7 @@ type RaceConstructor = {
 };
 
 type RaceDriver = {
-  code: string;
+  code?: string;
   dateOfBirth: string;
   driverId: string;
   familyName: string;
