@@ -23,9 +23,9 @@ import {
   Switch,
   Typography,
 } from "@mui/material";
-import { animated, useSprings, useTransition } from "react-spring";
+import { animated, useSprings, useSpring, useTransition } from "react-spring";
 
-const driverListWidth = 100;
+const driverListWidth = 75;
 
 const YAxis: FC<{
   linearScale: ScaleLinear<number, number, never>;
@@ -98,39 +98,112 @@ const XAxis: FC<{
   );
 };
 
+const AnimatedPath: FC<{
+  coordinates: number[][];
+  stroke: string;
+}> = ({ coordinates, stroke }) => {
+  const { d } = useSpring({
+    d: coordinates
+      .map(([x, y], i) => `${i === 0 ? "M" : "L"} ${x} ${y}`)
+      .join(" "),
+  });
+
+  return (
+    <animated.path
+      d={d}
+      fill="none"
+      strokeWidth={DATA_POINT_RADIUS * 2}
+      opacity={0.25}
+      stroke={stroke}
+    />
+  );
+};
+
+const AnimatedCircle: FC<{ x: number; y: number; fill: string }> = ({
+  x,
+  y,
+  fill,
+}) => {
+  const { cx, cy } = useSpring({
+    cx: x,
+    cy: y,
+  });
+
+  return <animated.circle cx={cx} cy={cy} r={DATA_POINT_RADIUS} fill={fill} />;
+};
+
+const driverCardHeight = 24;
+
 const DriverList: FC<{
   drivers: RaceDriverWithResultsAndConstructor[];
   displayingDrivers: string[];
   setDisplayingDrivers: React.Dispatch<React.SetStateAction<string[]>>;
 }> = ({ drivers, displayingDrivers, setDisplayingDrivers }) => {
+  const sortedDrivers = useMemo(
+    () =>
+      [...drivers].sort((a, b) => {
+        const isDisplayingA = displayingDrivers.includes(a.driverId);
+        const isDisplayingB = displayingDrivers.includes(b.driverId);
+        if (isDisplayingA === isDisplayingB) {
+          return b.totalPoints - a.totalPoints;
+        }
+        return isDisplayingA ? -1 : 1;
+      }),
+    [drivers, displayingDrivers]
+  );
+
+  let height = 0;
+
+  const transitions = useTransition(
+    sortedDrivers.map((data) => ({
+      ...data,
+      y: (height += driverCardHeight) - driverCardHeight,
+    })),
+    {
+      key: (item: RaceDriverWithResultsAndConstructor) => item.driverId,
+      from: { height: 0, opacity: 0 },
+      leave: { height: 0, opacity: 0 },
+      enter: ({ y }) => ({ y, height: driverCardHeight, opacity: 1 }),
+      update: ({ y }) => ({ y, height: driverCardHeight }),
+    }
+  );
+
   return (
     <Box sx={{ width: driverListWidth }}>
-      {[...drivers]
-        .sort((a, b) => {
-          const isDisplayingA = displayingDrivers.includes(a.driverId);
-          const isDisplayingB = displayingDrivers.includes(b.driverId);
-          if (isDisplayingA === isDisplayingB) {
-            return b.totalPoints - a.totalPoints;
-          }
-          return isDisplayingA ? -1 : 1;
-        })
-        .map(({ driverId, code }) => (
-          <Box key={driverId}>
+      <Typography variant="h5">Drivers</Typography>
+      <Box
+        position="relative"
+        sx={{ height: drivers.length * driverCardHeight }}
+      >
+        {transitions((style, item, _, index) => (
+          <animated.div
+            key={item.driverId}
+            style={{
+              width: "100%",
+              position: "absolute",
+              zIndex: drivers.length - index,
+              ...style,
+            }}
+          >
             <FormControlLabel
-              sx={{ marginLeft: 0 }}
+              sx={{
+                marginLeft: 0,
+                width: "100%",
+                justifyContent: "space-between",
+              }}
               control={
                 <Checkbox
                   disableRipple
                   disableFocusRipple
                   disableTouchRipple
-                  checked={displayingDrivers.includes(driverId)}
+                  checked={displayingDrivers.includes(item.driverId)}
                   onClick={() =>
                     setDisplayingDrivers((prev) =>
-                      prev.includes(driverId)
+                      prev.includes(item.driverId)
                         ? prev.length === 1
                           ? prev
-                          : prev.filter((id) => driverId !== id)
-                        : [...prev, driverId]
+                          : prev.filter((id) => item.driverId !== id)
+                        : [...prev, item.driverId]
                     )
                   }
                   sx={{
@@ -138,10 +211,12 @@ const DriverList: FC<{
                   }}
                 />
               }
-              label={code}
+              labelPlacement="start"
+              label={item.code}
             />
-          </Box>
+          </animated.div>
         ))}
+      </Box>
       <Fade in={drivers.length !== displayingDrivers.length}>
         <Button
           variant="contained"
@@ -173,7 +248,7 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
   seasonRaces,
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
-
+  console.log(seasonRaceResultsByDriver);
   const [svgSize, setSvgSize] = useState<{ width: number; height: number }>({
     width: 0,
     height: 0,
@@ -250,48 +325,39 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
           height: 750,
         }}
       >
-        {seasonRaceResultsByDriver
-          .filter(({ driverId }) => displayingDrivers.includes(driverId))
-          .map(({ driverId, Results, Constructor }) => {
-            let totalPoints = 0;
+        {seasonRaceResultsByDriver.map(({ driverId, Results, Constructor }) => {
+          const isDisplayingDriver = displayingDrivers.includes(driverId);
+          let totalPoints = 0;
 
-            const coordinates = Results.map(({ round, points }) => {
-              const pointsInRace = parseInt(points, 10);
-              totalPoints += pointsInRace;
-              return { round, totalPoints };
-            })
-              .filter(({ totalPoints }) => totalPoints !== 0)
-              .map(({ round, totalPoints }) => [
-                xPointScale(round),
-                yAxisLinearScale(totalPoints),
-              ]);
+          const coordinates = Results.map(({ round, points }) => {
+            const pointsInRace = parseInt(points, 10);
+            totalPoints += pointsInRace;
+            return { round, totalPoints };
+          }).map(({ round, totalPoints }) => [
+            xPointScale(round),
+            yAxisLinearScale(isDisplayingDriver ? totalPoints : 0),
+          ]);
 
-            const color =
-              constructorColoursByYear[year]?.[Constructor.constructorId];
+          const color =
+            constructorColoursByYear[year]?.[Constructor.constructorId] ??
+            "currentColor";
 
-            return (
-              <g key={driverId}>
-                <path
-                  d={coordinates
-                    .map(([x, y], i) => `${i === 0 ? "M" : "L"} ${x} ${y}`)
-                    .join(" ")}
-                  fill="none"
-                  strokeWidth={DATA_POINT_RADIUS * 2}
-                  opacity={0.25}
-                  stroke={color ?? "currentColor"}
-                />
-                {coordinates.map(([x, y], i) => (
-                  <circle
-                    key={i}
-                    cx={x}
-                    cy={y}
-                    r={DATA_POINT_RADIUS}
-                    fill={color ?? "currentColor"}
-                  />
-                ))}
-              </g>
-            );
-          })}
+          return (
+            <Box
+              component="g"
+              key={driverId}
+              sx={{
+                opacity: isDisplayingDriver ? 1 : 0,
+                transition: (theme) => theme.transitions.create("opacity"),
+              }}
+            >
+              <AnimatedPath coordinates={coordinates} stroke={color} />
+              {coordinates.map(([x, y], i) => (
+                <AnimatedCircle key={i} x={x} y={y} fill={color} />
+              ))}
+            </Box>
+          );
+        })}
         <YAxis linearScale={yAxisLinearScale} x={50} y1={y1} y2={y2} />
         <XAxis
           races={allRaces}
