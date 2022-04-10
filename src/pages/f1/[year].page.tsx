@@ -9,11 +9,10 @@ import {
 } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import {
-  fetchSeasonRaceResults,
+  apiSupportedYears,
   fetchSeasonRaceResultsByDriver,
   fetchSeasonRaces,
   RaceDriverWithResultsAndConstructor,
-  SeasonRaceResults,
   SeasonRaces,
 } from "./shared/ergastF1Api";
 import DriverRaceResultsLineGraph from "./shared/DriverRaceResultsLineGraph";
@@ -33,7 +32,6 @@ const F1RedButton = styled(Button)(({ theme }) => ({
 
 type F1PageProps = {
   year: string;
-  seasonRaceResults: SeasonRaceResults;
   seasonRaceResultsByDriver: RaceDriverWithResultsAndConstructor[];
   seasonRaces: SeasonRaces;
 };
@@ -41,13 +39,11 @@ type F1PageProps = {
 type ParsedQueryParams = { year: string };
 
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  const currentYear = new Date().getFullYear();
-  const yearsToRender = Array.from({ length: 10 }, (_, i) =>
-    (currentYear - i).toString()
-  );
   return {
     fallback: "blocking",
-    paths: yearsToRender.map((year) => ({ params: { year } })),
+    paths: apiSupportedYears.map((year) => ({
+      params: { year: year.toString() },
+    })),
   };
 };
 
@@ -60,7 +56,6 @@ export const getStaticProps: GetStaticProps<
   return {
     props: {
       year,
-      seasonRaceResults: await fetchSeasonRaceResults({ year }),
       seasonRaceResultsByDriver: await fetchSeasonRaceResultsByDriver({ year }),
       seasonRaces: await fetchSeasonRaces({ year }),
     },
@@ -70,19 +65,12 @@ export const getStaticProps: GetStaticProps<
 
 const F1Page: NextPage<F1PageProps> = ({
   year,
-  seasonRaceResults,
   seasonRaceResultsByDriver,
   seasonRaces,
 }) => {
   const router = useRouter();
 
   const yearAsNumber = parseInt(year, 10);
-  const currentYear = new Date().getFullYear();
-
-  const possibleYears = Array.from(
-    { length: currentYear - 1950 + 1 },
-    (_, i) => currentYear - i
-  );
 
   return (
     <Container sx={{ position: "relative" }}>
@@ -132,7 +120,7 @@ const F1Page: NextPage<F1PageProps> = ({
             disableUnderline
             variant="standard"
           >
-            {possibleYears.map((possibleYear) => (
+            {apiSupportedYears.map((possibleYear) => (
               <MenuItem key={possibleYear} value={possibleYear}>
                 {possibleYear}
               </MenuItem>

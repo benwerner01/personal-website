@@ -154,3 +154,10 @@ export const fetchSeasonRaces = async (params: {
 
   return data.MRData.RaceTable;
 };
+
+const currentYear = new Date().getFullYear();
+
+export const apiSupportedYears = Array.from(
+  { length: currentYear - 1950 + 1 },
+  (_, i) => currentYear - i
+);
