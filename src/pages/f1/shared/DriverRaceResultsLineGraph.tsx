@@ -2,12 +2,17 @@ import React, {
   FC,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
 import { ScaleLinear, scaleLinear, ScalePoint, scalePoint } from "d3-scale";
-import { useEventListener, useIsomorphicLayoutEffect } from "usehooks-ts";
+import {
+  useEventListener,
+  useIsomorphicLayoutEffect,
+  useTimeout,
+} from "usehooks-ts";
 import {
   constructorColoursByYear,
   DATA_POINT_RADIUS,
@@ -107,9 +112,7 @@ const XAxis: FC<{
 };
 
 const mapCoordinatesToPathD = (coordinates: number[][]) =>
-  coordinates
-    .map(([x, y], i, all) => `${i === 0 ? "M" : "L"}${x},${y}`)
-    .join(" ");
+  coordinates.map(([x, y], i) => `${i === 0 ? "M" : "L"}${x},${y}`).join(" ");
 
 const AnimatedPath: FC<{
   coordinates: number[][];
@@ -121,11 +124,11 @@ const AnimatedPath: FC<{
     const updatedPathD = mapCoordinatesToPathD(coordinates);
     const prevPathD = prevPathDRef.current;
     prevPathDRef.current = updatedPathD;
-    if (prevPathD) {
-      return interpolatePath(prevPathD, updatedPathD);
-    }
-    return () => updatedPathD;
-  }, [coordinates]);
+
+    return prevPathD
+      ? interpolatePath(prevPathD, updatedPathD)
+      : () => updatedPathD;
+  }, [coordinates.join("-")]);
 
   const animatedPathProps = useSpring({
     from: { x: 0 },
@@ -308,6 +311,12 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
   const [displayingDrivers, setDisplayingDrivers] = useState<string[]>(
     seasonRaceResultsByDriver.map(({ driverId }) => driverId)
   );
+
+  useEffect(() => {
+    setDisplayingDrivers(
+      seasonRaceResultsByDriver.map(({ driverId }) => driverId)
+    );
+  }, [seasonRaceResultsByDriver]);
 
   const allRaces = seasonRaces.Races;
 
