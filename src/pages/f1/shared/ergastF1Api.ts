@@ -1,27 +1,27 @@
 import axios from "axios";
 
-type RaceLocation = {
+export type ErgastApiRaceLocation = {
   country: string;
   lat: string;
   locality: string;
   long: string;
 };
 
-type RaceCircuit = {
+export type ErgastApiRaceCircuit = {
   circuitId: string;
   circuitName: string;
   url: string;
-  location: RaceLocation;
+  location: ErgastApiRaceLocation;
 };
 
-type RaceConstructor = {
+export type ErgastApiRaceConstructor = {
   constructorId: string;
   url: string;
   name: string;
   nationality: string;
 };
 
-type RaceDriver = {
+export type ErgastApiRaceDriver = {
   code?: string;
   dateOfBirth: string;
   driverId: string;
@@ -32,15 +32,15 @@ type RaceDriver = {
   url: string;
 };
 
-type RaceTime = {
+export type ErgastApiRaceTime = {
   millis: string;
   time: string;
 };
 
-type RaceResult = {
-  Constructor: RaceConstructor;
-  Driver: RaceDriver;
-  Time: RaceTime;
+export type ErgastApiRaceResult = {
+  Constructor: ErgastApiRaceConstructor;
+  Driver: ErgastApiRaceDriver;
+  Time: ErgastApiRaceTime;
   grid: string;
   laps: string;
   number: string;
@@ -50,17 +50,9 @@ type RaceResult = {
   status: string;
 };
 
-export type RaceResultWithRound = RaceResult & { round: string };
-
-export type RaceDriverWithResultsAndConstructor = RaceDriver & {
-  Results: RaceResultWithRound[];
-  Constructor: RaceConstructor;
-  totalPoints: number;
-};
-
-export type Race = {
-  Circuit: RaceCircuit;
-  Results: RaceResult[];
+export type ErgastApiRace = {
+  Circuit: ErgastApiRaceCircuit;
+  Results: ErgastApiRaceResult[];
   date: string;
   raceName: string;
   round: string;
@@ -69,26 +61,26 @@ export type Race = {
   url: string;
 };
 
-export type SeasonRaceResults = {
+export type ErgastApiSeasonRaceResults = {
   season: string;
-  Races: Race[];
+  Races: ErgastApiRace[];
 };
 
-export type SeasonRaces = {
+export type ErgastApiSeasonRaces = {
   season: string;
-  Races: Omit<Race, "Results">[];
+  Races: Omit<ErgastApiRace, "Results">[];
 };
 
-type ErgastSeasonRaceResultsResponse = {
+type ErgastApiSeasonRaceResultsResponse = {
   MRData: {
-    RaceTable: SeasonRaceResults;
+    RaceTable: ErgastApiSeasonRaceResults;
   };
 };
 
 export const fetchSeasonRaceResults = async (params: {
   year: string;
-}): Promise<SeasonRaceResults> => {
-  const { data } = await axios.get<ErgastSeasonRaceResultsResponse>(
+}): Promise<ErgastApiSeasonRaceResults> => {
+  const { data } = await axios.get<ErgastApiSeasonRaceResultsResponse>(
     `http://ergast.com/api/f1/${params.year}/results.json`,
     {
       params: {
@@ -102,8 +94,8 @@ export const fetchSeasonRaceResults = async (params: {
 
 export const fetchSeasonRaces = async (params: {
   year: string;
-}): Promise<SeasonRaces> => {
-  const { data } = await axios.get<ErgastSeasonRaceResultsResponse>(
+}): Promise<ErgastApiSeasonRaces> => {
+  const { data } = await axios.get<ErgastApiSeasonRaceResultsResponse>(
     `http://ergast.com/api/f1/${params.year}.json`,
     {
       params: {

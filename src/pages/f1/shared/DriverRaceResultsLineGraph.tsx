@@ -2,26 +2,19 @@ import React, {
   FC,
   useCallback,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
 import { ScaleLinear, scaleLinear, ScalePoint, scalePoint } from "d3-scale";
+import { useEventListener, useIsomorphicLayoutEffect } from "usehooks-ts";
+import { DATA_POINT_RADIUS, getConstructorColor } from "./util";
 import {
-  useEventListener,
-  useIsomorphicLayoutEffect,
-  useTimeout,
-} from "usehooks-ts";
-import {
-  constructorColoursByYear,
-  DATA_POINT_RADIUS,
-  getConstructorColor,
-} from "./util";
-import {
-  Race,
-  RaceDriverWithResultsAndConstructor,
-  SeasonRaces,
+  ErgastApiRace,
+  ErgastApiRaceConstructor,
+  ErgastApiRaceDriver,
+  ErgastApiRaceResult,
+  ErgastApiSeasonRaces,
 } from "./ergastF1Api";
 import {
   Box,
@@ -34,6 +27,14 @@ import {
 } from "@mui/material";
 import { animated, useSprings, useSpring, useTransition } from "react-spring";
 import { interpolatePath } from "d3-interpolate-path";
+
+export type RaceResultWithRound = ErgastApiRaceResult & { round: string };
+
+export type RaceDriverWithResultsAndConstructor = ErgastApiRaceDriver & {
+  Results: RaceResultWithRound[];
+  Constructor: ErgastApiRaceConstructor;
+  totalPoints: number;
+};
 
 const driverListWidth = 75;
 
@@ -71,7 +72,7 @@ const YAxis: FC<{
 };
 
 const XAxis: FC<{
-  races: Omit<Race, "Results">[];
+  races: Omit<ErgastApiRace, "Results">[];
   pointSale: ScalePoint<string>;
   y2: number;
   y1: number;
@@ -270,9 +271,9 @@ const DriverList: FC<{
 };
 
 type DriverRaceResultsLineGraphProps = {
-  year;
+  year: string;
   seasonRaceResultsByDriver: RaceDriverWithResultsAndConstructor[];
-  seasonRaces: SeasonRaces;
+  seasonRaces: ErgastApiSeasonRaces;
 };
 
 const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({

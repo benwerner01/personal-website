@@ -12,11 +12,13 @@ import {
   apiSupportedYears,
   fetchSeasonRaceResults,
   fetchSeasonRaces,
+  ErgastApiRaceResult,
+  ErgastApiSeasonRaces,
+} from "./shared/ergastF1Api";
+import DriverRaceResultsLineGraph, {
   RaceDriverWithResultsAndConstructor,
   RaceResultWithRound,
-  SeasonRaces,
-} from "./shared/ergastF1Api";
-import DriverRaceResultsLineGraph from "./shared/DriverRaceResultsLineGraph";
+} from "./shared/DriverRaceResultsLineGraph";
 import { f1Color } from "./shared/util";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -34,7 +36,7 @@ const F1RedButton = styled(Button)(({ theme }) => ({
 type F1PageProps = {
   year: string;
   seasonRaceResultsByDriver: RaceDriverWithResultsAndConstructor[];
-  seasonRaces: SeasonRaces;
+  seasonRaces: ErgastApiSeasonRaces;
 };
 
 type ParsedQueryParams = { year: string };
