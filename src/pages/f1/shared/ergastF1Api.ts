@@ -50,7 +50,7 @@ type RaceResult = {
   status: string;
 };
 
-type RaceResultWithRound = RaceResult & { round: string };
+export type RaceResultWithRound = RaceResult & { round: string };
 
 export type RaceDriverWithResultsAndConstructor = RaceDriver & {
   Results: RaceResultWithRound[];
@@ -98,46 +98,6 @@ export const fetchSeasonRaceResults = async (params: {
   );
 
   return data.MRData.RaceTable;
-};
-
-export const fetchSeasonRaceResultsByDriver = async (params: {
-  year: string;
-}): Promise<RaceDriverWithResultsAndConstructor[]> => {
-  const seasonRaceResults = await fetchSeasonRaceResults(params);
-
-  return seasonRaceResults.Races.reduce<RaceDriverWithResultsAndConstructor[]>(
-    (prevDriversWithResults, race) => {
-      for (const raceResult of race.Results) {
-        const driver = raceResult.Driver;
-        const raceResultWithCircuit: RaceResultWithRound = {
-          ...raceResult,
-          round: race.round,
-        };
-
-        const existingDriverIndex = prevDriversWithResults.findIndex(
-          ({ driverId }) => driverId === driver.driverId
-        );
-
-        const racePoints = parseInt(raceResultWithCircuit.points, 10);
-
-        if (existingDriverIndex < 0) {
-          prevDriversWithResults.push({
-            ...driver,
-            Results: [raceResultWithCircuit],
-            Constructor: raceResultWithCircuit.Constructor,
-            totalPoints: parseInt(raceResultWithCircuit.points, 10),
-          });
-        } else {
-          prevDriversWithResults[existingDriverIndex].Results.push(
-            raceResultWithCircuit
-          );
-          prevDriversWithResults[existingDriverIndex].totalPoints += racePoints;
-        }
-      }
-      return prevDriversWithResults;
-    },
-    []
-  );
 };
 
 export const fetchSeasonRaces = async (params: {

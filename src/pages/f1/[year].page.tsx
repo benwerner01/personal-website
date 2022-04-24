@@ -10,9 +10,10 @@ import {
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import {
   apiSupportedYears,
-  fetchSeasonRaceResultsByDriver,
+  fetchSeasonRaceResults,
   fetchSeasonRaces,
   RaceDriverWithResultsAndConstructor,
+  RaceResultWithRound,
   SeasonRaces,
 } from "./shared/ergastF1Api";
 import DriverRaceResultsLineGraph from "./shared/DriverRaceResultsLineGraph";
@@ -53,11 +54,49 @@ export const getStaticProps: GetStaticProps<
 > = async ({ params }) => {
   const { year } = params;
 
+  const [seasonRaces, seasonRaceResults] = await Promise.all([
+    fetchSeasonRaces({ year }),
+    fetchSeasonRaceResults({ year }),
+  ]);
+
+  const seasonRaceResultsByDriver = seasonRaceResults.Races.reduce<
+    RaceDriverWithResultsAndConstructor[]
+  >((prevDriversWithResults, race) => {
+    for (const raceResult of race.Results) {
+      const driver = raceResult.Driver;
+      const raceResultWithCircuit: RaceResultWithRound = {
+        ...raceResult,
+        round: race.round,
+      };
+
+      const existingDriverIndex = prevDriversWithResults.findIndex(
+        ({ driverId }) => driverId === driver.driverId
+      );
+
+      const racePoints = parseInt(raceResultWithCircuit.points, 10);
+
+      if (existingDriverIndex < 0) {
+        prevDriversWithResults.push({
+          ...driver,
+          Results: [raceResultWithCircuit],
+          Constructor: raceResultWithCircuit.Constructor,
+          totalPoints: parseInt(raceResultWithCircuit.points, 10),
+        });
+      } else {
+        prevDriversWithResults[existingDriverIndex].Results.push(
+          raceResultWithCircuit
+        );
+        prevDriversWithResults[existingDriverIndex].totalPoints += racePoints;
+      }
+    }
+    return prevDriversWithResults;
+  }, []);
+
   return {
     props: {
       year,
-      seasonRaceResultsByDriver: await fetchSeasonRaceResultsByDriver({ year }),
-      seasonRaces: await fetchSeasonRaces({ year }),
+      seasonRaceResultsByDriver,
+      seasonRaces,
     },
     revalidate: 100,
   };
@@ -71,7 +110,6 @@ const F1Page: NextPage<F1PageProps> = ({
   const router = useRouter();
 
   const yearAsNumber = parseInt(year, 10);
-
   return (
     <Container sx={{ position: "relative" }}>
       <Box display="flex" position="relative" alignItems="stretch">
