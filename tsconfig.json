@@ -20,6 +20,7 @@
   },
   "include": [
     "next-env.d.ts",
+    "three.d.ts",
     "**/*.ts",
     "**/*.tsx"
   ],
