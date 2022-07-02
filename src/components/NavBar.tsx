@@ -16,6 +16,7 @@ const NAV_BAR_ITEMS: NavBarItemDefinition[] = [
   { href: "/", label: "BW", position: "left" },
   { href: "/work", label: "Work", position: "left" },
   { href: "/gallery", label: "Gallery", position: "left" },
+  { href: "/3d", label: "3D", position: "left" },
   { href: "/contact", label: "Contact", position: "right" },
 ];
 

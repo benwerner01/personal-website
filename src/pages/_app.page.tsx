@@ -14,7 +14,7 @@ const clientSideEmotionCache = createEmotionCache();
 
 // import BackgroundAnimation from '../components/BackgroundAnimation';
 
-const DARK_MODE_PATHS = ["/three"];
+const DARK_MODE_PATHS = ["/3d"];
 
 const MyApp = ({
   Component,
