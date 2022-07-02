@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTheme } from "@mui/material";
@@ -6,35 +6,40 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-type NavBarItem = {
+type NavBarItemDefinition = {
   href: string;
   label: string;
   position: "left" | "right";
 };
 
-const NAV_BAR_ITEMS: NavBarItem[] = [
+const NAV_BAR_ITEMS: NavBarItemDefinition[] = [
   { href: "/", label: "BW", position: "left" },
   { href: "/work", label: "Work", position: "left" },
   { href: "/gallery", label: "Gallery", position: "left" },
+  { href: "/3d", label: "3D", position: "left" },
   { href: "/contact", label: "Contact", position: "right" },
 ];
 
 export const NAV_BAR_HEIGHT = 40;
 
+const NavBarItem: FC<NavBarItemDefinition & { isActive: boolean }> = ({
+  label,
+  href,
+  isActive,
+}) => (
+  <Box m={1}>
+    <Typography>
+      <Link href={href}>
+        <a style={{ fontWeight: isActive ? 800 : 400 }}>{label}</a>
+      </Link>
+    </Typography>
+  </Box>
+);
+
 const NavBar: React.FC = () => {
   const { pathname } = useRouter();
   const theme = useTheme();
   const xs = useMediaQuery(theme.breakpoints.down("xs"));
-
-  const mapNavBarItemToElement = ({ label, href }: NavBarItem) => (
-    <Box m={1} key={label}>
-      <Typography>
-        <Link href={href}>
-          <a style={{ fontWeight: pathname === href ? 800 : 400 }}>{label}</a>
-        </Link>
-      </Typography>
-    </Box>
-  );
 
   return (
     <Box
@@ -45,12 +50,24 @@ const NavBar: React.FC = () => {
     >
       <Box display="flex">
         {NAV_BAR_ITEMS.filter(({ position }) => position === "left").map(
-          mapNavBarItemToElement
+          (item) => (
+            <NavBarItem
+              key={item.label}
+              isActive={pathname === item.href}
+              {...item}
+            />
+          )
         )}
       </Box>
       <Box display="flex">
         {NAV_BAR_ITEMS.filter(({ position }) => position === "right").map(
-          mapNavBarItemToElement
+          (item) => (
+            <NavBarItem
+              key={item.label}
+              isActive={pathname === item.href}
+              {...item}
+            />
+          )
         )}
       </Box>
     </Box>

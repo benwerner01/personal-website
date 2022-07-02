@@ -4,9 +4,8 @@ import Link from "next/link";
 import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Theme } from "@mui/material";
+import { Theme, useTheme } from "@mui/material";
 import { Collection, CollectionImage } from "../lib/gallery";
-import theme from "../lib/theme";
 
 const IMAGE_HEIGHT = 400;
 
@@ -15,7 +14,7 @@ type CollectionImageComponentProps = {
   collectionSlug: string;
 };
 
-const useCollectionImageStyles = makeStyles<Theme>({
+const useCollectionImageStyles = makeStyles<Theme>((theme) => ({
   image: {
     opacity: 1,
     transition: theme.transitions.create("opacity"),
@@ -23,7 +22,7 @@ const useCollectionImageStyles = makeStyles<Theme>({
       opacity: 0.75,
     },
   },
-});
+}));
 
 const CollectionImageComponent: React.FC<CollectionImageComponentProps> = ({
   collectionSlug,
@@ -53,6 +52,7 @@ const CollectionImageComponent: React.FC<CollectionImageComponentProps> = ({
 const CollectionPreview: React.FC<{ collection: Collection }> = ({
   collection,
 }) => {
+  const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down("sm"));
 
   const itemsPerRow = sm ? 3 : 5;
