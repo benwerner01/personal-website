@@ -12,6 +12,10 @@ module.exports = {
     ];
   },
   webpack: (config, { isServer }) => {
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs|vert|frag)$/,
+      use: ["raw-loader", "glslify-loader"],
+    });
     // Fixes npm packages that depend on `fs` module
     if (!isServer) {
       // eslint-disable-next-line no-param-reassign
