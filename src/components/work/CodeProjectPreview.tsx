@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import MacOSWindow from "../MacOSWindow";
@@ -51,6 +51,7 @@ const CodeProjectPreview: React.FC<CodeProjectPreviewProps> = ({
         >
           {preview.variant === "image" ? (
             <Image
+              alt={preview.fileName}
               quality={100}
               src={`/work/code/${codeProjectSlug}/${preview.fileName}`}
               width={preview.width}

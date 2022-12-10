@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
@@ -33,17 +33,16 @@ const CollectionImageComponent: React.FC<CollectionImageComponentProps> = ({
   return (
     <Box m={1}>
       <Link href={`/gallery/${collectionSlug}/${image.slug}`}>
-        <a>
-          <Image
-            quality={100}
-            className={classes.image}
-            src={`/gallery/${collectionSlug}/${image.slug}.jpeg`}
-            width={(IMAGE_HEIGHT / image.height) * image.width}
-            height={IMAGE_HEIGHT}
-            blurDataURL={image.blurDataURL}
-            placeholder={image.blurDataURL ? "blur" : undefined}
-          />
-        </a>
+        <Image
+          alt={image.slug}
+          quality={100}
+          className={classes.image}
+          src={`/gallery/${collectionSlug}/${image.slug}.jpeg`}
+          width={(IMAGE_HEIGHT / image.height) * image.width}
+          height={IMAGE_HEIGHT}
+          blurDataURL={image.blurDataURL}
+          placeholder={image.blurDataURL ? "blur" : undefined}
+        />
       </Link>
     </Box>
   );

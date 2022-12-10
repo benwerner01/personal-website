@@ -116,21 +116,21 @@ const F1Page: NextPage<F1PageProps> = ({
     <Container sx={{ position: "relative" }}>
       <Box display="flex" position="relative" alignItems="stretch">
         <Link href={`/f1/${yearAsNumber - 1}`}>
-          <a>
-            <F1RedButton
-              variant="contained"
-              sx={{
-                px: 1,
-                height: "100%",
-                minWidth: "unset",
-                borderTopRightRadius: 0,
-                borderBottomRightRadius: 0,
-              }}
-              color="inherit"
-            >
-              <ChevronLeft />
-            </F1RedButton>
-          </a>
+
+          <F1RedButton
+            variant="contained"
+            sx={{
+              px: 1,
+              height: "100%",
+              minWidth: "unset",
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+            }}
+            color="inherit"
+          >
+            <ChevronLeft />
+          </F1RedButton>
+
         </Link>
         <Box
           sx={{
@@ -169,22 +169,22 @@ const F1Page: NextPage<F1PageProps> = ({
         </Box>
 
         <Link href={`/f1/${yearAsNumber + 1}`}>
-          <a>
-            <F1RedButton
-              variant="contained"
-              disabled={new Date().getFullYear() === yearAsNumber}
-              sx={{
-                px: 1,
-                minWidth: "unset",
-                height: "100%",
-                borderTopLeftRadius: 0,
-                borderBottomLeftRadius: 0,
-              }}
-              color="inherit"
-            >
-              <ChevronRight />
-            </F1RedButton>
-          </a>
+
+          <F1RedButton
+            variant="contained"
+            disabled={new Date().getFullYear() === yearAsNumber}
+            sx={{
+              px: 1,
+              minWidth: "unset",
+              height: "100%",
+              borderTopLeftRadius: 0,
+              borderBottomLeftRadius: 0,
+            }}
+            color="inherit"
+          >
+            <ChevronRight />
+          </F1RedButton>
+
         </Link>
       </Box>
       <DriverRaceResultsLineGraph

@@ -29,8 +29,8 @@ const NavBarItem: FC<NavBarItemDefinition & { isActive: boolean }> = ({
 }) => (
   <Box m={1}>
     <Typography>
-      <Link href={href}>
-        <a style={{ fontWeight: isActive ? 800 : 400 }}>{label}</a>
+      <Link href={href} style={{ fontWeight: isActive ? 800 : 400 }}>
+        {label}
       </Link>
     </Typography>
   </Box>

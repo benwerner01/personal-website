@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { GetStaticProps, GetStaticPaths } from "next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
@@ -111,13 +111,14 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
     <Container classes={{ root: classes.containerRoot }}>
       <Typography gutterBottom variant="h5">
         <Link href={`/gallery/${collection.slug}`}>
-          <a>{collection.name}</a>
+          {collection.name}
         </Link>
         {" > "}
         {item.slug}
       </Typography>
       <Box className={classes.imageWrapper} flexGrow={1}>
         <Image
+          alt={item.slug}
           src={`/gallery/${collection.slug}/${item.slug}.jpeg`}
           layout="fill"
           objectFit="contain"
@@ -125,14 +126,14 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
       </Box>
       <Box display="flex" justifyContent="space-between" mb={2} mt={2}>
         <Link href={`/gallery/${collection.slug}/${previousItem.slug}`}>
-          <a>
-            <Button startIcon={<ChevronLeftIcon />}>Previous</Button>
-          </a>
+
+          <Button startIcon={<ChevronLeftIcon />}>Previous</Button>
+
         </Link>
         <Link href={`/gallery/${collection.slug}/${nextItem.slug}`}>
-          <a>
-            <Button endIcon={<ChevronRightIcon />}>Next</Button>
-          </a>
+
+          <Button endIcon={<ChevronRightIcon />}>Next</Button>
+
         </Link>
       </Box>
     </Container>

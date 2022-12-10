@@ -186,18 +186,18 @@ const CodeProjectCard: VoidFunctionComponent<CodeProjectCardProps> = ({
               </a>
             )}
             <Link href={`/work/code/${project.slug}`}>
-              <a>
-                <Button
-                  classes={{
-                    root: classes.moreButtonRoot,
-                    endIcon: classes.moreButtonEndIcon,
-                  }}
-                  variant="outlined"
-                  endIcon={<ArrowForwardIosIcon />}
-                >
-                  More
-                </Button>
-              </a>
+
+              <Button
+                classes={{
+                  root: classes.moreButtonRoot,
+                  endIcon: classes.moreButtonEndIcon,
+                }}
+                variant="outlined"
+                endIcon={<ArrowForwardIosIcon />}
+              >
+                More
+              </Button>
+
             </Link>
           </Box>
         </Box>
