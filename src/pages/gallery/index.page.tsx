@@ -26,7 +26,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ gallery }) => (
         <Box display="flex" justifyContent="space-between" mb={2}>
           <Typography variant="h5">
             <Link href={`/gallery/${collection.slug}`}>
-              <a>{collection.name}</a>
+              {collection.name}
             </Link>
           </Typography>
           <Typography variant="h5">
