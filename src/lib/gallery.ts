@@ -79,6 +79,12 @@ export const getCollectionItems = (slug: string): CollectionItem[] =>
 
 export const STATIC_COLLECTIONS = [
   {
+    name: "Burning Man 2022",
+    slug: "burning-man-2022",
+    startDate: new Date("2022-08-23").toISOString(),
+    endDate: new Date("2022-09-04").toISOString(),
+  },
+  {
     name: "London Lockdown",
     slug: "london-lockdown",
     startDate: new Date("2020-05").toISOString(),

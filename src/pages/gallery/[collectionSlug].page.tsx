@@ -41,7 +41,9 @@ export const getStaticProps: GetStaticProps<
 
 const CollectionPage: React.FC<CollectionPageProps> = ({ collection }) => (
   <Container>
-    <Typography variant="h1">{collection.name}</Typography>
+    <Typography gutterBottom variant="h1">
+      {collection.name}
+    </Typography>
     <CollectionPreview collection={collection} />
   </Container>
 );
