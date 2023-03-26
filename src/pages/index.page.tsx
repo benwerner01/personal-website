@@ -80,11 +80,6 @@ const Home = () => {
             </a>
           ))}
         </Box>
-        <Typography>
-          {"I'm a "}
-          <strong>programmer</strong>
-          {" studying computer science at King's College London"}
-        </Typography>
       </Box>
     </Container>
   );
