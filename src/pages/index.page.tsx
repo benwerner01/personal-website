@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { SvgIconProps } from "@mui/material/SvgIcon";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -8,44 +7,38 @@ import { Theme } from "@mui/material";
 import GitHubIcon from "../components/icons/GitHubIcon";
 import LinkedInIcon from "../components/icons/LinkedInIcon";
 import TwitterIcon from "../components/icons/TwitterIcon";
+import SoundCloudIcon from "../components/icons/SoundCloudIcon";
 
 type Social = {
   name: string;
   url: string;
-  Icon: React.FC<SvgIconProps>;
+  icon: React.ReactNode;
 };
 
 const SOCIALS: Social[] = [
   {
     name: "GitHub",
     url: "https://github.com/benwerner01",
-    Icon: GitHubIcon,
+    icon: <GitHubIcon sx={{ fontSize: 22 }} />,
   },
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/ben-werner",
-    Icon: LinkedInIcon,
+    icon: <LinkedInIcon sx={{ fontSize: 22 }} />,
   },
   {
     name: "Twitter",
     url: "https://twitter.com/benwerner01",
-    Icon: TwitterIcon,
+    icon: <TwitterIcon sx={{ fontSize: 20 }} />,
+  },
+  {
+    name: "SoundCloud",
+    url: "https://soundcloud.com/benwerner01",
+    icon: <SoundCloudIcon sx={{ fontSize: 22 }} />,
   },
 ];
 
 const useHomeStyles = makeStyles<Theme>((theme) => ({
-  social: {
-    marginRight: theme.spacing(1),
-    "& svg": {
-      width: 30,
-      height: 30,
-      opacity: 1,
-      transition: theme.transitions.create("opacity"),
-      "&:hover": {
-        opacity: 0.75,
-      },
-    },
-  },
   title: {
     fontSize: 100,
     marginLeft: -5,
@@ -68,16 +61,34 @@ const Home = () => {
           Ben Werner
         </Typography>
         <Box display="flex" mb={1}>
-          {SOCIALS.map(({ name, url, Icon }) => (
-            <a
+          {SOCIALS.map(({ name, url, icon }) => (
+            <Box
+              component="a"
               key={name}
-              className={classes.social}
               href={url}
               rel="noopener noreferrer"
               target="_blank"
+              sx={{
+                marginRight: ({ spacing }) => spacing(1),
+                backgroundColor: ({ palette }) => palette.common.black,
+                width: 30,
+                height: 30,
+                borderRadius: 1,
+                transition: ({ transitions }) => transitions.create("opacity"),
+                opacity: 1,
+                "&:hover": {
+                  opacity: 0.75,
+                },
+                svg: {
+                  color: ({ palette }) => palette.common.white,
+                },
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <Icon />
-            </a>
+              {icon}
+            </Box>
           ))}
         </Box>
       </Box>
