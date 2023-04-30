@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent, PropsWithChildren } from "react";
 import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -73,12 +73,12 @@ const useStyles = makeStyles<Theme>((theme) => ({
   },
 }));
 
-type MacOSWindowProps = {
+type MacOSWindowProps = PropsWithChildren<{
   title?: string;
   shadow?: boolean;
-};
+}>;
 
-const MacOSWindow: React.FC<MacOSWindowProps> = ({
+const MacOSWindow: FunctionComponent<MacOSWindowProps> = ({
   children,
   title,
   shadow = true,

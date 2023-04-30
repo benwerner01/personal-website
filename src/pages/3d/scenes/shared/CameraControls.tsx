@@ -8,13 +8,15 @@ const CameraControls: FC = () => {
     gl: { domElement },
   } = useThree();
 
-  const controls = useRef<OrbitControls>();
+  const controlsRef = useRef<OrbitControls>();
 
-  useFrame(() => controls.current.update());
+  useFrame(() => controlsRef.current.update());
 
   return (
     <orbitControls
-      ref={controls}
+      ref={(controls) => {
+        controlsRef.current = controls;
+      }}
       args={[camera, domElement]}
       enableZoom={false}
       autoRotate
