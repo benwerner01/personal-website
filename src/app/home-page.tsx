@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import Typography from "@mui/material/Typography";
@@ -51,7 +52,7 @@ const useHomeStyles = makeStyles<Theme>((theme) => ({
   },
 }));
 
-const Home = () => {
+export const HomePage = () => {
   const classes = useHomeStyles();
   return (
     <Container>
@@ -95,5 +96,3 @@ const Home = () => {
     </Container>
   );
 };
-
-export default Home;
