@@ -99,7 +99,7 @@ export const possibleNeighbourDirections = [
   "backward",
 ] as const;
 
-export type NeighourDirection = typeof possibleNeighbourDirections[number];
+export type NeighourDirection = (typeof possibleNeighbourDirections)[number];
 
 export const getCubeNeighbourDirections = (params: {
   center: Vector3;

@@ -3,14 +3,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Image from "next/legacy/image";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
+import { Typography, Container, Button, Box } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { makeStyles } from "@mui/styles";
-import Box from "@mui/material/Box";
-import { Theme } from "@mui/material";
 import {
   getGallery,
   Collection,
@@ -63,22 +58,10 @@ export const getStaticProps: GetStaticProps<
   };
 };
 
-const useCollectionItemStyles = makeStyles<Theme>(() => ({
-  containerRoot: {
-    height: `calc(100% - ${NAV_BAR_HEIGHT}px)`,
-    display: "flex",
-    flexDirection: "column",
-  },
-  imageWrapper: {
-    position: "relative",
-  },
-}));
-
 const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
   collection,
   item,
 }) => {
-  const classes = useCollectionItemStyles();
   const router = useRouter();
 
   const itemIndex = collection.items.findIndex(
@@ -92,31 +75,34 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
   const previousItem = collection.items[previousItemIndex];
   const nextItem = collection.items[nextItemIndex];
 
-  const onKeyDown = ({ key }: KeyboardEvent) => {
-    if (key === "ArrowLeft") {
-      router.push(`/gallery/${collection.slug}/${previousItem.slug}`);
-    } else if (key === "ArrowRight") {
-      router.push(`/gallery/${collection.slug}/${nextItem.slug}`);
-    }
-  };
-
   useEffect(() => {
+    const onKeyDown = ({ key }: KeyboardEvent) => {
+      if (key === "ArrowLeft") {
+        router.push(`/gallery/${collection.slug}/${previousItem.slug}`);
+      } else if (key === "ArrowRight") {
+        router.push(`/gallery/${collection.slug}/${nextItem.slug}`);
+      }
+    };
     window.addEventListener("keydown", onKeyDown);
     return () => {
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [onKeyDown]);
+  }, [router, collection.slug, previousItem.slug, nextItem.slug]);
 
   return (
-    <Container classes={{ root: classes.containerRoot }}>
+    <Container
+      sx={{
+        height: `calc(100% - ${NAV_BAR_HEIGHT}px)`,
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Typography gutterBottom variant="h5">
-        <Link href={`/gallery/${collection.slug}`}>
-          {collection.name}
-        </Link>
+        <Link href={`/gallery/${collection.slug}`}>{collection.name}</Link>
         {" > "}
         {item.slug}
       </Typography>
-      <Box className={classes.imageWrapper} flexGrow={1}>
+      <Box position="relative" flexGrow={1}>
         <Image
           alt={item.slug}
           src={`/gallery/${collection.slug}/${item.slug}.jpeg`}
@@ -126,14 +112,10 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
       </Box>
       <Box display="flex" justifyContent="space-between" mb={2} mt={2}>
         <Link href={`/gallery/${collection.slug}/${previousItem.slug}`}>
-
           <Button startIcon={<ChevronLeftIcon />}>Previous</Button>
-
         </Link>
         <Link href={`/gallery/${collection.slug}/${nextItem.slug}`}>
-
           <Button endIcon={<ChevronRightIcon />}>Next</Button>
-
         </Link>
       </Box>
     </Container>

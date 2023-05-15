@@ -1,7 +1,6 @@
 /* eslint-disable no-param-reassign */
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { makeStyles } from "@mui/styles";
-import { Theme } from "@mui/material";
+import { FC, useEffect, useMemo, useRef, useState } from "react";
+import { SvgIcon } from "@mui/material";
 import { select, Selection } from "d3-selection";
 import {
   forceCollide,
@@ -40,19 +39,7 @@ type BlobDatum = {
 
 type NodeDatum = PointerDatum | BlobDatum;
 
-const useStyles = makeStyles<Theme>({
-  svg: {
-    zIndex: -1,
-    top: 0,
-    left: 0,
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-  },
-});
-
 const BackgroundAnimation: FC = () => {
-  const classes = useStyles();
   const blobWrapperRef = useRef<SVGGElement>();
 
   const [width, setWidth] = useState<number>(0);
@@ -86,19 +73,16 @@ const BackgroundAnimation: FC = () => {
     []
   );
 
-  const onMouseMove = useCallback(
-    debounce(({ x, y }: MouseEvent) => {
+  useEffect(() => {
+    const onMouseMove = debounce(({ x, y }: MouseEvent) => {
       d3Pointer.datum((d) => {
         d.x = x;
         d.y = y;
         return d;
       });
       simulation.alpha(0.1);
-    }, 300),
-    [d3Pointer]
-  );
+    }, 300);
 
-  useEffect(() => {
     if (d3Pointer) {
       window.addEventListener("mousemove", onMouseMove);
       return () => {
@@ -106,7 +90,7 @@ const BackgroundAnimation: FC = () => {
       };
     }
     return undefined;
-  }, [onMouseMove]);
+  }, [d3Pointer, simulation]);
 
   useEffect(() => {
     if (d3Blobs) {
@@ -132,7 +116,7 @@ const BackgroundAnimation: FC = () => {
         );
       });
     }
-  }, [d3Blobs]);
+  }, [d3Blobs, simulation, height, width]);
 
   useEffect(() => {
     if (blobWrapperRef.current && width > 0 && height > 0) {
@@ -184,11 +168,18 @@ const BackgroundAnimation: FC = () => {
 
       simulation.nodes(nodeDatum);
     }
-  }, [blobWrapperRef.current, width, height]);
+  }, [simulation, width, height]);
 
   return (
-    <svg
-      className={classes.svg}
+    <SvgIcon
+      sx={{
+        zIndex: -1,
+        top: 0,
+        left: 0,
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+      }}
       width={width}
       height={height}
       filter="url(#blur)"
@@ -218,7 +209,7 @@ const BackgroundAnimation: FC = () => {
         </filter>
       </defs>
       <g ref={blobWrapperRef} filter="url(#gooFilter)" />
-    </svg>
+    </SvgIcon>
   );
 };
 

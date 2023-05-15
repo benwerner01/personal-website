@@ -25,9 +25,7 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ gallery }) => (
       <Box key={collection.name} mb={4}>
         <Box display="flex" justifyContent="space-between" mb={2}>
           <Typography variant="h5">
-            <Link href={`/gallery/${collection.slug}`}>
-              {collection.name}
-            </Link>
+            <Link href={`/gallery/${collection.slug}`}>{collection.name}</Link>
           </Typography>
           <Typography variant="h5">
             {formatCollectionTimeRange(collection)}

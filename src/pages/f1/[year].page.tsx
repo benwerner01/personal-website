@@ -8,11 +8,12 @@ import {
   MenuItem,
 } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import {
   apiSupportedYears,
   fetchSeasonRaceResults,
   fetchSeasonRaces,
-  ErgastApiRaceResult,
   ErgastApiSeasonRaces,
 } from "./shared/ergastF1Api";
 import DriverRaceResultsLineGraph, {
@@ -20,8 +21,6 @@ import DriverRaceResultsLineGraph, {
   RaceResultWithRound,
 } from "./shared/DriverRaceResultsLineGraph";
 import { f1Color } from "./shared/util";
-import Link from "next/link";
-import { useRouter } from "next/router";
 
 const F1RedButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(f1Color),
@@ -41,14 +40,12 @@ type F1PageProps = {
 
 type ParsedQueryParams = { year: string };
 
-export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  return {
-    fallback: "blocking",
-    paths: apiSupportedYears.map((year) => ({
-      params: { year: year.toString() },
-    })),
-  };
-};
+export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => ({
+  fallback: "blocking",
+  paths: apiSupportedYears.map((year) => ({
+    params: { year: year.toString() },
+  })),
+});
 
 export const getStaticProps: GetStaticProps<
   F1PageProps,
@@ -88,6 +85,7 @@ export const getStaticProps: GetStaticProps<
         prevDriversWithResults[existingDriverIndex].Results.push(
           raceResultWithCircuit
         );
+        // eslint-disable-next-line no-param-reassign
         prevDriversWithResults[existingDriverIndex].totalPoints += racePoints;
       }
     }
@@ -116,7 +114,6 @@ const F1Page: NextPage<F1PageProps> = ({
     <Container sx={{ position: "relative" }}>
       <Box display="flex" position="relative" alignItems="stretch">
         <Link href={`/f1/${yearAsNumber - 1}`}>
-
           <F1RedButton
             variant="contained"
             sx={{
@@ -130,7 +127,6 @@ const F1Page: NextPage<F1PageProps> = ({
           >
             <ChevronLeft />
           </F1RedButton>
-
         </Link>
         <Box
           sx={{
@@ -169,7 +165,6 @@ const F1Page: NextPage<F1PageProps> = ({
         </Box>
 
         <Link href={`/f1/${yearAsNumber + 1}`}>
-
           <F1RedButton
             variant="contained"
             disabled={new Date().getFullYear() === yearAsNumber}
@@ -184,7 +179,6 @@ const F1Page: NextPage<F1PageProps> = ({
           >
             <ChevronRight />
           </F1RedButton>
-
         </Link>
       </Box>
       <DriverRaceResultsLineGraph

@@ -19,10 +19,7 @@ const parseCurrentVariant = (router: NextRouter): WorkVariant | undefined => {
 const WorkPage: React.FC = () => {
   const router = useRouter();
 
-  const currentVariant = useMemo(
-    () => parseCurrentVariant(router),
-    [router.asPath]
-  );
+  const currentVariant = useMemo(() => parseCurrentVariant(router), [router]);
 
   return (
     <Container maxWidth="md">
@@ -50,9 +47,7 @@ const WorkPage: React.FC = () => {
       ).map((item) =>
         item.variant === "code" ? (
           <CodeProjectCard key={item.name} project={item} />
-        ) : (
-          <></>
-        )
+        ) : null
       )}
     </Container>
   );

@@ -1,9 +1,5 @@
 import React from "react";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import { makeStyles } from "@mui/styles";
-import { SvgIconProps } from "@mui/material/SvgIcon";
-import { Theme } from "@mui/material";
+import { Box, SvgIconProps, Typography, Container } from "@mui/material";
 import TwitterIcon from "../components/icons/TwitterIcon";
 import LinkedInIcon from "../components/icons/LinkedInIcon";
 
@@ -26,41 +22,31 @@ const CONTACT_METHODS: ContactMethod[] = [
   },
 ];
 
-const useStyles = makeStyles<Theme>((theme) => ({
-  ul: {
-    paddingLeft: 0,
-  },
-  li: {
-    marginBottom: theme.spacing(1),
-    listStyleType: "none",
-    display: "flex",
-    alignItems: "center",
-  },
-  typography: {
-    marginLeft: theme.spacing(1),
-    fontSize: 18,
-  },
-}));
-
-const ContactPage: React.FC = () => {
-  const classes = useStyles();
-  return (
-    <Container>
-      <Typography variant="h1">Contact Me</Typography>
-      <ul className={classes.ul}>
-        {CONTACT_METHODS.map(({ Icon, href, name }) => (
-          <li className={classes.li}>
-            <Icon fontSize="large" />
-            <Typography className={classes.typography}>
-              <a rel="noopener noreferrer" target="_blank" href={href}>
-                {name}
-              </a>
-            </Typography>
-          </li>
-        ))}
-      </ul>
-    </Container>
-  );
-};
+const ContactPage: React.FC = () => (
+  <Container>
+    <Typography variant="h1">Contact Me</Typography>
+    <Box component="ul" paddingLeft={0}>
+      {CONTACT_METHODS.map(({ Icon, href, name }) => (
+        <Box
+          key={name}
+          component="li"
+          sx={{
+            marginBottom: 1,
+            listStyleType: "none",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Icon fontSize="large" />
+          <Typography sx={{ marginLeft: 1, fontSize: 18 }}>
+            <a rel="noopener noreferrer" target="_blank" href={href}>
+              {name}
+            </a>
+          </Typography>
+        </Box>
+      ))}
+    </Box>
+  </Container>
+);
 
 export default ContactPage;

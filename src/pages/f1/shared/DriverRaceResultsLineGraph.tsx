@@ -8,14 +8,6 @@ import React, {
 } from "react";
 import { ScaleLinear, scaleLinear, ScalePoint, scalePoint } from "d3-scale";
 import { useEventListener, useIsomorphicLayoutEffect } from "usehooks-ts";
-import { DATA_POINT_RADIUS, getConstructorColor } from "./util";
-import {
-  ErgastApiRace,
-  ErgastApiRaceConstructor,
-  ErgastApiRaceDriver,
-  ErgastApiRaceResult,
-  ErgastApiSeasonRaces,
-} from "./ergastF1Api";
 import {
   Box,
   Button,
@@ -27,6 +19,14 @@ import {
 } from "@mui/material";
 import { animated, useSprings, useSpring, useTransition } from "react-spring";
 import { interpolatePath } from "d3-interpolate-path";
+import {
+  ErgastApiRace,
+  ErgastApiRaceConstructor,
+  ErgastApiRaceDriver,
+  ErgastApiRaceResult,
+  ErgastApiSeasonRaces,
+} from "./ergastF1Api";
+import { DATA_POINT_RADIUS, getConstructorColor } from "./util";
 
 export type RaceResultWithRound = ErgastApiRaceResult & { round: string };
 
@@ -43,10 +43,10 @@ const YAxis: FC<{
   x: number;
   y1: number;
   y2: number;
-}> = ({ linearScale, x, y1, y2 }) => {
+}> = ({ linearScale, x }) => {
   const ticks = linearScale.ticks();
 
-  const [springs, set] = useSprings(ticks.length, (i) => ({
+  const [springs, set] = useSprings(ticks.length, (_i) => ({
     transform: `translate(${x}, ${linearScale(0)})`,
   }));
 
@@ -54,19 +54,18 @@ const YAxis: FC<{
     set((i) => ({
       transform: `translate(${x}, ${linearScale(ticks[i])})`,
     }));
-  }, [ticks]);
+  }, [ticks, linearScale, x, set]);
 
   return (
     <>
-      {springs.map(({ transform }, i) => {
-        return (
-          <animated.g key={i} transform={transform}>
-            <text textAnchor="end" x={-20} y={3} fontSize={10}>
-              {ticks[i]}
-            </text>
-          </animated.g>
-        );
-      })}
+      {springs.map(({ transform }, i) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <animated.g key={i} transform={transform}>
+          <text textAnchor="end" x={-20} y={3} fontSize={10}>
+            {ticks[i]}
+          </text>
+        </animated.g>
+      ))}
     </>
   );
 };
@@ -78,7 +77,7 @@ const XAxis: FC<{
   y1: number;
   x1: number;
   x2: number;
-}> = ({ races, pointSale, y1, y2, x1, x2 }) => {
+}> = ({ races, pointSale, y1, y2 }) => {
   const { palette } = useTheme();
   return (
     <>
@@ -129,6 +128,7 @@ const AnimatedPath: FC<{
     return prevPathD
       ? interpolatePath(prevPathD, updatedPathD)
       : () => updatedPathD;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coordinates.join("-")]);
 
   const animatedPathProps = useSpring({
@@ -189,6 +189,7 @@ const DriverList: FC<{
   let height = 0;
 
   const transitions = useTransition(
+    // eslint-disable-next-line no-return-assign
     sortedDrivers.map((data) => ({
       ...data,
       y: (height += driverCardHeight) - driverCardHeight,
@@ -293,6 +294,7 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
       width: svgRef.current?.clientWidth ?? 0,
       height: svgRef.current?.clientHeight ?? 0,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [svgRef.current?.clientWidth, svgRef.current?.clientHeight]);
 
   useEventListener("resize", handleSize);
@@ -382,6 +384,7 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
             const pointsInRace = parseInt(points, 10);
             totalPoints += pointsInRace;
             return { round, totalPoints };
+            // eslint-disable-next-line no-shadow
           }).map(({ round, totalPoints }) => [
             xPointScale(round),
             yAxisLinearScale(isDisplayingDriver ? totalPoints : 0),
@@ -403,6 +406,7 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
             >
               <AnimatedPath coordinates={coordinates} stroke={color} />
               {coordinates.map(([x, y], i) => (
+                // eslint-disable-next-line react/no-array-index-key
                 <AnimatedCircle key={i} x={x} y={y} fill={color} />
               ))}
             </Box>

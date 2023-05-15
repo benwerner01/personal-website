@@ -35,6 +35,7 @@ const CodeProjectPreview: React.FC<CodeProjectPreviewProps> = ({
       return () => window.removeEventListener("resize", calculateWidth);
     }
     return undefined;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wrapperRef.current]);
 
   const contentHeight = width * (preview.height / preview.width);

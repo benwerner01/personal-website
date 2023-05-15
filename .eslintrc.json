@@ -22,7 +22,40 @@
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "arrow-function" }
+    ],
+    "react/require-default-props": "off",
+    "react/no-unused-prop-types": "off",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "TSTypeReference[typeName.name=/^(Plugin|PluginKey)$/]:not([typeParameters])",
+        "message": "Please provide a generic to avoid implicit `any`"
+      },
+      {
+        "selector": "TSTypeReference[typeName.name=/^(Plugin|PluginKey)$/][typeParameters.params.0.type=TSAnyKeyword]",
+        "message": "Please replace `any` with a specific type"
+      },
+      {
+        "selector": "NewExpression[callee.name=/^(Plugin|PluginKey)$/]:not([typeParameters])",
+        "message": "Please provide a generic to avoid implicit `any`"
+      },
+      {
+        "selector": "NewExpression[callee.name=/^(Plugin|PluginKey)$/][typeParameters.params.0.type=TSAnyKeyword]",
+        "message": "Please replace `any` with a specific type"
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "args": "all", // check all args, not just those after-used
+        "argsIgnorePattern": "^_+",
+        "varsIgnorePattern": "^_+"
+      }
+    ]
   },
   "overrides": [
     {

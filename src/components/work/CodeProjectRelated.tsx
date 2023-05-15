@@ -1,29 +1,7 @@
 import React from "react";
-import { makeStyles } from "@mui/styles";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import DescriptionIcon from "@mui/icons-material/Description";
-import { Theme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Related } from "../../lib/work/code";
-
-const useStyles = makeStyles<Theme>((theme) => ({
-  heading: {
-    marginTop: theme.spacing(1),
-  },
-  ul: {
-    marginTop: 0,
-    marginBottom: 0,
-    listStyleType: "none",
-    paddingLeft: theme.spacing(1),
-  },
-  li: {
-    display: "flex",
-    marginTop: theme.spacing(1),
-  },
-  title: {
-    // marginLeft: theme.spacing(0.5),
-  },
-}));
 
 type CodeProjectRelatedProps = {
   mt?: number;
@@ -33,51 +11,59 @@ type CodeProjectRelatedProps = {
 const CodeProjectRelated: React.FC<CodeProjectRelatedProps> = ({
   mt,
   related,
-}) => {
-  const classes = useStyles();
-
-  return (
-    <Box mt={mt}>
-      <Typography variant="h6" className={classes.heading}>
-        Related
-      </Typography>
-      <ul className={classes.ul}>
-        {related.map((relatedItem) => (
-          <li key={relatedItem.title} className={classes.li}>
-            <DescriptionIcon />
-            <Box ml={1}>
-              <Typography className={classes.title}>
-                <a
-                  href={relatedItem.url}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  {relatedItem.title}
-                </a>
-                {relatedItem.variant === "Paper" && relatedItem.book && (
-                  <>
-                    {" published in "}
-                    <a
-                      href={relatedItem.book.url}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      {relatedItem.book.name}
-                    </a>
-                  </>
-                )}
-              </Typography>
-              {relatedItem.variant !== "Misc" && (
-                <Typography>
-                  <i>{relatedItem.type || relatedItem.variant}</i>
-                </Typography>
+}) => (
+  <Box mt={mt}>
+    <Typography variant="h6" sx={{ marginTop: 1 }}>
+      Related
+    </Typography>
+    <Box
+      component="ul"
+      sx={{
+        marginTop: 0,
+        marginBottom: 0,
+        listStyleType: "none",
+        paddingLeft: 1,
+      }}
+    >
+      {related.map((relatedItem) => (
+        <Box
+          component="li"
+          key={relatedItem.title}
+          sx={{ display: "flex", marginTop: 1 }}
+        >
+          <DescriptionIcon />
+          <Box ml={1}>
+            <Typography>
+              <a
+                href={relatedItem.url}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {relatedItem.title}
+              </a>
+              {relatedItem.variant === "Paper" && relatedItem.book && (
+                <>
+                  {" published in "}
+                  <a
+                    href={relatedItem.book.url}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {relatedItem.book.name}
+                  </a>
+                </>
               )}
-            </Box>
-          </li>
-        ))}
-      </ul>
+            </Typography>
+            {relatedItem.variant !== "Misc" && (
+              <Typography>
+                <i>{relatedItem.type || relatedItem.variant}</i>
+              </Typography>
+            )}
+          </Box>
+        </Box>
+      ))}
     </Box>
-  );
-};
+  </Box>
+);
 
 export default React.memo(CodeProjectRelated);

@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "fix": "eslint src --fix && prettier src --write",
+    "lint": "eslint src && prettier src --check",
     "img-blurdata": "ts-node --skip-project src/lib/scripts/generateImageBlurdata.ts"
   },
   "dependencies": {
