@@ -1,27 +1,36 @@
+"use client";
+
 import React, { useMemo } from "react";
-import { NextRouter, useRouter } from "next/router";
 import Container from "@mui/material/Container";
-import { WORK_ITEMS, WorkVariant, tbdIsWorkVariant } from "../lib/work";
-import CodeProjectCard from "../components/work/CodeProjectCard";
+import { NextPage } from "next";
+import { usePathname } from "next/navigation";
+import { WORK_ITEMS, WorkVariant, tbdIsWorkVariant } from "../../lib/work";
+import CodeProjectCard from "../../components/work/CodeProjectCard";
 
-const parseCurrentVariant = (router: NextRouter): WorkVariant | undefined => {
-  const { asPath } = router;
+const parseCurrentVariant = (params: {
+  pathname: string;
+}): WorkVariant | undefined => {
+  const { pathname } = params;
 
-  const hashIndex = asPath.indexOf("#");
+  const hashIndex = pathname.indexOf("#");
 
   if (hashIndex < 0) return undefined;
 
-  const variant = asPath.slice(hashIndex + 1);
+  const variant = pathname.slice(hashIndex + 1);
 
   return tbdIsWorkVariant(variant) ? variant : undefined;
 };
 
-const WorkPage: React.FC = () => {
-  const router = useRouter();
+export const metadata = {
+  title: "Ben Werner - Work",
+};
+
+const WorkPage: NextPage = () => {
+  const pathname = usePathname();
 
   const currentVariant = useMemo(
-    () => parseCurrentVariant(router),
-    [router.asPath]
+    () => (pathname ? parseCurrentVariant({ pathname }) : undefined),
+    [pathname]
   );
 
   return (
@@ -50,9 +59,7 @@ const WorkPage: React.FC = () => {
       ).map((item) =>
         item.variant === "code" ? (
           <CodeProjectCard key={item.name} project={item} />
-        ) : (
-          <></>
-        )
+        ) : null
       )}
     </Container>
   );
