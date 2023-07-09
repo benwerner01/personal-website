@@ -1,3 +1,5 @@
+"use client";
+
 import { NextPage } from "next";
 import { Canvas, extend } from "@react-three/fiber";
 import { Line } from "three";
