@@ -32,8 +32,8 @@ export const createCustomTheme = (params: { dark: boolean }) => {
     components: {
       MuiCssBaseline: {
         styleOverrides: {
-          body: {
-            transition: defaultTheme.transitions.create("background-color"),
+          a: {
+            textDecoration: "none",
           },
         },
       },
