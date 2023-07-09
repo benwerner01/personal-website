@@ -1,42 +1,30 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+"use client";
+
+import { NextPage } from "next";
 import React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CODE_PROJECTS } from "../../../lib/work/code";
-import CodeProjectRepositories from "../../../components/work/CodeProjectRepositories";
-import CodeProjectRelated from "../../../components/work/CodeProjectRelated";
-import CodeProjectPreview from "../../../components/work/CodeProjectPreview";
+import { useRouter } from "next/navigation";
+import { CODE_PROJECTS } from "../code";
+import CodeProjectRepositories from "../../../../components/work/CodeProjectRepositories";
+import CodeProjectRelated from "../../../../components/work/CodeProjectRelated";
+import CodeProjectPreview from "../../../../components/work/CodeProjectPreview";
 
-type ParsedQueryURL = {
-  codeProjectSlug: string;
-};
-
-export const getStaticPaths: GetStaticPaths<ParsedQueryURL> = async () => ({
-  paths: CODE_PROJECTS.map(({ slug }) => ({
-    params: { codeProjectSlug: slug },
-  })),
-  fallback: false,
-});
-
-type CodeProjectPageProps = {
-  codeProjectSlug: string;
-};
-
-export const getStaticProps: GetStaticProps<
-  CodeProjectPageProps,
-  ParsedQueryURL
-> = async ({ params }) => ({
-  props: {
-    codeProjectSlug: params.codeProjectSlug,
-  },
-});
-
-const CodeProjectPage: NextPage<CodeProjectPageProps> = ({
-  codeProjectSlug,
+const CodeProjectPage: NextPage<{ params: { codeProjectSlug: string } }> = ({
+  params,
 }) => {
+  const router = useRouter();
+
+  const { codeProjectSlug } = params;
+
   const project = CODE_PROJECTS.find(({ slug }) => codeProjectSlug === slug);
+
+  if (!project) {
+    router.push("/work");
+    return null;
+  }
 
   return (
     <Container maxWidth="md">

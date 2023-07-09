@@ -1,4 +1,4 @@
-import { CodeProject, CODE_PROJECTS } from "./code";
+import { CODE_PROJECTS, CodeProject } from "./code/code";
 
 export type WorkVariant = "code";
 

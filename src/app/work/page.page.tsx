@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import Container from "@mui/material/Container";
 import { NextPage } from "next";
 import { usePathname } from "next/navigation";
-import { WORK_ITEMS, WorkVariant, tbdIsWorkVariant } from "../../lib/work";
+import { WORK_ITEMS, WorkVariant, tbdIsWorkVariant } from "./work";
 import CodeProjectCard from "../../components/work/CodeProjectCard";
 
 const parseCurrentVariant = (params: {

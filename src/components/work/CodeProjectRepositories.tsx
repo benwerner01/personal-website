@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Theme } from "@mui/material";
-import { Repository } from "../../lib/work/code";
+import { Repository } from "../../app/work/code/code";
 import GitHubIcon from "../icons/GitHubIcon";
 
 const useStyles = makeStyles<Theme>((theme) => ({

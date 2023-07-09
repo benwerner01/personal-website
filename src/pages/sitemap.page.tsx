@@ -1,6 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
 import xml from "xml";
-import { CODE_PROJECTS } from "../lib/work/code";
+import { CODE_PROJECTS } from "../app/work/code/code";
 // import { getGallery } from '../lib/gallery';
 
 const BASE_URL = "https://ben-werner.com/";

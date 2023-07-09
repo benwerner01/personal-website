@@ -12,8 +12,8 @@ import IconButton from "@mui/material/IconButton";
 import { Theme } from "@mui/material";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
-import { CodeProject, PreviewItem } from "../../lib/work/code";
-import { WORK_VARIANT_PALETTE } from "../../lib/work";
+import { CodeProject, PreviewItem } from "../../app/work/code/code";
+import { WORK_VARIANT_PALETTE } from "../../app/work/work";
 import CodeProjectRepositories from "./CodeProjectRepositories";
 import CodeProjectRelated from "./CodeProjectRelated";
 import CodeProjectPreview from "./CodeProjectPreview";
@@ -186,7 +186,6 @@ const CodeProjectCard: VoidFunctionComponent<CodeProjectCardProps> = ({
               </a>
             )}
             <Link href={`/work/code/${project.slug}`}>
-
               <Button
                 classes={{
                   root: classes.moreButtonRoot,
@@ -197,7 +196,6 @@ const CodeProjectCard: VoidFunctionComponent<CodeProjectCardProps> = ({
               >
                 More
               </Button>
-
             </Link>
           </Box>
         </Box>

@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { Theme } from "@mui/material";
-import { Related } from "../../lib/work/code";
+import { Related } from "../../app/work/code/code";
 
 const useStyles = makeStyles<Theme>((theme) => ({
   heading: {

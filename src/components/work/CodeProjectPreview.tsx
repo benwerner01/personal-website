@@ -3,7 +3,7 @@ import Image from "next/legacy/image";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import MacOSWindow from "../MacOSWindow";
-import { PreviewItem } from "../../lib/work/code";
+import { PreviewItem } from "../../app/work/code/code";
 
 type CodeProjectPreviewProps = {
   codeProjectSlug: string;
