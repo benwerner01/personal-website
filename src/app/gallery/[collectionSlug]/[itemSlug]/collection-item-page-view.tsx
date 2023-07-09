@@ -1,67 +1,19 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+"use client";
+
+import React, { FunctionComponent, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { GetStaticProps, GetStaticPaths } from "next";
 import Image from "next/legacy/image";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { makeStyles } from "@mui/styles";
 import Box from "@mui/material/Box";
 import { Theme } from "@mui/material";
-import {
-  getGallery,
-  Collection,
-  CollectionItem,
-  STATIC_COLLECTIONS,
-  getCollectionItems,
-} from "../../../lib/gallery";
-import { NAV_BAR_HEIGHT } from "../../../components/NavBar";
-
-type ParsedQueryURL = {
-  collectionSlug: string;
-  itemSlug: string;
-};
-
-type CollectionItemPageProps = {
-  collection: Collection;
-  item: CollectionItem;
-};
-
-export const getStaticPaths: GetStaticPaths<ParsedQueryURL> = async () => ({
-  paths: getGallery()
-    .map(({ slug, items }) =>
-      items.map((item) => ({
-        params: {
-          collectionSlug: slug,
-          itemSlug: item.slug,
-        },
-      }))
-    )
-    .flat(),
-  fallback: false,
-});
-
-export const getStaticProps: GetStaticProps<
-  CollectionItemPageProps,
-  ParsedQueryURL
-> = async ({ params }) => {
-  const { collectionSlug, itemSlug } = params;
-
-  const collection = {
-    ...STATIC_COLLECTIONS.find(({ slug }) => slug === collectionSlug),
-    items: getCollectionItems(collectionSlug),
-  };
-
-  return {
-    props: {
-      collection,
-      item: collection.items.find((item) => item.slug === itemSlug),
-    },
-  };
-};
+import { makeStyles } from "@mui/styles";
+import { Collection, CollectionItem } from "../../../../lib/gallery";
+import { NAV_BAR_HEIGHT } from "../../../nav-bar";
 
 const useCollectionItemStyles = makeStyles<Theme>(() => ({
   containerRoot: {
@@ -74,10 +26,10 @@ const useCollectionItemStyles = makeStyles<Theme>(() => ({
   },
 }));
 
-const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
-  collection,
-  item,
-}) => {
+export const CollectionItemPageView: FunctionComponent<{
+  collection: Collection;
+  item: CollectionItem;
+}> = ({ collection, item }) => {
   const classes = useCollectionItemStyles();
   const router = useRouter();
 
@@ -110,9 +62,7 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
   return (
     <Container classes={{ root: classes.containerRoot }}>
       <Typography gutterBottom variant="h5">
-        <Link href={`/gallery/${collection.slug}`}>
-          {collection.name}
-        </Link>
+        <Link href={`/gallery/${collection.slug}`}>{collection.name}</Link>
         {" > "}
         {item.slug}
       </Typography>
@@ -126,18 +76,12 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
       </Box>
       <Box display="flex" justifyContent="space-between" mb={2} mt={2}>
         <Link href={`/gallery/${collection.slug}/${previousItem.slug}`}>
-
           <Button startIcon={<ChevronLeftIcon />}>Previous</Button>
-
         </Link>
         <Link href={`/gallery/${collection.slug}/${nextItem.slug}`}>
-
           <Button endIcon={<ChevronRightIcon />}>Next</Button>
-
         </Link>
       </Box>
     </Container>
   );
 };
-
-export default CollectionItemPage;

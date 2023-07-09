@@ -18,8 +18,6 @@ export const MuiWrapper = ({ children }: Props) => {
     !!pathname &&
     DARK_MODE_PATHS.find((path) => pathname.startsWith(path)) !== undefined;
 
-  console.log({ isDarkTheme, pathname });
-
   const theme = useMemo(
     () => createCustomTheme({ dark: isDarkTheme }),
     [isDarkTheme]
