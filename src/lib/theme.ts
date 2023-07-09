@@ -1,9 +1,10 @@
-import { createTheme, ThemeOptions } from "@mui/material/styles";
+import { createTheme, ThemeOptions } from "@mui/material";
 
 const defaultTheme = createTheme();
 
 export const createCustomTheme = (params: { dark: boolean }) => {
   const { dark } = params;
+
   const palette: ThemeOptions["palette"] = {
     primary: {
       main: "#257DC3",

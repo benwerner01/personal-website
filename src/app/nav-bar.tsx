@@ -2,7 +2,6 @@
 
 import React, { FC } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";

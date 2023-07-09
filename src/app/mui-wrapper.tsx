@@ -1,7 +1,7 @@
 "use client";
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ReactNode, useMemo } from "react";
 import { NextAppDirEmotionCacheProvider } from "tss-react/next/appDir";
 import { createCustomTheme } from "../lib/theme";
@@ -18,10 +18,13 @@ export const MuiWrapper = ({ children }: Props) => {
     !!pathname &&
     DARK_MODE_PATHS.find((path) => pathname.startsWith(path)) !== undefined;
 
+  console.log({ isDarkTheme, pathname });
+
   const theme = useMemo(
     () => createCustomTheme({ dark: isDarkTheme }),
     [isDarkTheme]
   );
+
   return (
     <>
       <CssBaseline />
