@@ -1,11 +1,13 @@
+"use client";
+
 import React from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import { SvgIconProps } from "@mui/material/SvgIcon";
 import { Theme } from "@mui/material";
-import TwitterIcon from "../components/icons/TwitterIcon";
-import LinkedInIcon from "../components/icons/LinkedInIcon";
+import TwitterIcon from "../../components/icons/TwitterIcon";
+import LinkedInIcon from "../../components/icons/LinkedInIcon";
 
 type ContactMethod = {
   name: string;
@@ -49,7 +51,7 @@ const ContactPage: React.FC = () => {
       <Typography variant="h1">Contact Me</Typography>
       <ul className={classes.ul}>
         {CONTACT_METHODS.map(({ Icon, href, name }) => (
-          <li className={classes.li}>
+          <li key={href} className={classes.li}>
             <Icon fontSize="large" />
             <Typography className={classes.typography}>
               <a rel="noopener noreferrer" target="_blank" href={href}>
