@@ -1,4 +1,6 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+"use client";
+
+import { FunctionComponent } from "react";
 import {
   Box,
   Button,
@@ -8,20 +10,13 @@ import {
   MenuItem,
 } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
-import {
-  apiSupportedYears,
-  fetchSeasonRaceResults,
-  fetchSeasonRaces,
-  ErgastApiRaceResult,
-  ErgastApiSeasonRaces,
-} from "./shared/ergastF1Api";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { apiSupportedYears, ErgastApiSeasonRaces } from "../shared/ergastF1Api";
 import DriverRaceResultsLineGraph, {
   RaceDriverWithResultsAndConstructor,
-  RaceResultWithRound,
-} from "./shared/DriverRaceResultsLineGraph";
-import { f1Color } from "./shared/util";
-import Link from "next/link";
-import { useRouter } from "next/router";
+} from "../shared/DriverRaceResultsLineGraph";
+import { f1Color } from "../shared/util";
 
 const F1RedButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(f1Color),
@@ -33,82 +28,11 @@ const F1RedButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-type F1PageProps = {
+export const F1PageView: FunctionComponent<{
   year: string;
   seasonRaceResultsByDriver: RaceDriverWithResultsAndConstructor[];
   seasonRaces: ErgastApiSeasonRaces;
-};
-
-type ParsedQueryParams = { year: string };
-
-export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => {
-  return {
-    fallback: "blocking",
-    paths: apiSupportedYears.map((year) => ({
-      params: { year: year.toString() },
-    })),
-  };
-};
-
-export const getStaticProps: GetStaticProps<
-  F1PageProps,
-  ParsedQueryParams
-> = async ({ params }) => {
-  const { year } = params;
-
-  const [seasonRaces, seasonRaceResults] = await Promise.all([
-    fetchSeasonRaces({ year }),
-    fetchSeasonRaceResults({ year }),
-  ]);
-
-  const seasonRaceResultsByDriver = seasonRaceResults.Races.reduce<
-    RaceDriverWithResultsAndConstructor[]
-  >((prevDriversWithResults, race) => {
-    for (const raceResult of race.Results) {
-      const driver = raceResult.Driver;
-      const raceResultWithCircuit: RaceResultWithRound = {
-        ...raceResult,
-        round: race.round,
-      };
-
-      const existingDriverIndex = prevDriversWithResults.findIndex(
-        ({ driverId }) => driverId === driver.driverId
-      );
-
-      const racePoints = parseInt(raceResultWithCircuit.points, 10);
-
-      if (existingDriverIndex < 0) {
-        prevDriversWithResults.push({
-          ...driver,
-          Results: [raceResultWithCircuit],
-          Constructor: raceResultWithCircuit.Constructor,
-          totalPoints: parseInt(raceResultWithCircuit.points, 10),
-        });
-      } else {
-        prevDriversWithResults[existingDriverIndex].Results.push(
-          raceResultWithCircuit
-        );
-        prevDriversWithResults[existingDriverIndex].totalPoints += racePoints;
-      }
-    }
-    return prevDriversWithResults;
-  }, []);
-
-  return {
-    props: {
-      year,
-      seasonRaceResultsByDriver,
-      seasonRaces,
-    },
-    revalidate: 100,
-  };
-};
-
-const F1Page: NextPage<F1PageProps> = ({
-  year,
-  seasonRaceResultsByDriver,
-  seasonRaces,
-}) => {
+}> = ({ year, seasonRaceResultsByDriver, seasonRaces }) => {
   const router = useRouter();
 
   const yearAsNumber = parseInt(year, 10);
@@ -116,7 +40,6 @@ const F1Page: NextPage<F1PageProps> = ({
     <Container sx={{ position: "relative" }}>
       <Box display="flex" position="relative" alignItems="stretch">
         <Link href={`/f1/${yearAsNumber - 1}`}>
-
           <F1RedButton
             variant="contained"
             sx={{
@@ -130,7 +53,6 @@ const F1Page: NextPage<F1PageProps> = ({
           >
             <ChevronLeft />
           </F1RedButton>
-
         </Link>
         <Box
           sx={{
@@ -169,7 +91,6 @@ const F1Page: NextPage<F1PageProps> = ({
         </Box>
 
         <Link href={`/f1/${yearAsNumber + 1}`}>
-
           <F1RedButton
             variant="contained"
             disabled={new Date().getFullYear() === yearAsNumber}
@@ -184,7 +105,6 @@ const F1Page: NextPage<F1PageProps> = ({
           >
             <ChevronRight />
           </F1RedButton>
-
         </Link>
       </Box>
       <DriverRaceResultsLineGraph
@@ -195,5 +115,3 @@ const F1Page: NextPage<F1PageProps> = ({
     </Container>
   );
 };
-
-export default F1Page;
