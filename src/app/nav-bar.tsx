@@ -1,12 +1,11 @@
 "use client";
 
-import React, { FC } from "react";
-import Link from "next/link";
-import { useTheme } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Box, useTheme } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React, { FC } from "react";
 
 type NavBarItemDefinition = {
   href: string;
@@ -29,7 +28,7 @@ const NavBarItem: FC<NavBarItemDefinition & { isActive: boolean }> = ({
   href,
   isActive,
 }) => (
-  <Box m={1}>
+  <Box component="div" m={1}>
     <Typography>
       <Link href={href} style={{ fontWeight: isActive ? 800 : 400 }}>
         {label}
@@ -45,12 +44,13 @@ const NavBar: React.FC = () => {
 
   return (
     <Box
+      component="div"
       display="flex"
       justifyContent="space-between"
       px={xs ? 1 : 2}
       height={40}
     >
-      <Box display="flex">
+      <Box component="div" display="flex">
         {NAV_BAR_ITEMS.filter(({ position }) => position === "left").map(
           (item) => (
             <NavBarItem
@@ -61,7 +61,7 @@ const NavBar: React.FC = () => {
           )
         )}
       </Box>
-      <Box display="flex">
+      <Box component="div" display="flex">
         {NAV_BAR_ITEMS.filter(({ position }) => position === "right").map(
           (item) => (
             <NavBarItem

@@ -1,8 +1,9 @@
-import { ReactNode } from "react";
 import Head from "next/head";
-import NavBar from "./nav-bar";
-import { MuiWrapper } from "./mui-wrapper";
+import { ReactNode } from "react";
+
 import { Body } from "./body";
+import { MuiWrapper } from "./mui-wrapper";
+import NavBar from "./nav-bar";
 
 export default function RootLayout({
   // Layouts must accept a children prop.

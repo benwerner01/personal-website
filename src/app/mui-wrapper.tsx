@@ -4,6 +4,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { usePathname } from "next/navigation";
 import { ReactNode, useMemo } from "react";
 import { NextAppDirEmotionCacheProvider } from "tss-react/next/appDir";
+
 import { createCustomTheme } from "../lib/theme";
 
 export const DARK_MODE_PATHS = ["/3d"];

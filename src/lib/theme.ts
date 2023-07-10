@@ -80,13 +80,13 @@ export const createCustomTheme = (params: { dark: boolean }) => {
               borderBottom: 4,
               borderBottomStyle: "solid",
               borderBottomColor: "transparent",
-              color: palette.text.primary,
+              color: palette.text?.primary,
               transition: defaultTheme.transitions.create([
                 "border-bottom-color",
                 "color",
               ]),
               "&:hover": {
-                borderBottomColor: palette.text.primary,
+                borderBottomColor: palette.text?.primary,
               },
             },
           },

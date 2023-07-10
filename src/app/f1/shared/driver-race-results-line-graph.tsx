@@ -1,21 +1,3 @@
-import React, {
-  FC,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { ScaleLinear, scaleLinear, ScalePoint, scalePoint } from "d3-scale";
-import { useEventListener, useIsomorphicLayoutEffect } from "usehooks-ts";
-import { DATA_POINT_RADIUS, getConstructorColor } from "./util";
-import {
-  ErgastApiRace,
-  ErgastApiRaceConstructor,
-  ErgastApiRaceDriver,
-  ErgastApiRaceResult,
-  ErgastApiSeasonRaces,
-} from "./ergastF1Api";
 import {
   Box,
   Button,
@@ -25,8 +7,27 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { animated, useSprings, useSpring, useTransition } from "react-spring";
 import { interpolatePath } from "d3-interpolate-path";
+import { ScaleLinear, scaleLinear, ScalePoint, scalePoint } from "d3-scale";
+import React, {
+  FC,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { animated, useSpring, useSprings, useTransition } from "react-spring";
+import { useEventListener, useIsomorphicLayoutEffect } from "usehooks-ts";
+
+import {
+  ErgastApiRace,
+  ErgastApiRaceConstructor,
+  ErgastApiRaceDriver,
+  ErgastApiRaceResult,
+  ErgastApiSeasonRaces,
+} from "./ergast-f1-api";
+import { DATA_POINT_RADIUS, getConstructorColor } from "./util";
 
 export type RaceResultWithRound = ErgastApiRaceResult & { round: string };
 
@@ -43,10 +44,10 @@ const YAxis: FC<{
   x: number;
   y1: number;
   y2: number;
-}> = ({ linearScale, x, y1, y2 }) => {
+}> = ({ linearScale, x }) => {
   const ticks = linearScale.ticks();
 
-  const [springs, set] = useSprings(ticks.length, (i) => ({
+  const [springs, set] = useSprings(ticks.length, () => ({
     transform: `translate(${x}, ${linearScale(0)})`,
   }));
 
@@ -58,15 +59,13 @@ const YAxis: FC<{
 
   return (
     <>
-      {springs.map(({ transform }, i) => {
-        return (
-          <animated.g key={i} transform={transform}>
-            <text textAnchor="end" x={-20} y={3} fontSize={10}>
-              {ticks[i]}
-            </text>
-          </animated.g>
-        );
-      })}
+      {springs.map(({ transform }, i) => (
+        <animated.g key={i} transform={transform}>
+          <text textAnchor="end" x={-20} y={3} fontSize={10}>
+            {ticks[i]}
+          </text>
+        </animated.g>
+      ))}
     </>
   );
 };
@@ -78,7 +77,7 @@ const XAxis: FC<{
   y1: number;
   x1: number;
   x2: number;
-}> = ({ races, pointSale, y1, y2, x1, x2 }) => {
+}> = ({ races, pointSale, y1, y2 }) => {
   const { palette } = useTheme();
   return (
     <>
@@ -119,7 +118,7 @@ const AnimatedPath: FC<{
   coordinates: number[][];
   stroke: string;
 }> = ({ coordinates, stroke }) => {
-  const prevPathDRef = useRef<string>(null);
+  const prevPathDRef = useRef<string | null>(null);
 
   const interpolator = useMemo(() => {
     const updatedPathD = mapCoordinatesToPathD(coordinates);
@@ -189,6 +188,7 @@ const DriverList: FC<{
   let height = 0;
 
   const transitions = useTransition(
+    // eslint-disable-next-line no-return-assign
     sortedDrivers.map((data) => ({
       ...data,
       y: (height += driverCardHeight) - driverCardHeight,
@@ -382,9 +382,9 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
             const pointsInRace = parseInt(points, 10);
             totalPoints += pointsInRace;
             return { round, totalPoints };
-          }).map(({ round, totalPoints }) => [
-            xPointScale(round),
-            yAxisLinearScale(isDisplayingDriver ? totalPoints : 0),
+          }).map(({ round, totalPoints: localTotalPoints }) => [
+            xPointScale(round) ?? 0,
+            yAxisLinearScale(isDisplayingDriver ? localTotalPoints : 0),
           ]);
 
           const { constructorId } = Constructor;

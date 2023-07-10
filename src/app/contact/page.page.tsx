@@ -1,13 +1,14 @@
 "use client";
 
-import React from "react";
+import { Theme } from "@mui/material";
 import Container from "@mui/material/Container";
+import { SvgIconProps } from "@mui/material/SvgIcon";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
-import { SvgIconProps } from "@mui/material/SvgIcon";
-import { Theme } from "@mui/material";
-import TwitterIcon from "../../components/icons/TwitterIcon";
-import LinkedInIcon from "../../components/icons/LinkedInIcon";
+import React from "react";
+
+import LinkedInIcon from "../../components/icons/linkedin-icon";
+import TwitterIcon from "../../components/icons/twitter-icon";
 
 type ContactMethod = {
   name: string;

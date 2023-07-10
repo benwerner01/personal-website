@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useMemo } from "react";
 import Container from "@mui/material/Container";
 import { NextPage } from "next";
 import { usePathname } from "next/navigation";
-import { WORK_ITEMS, WorkVariant, tbdIsWorkVariant } from "./work";
-import CodeProjectCard from "../../components/work/CodeProjectCard";
+import React, { useMemo } from "react";
+
+import CodeProjectCard from "../../components/work/code-project-card";
+import { tbdIsWorkVariant, WORK_ITEMS, WorkVariant } from "./work";
 
 const parseCurrentVariant = (params: {
   pathname: string;
@@ -14,7 +15,9 @@ const parseCurrentVariant = (params: {
 
   const hashIndex = pathname.indexOf("#");
 
-  if (hashIndex < 0) return undefined;
+  if (hashIndex < 0) {
+    return undefined;
+  }
 
   const variant = pathname.slice(hashIndex + 1);
 

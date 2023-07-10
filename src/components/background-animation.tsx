@@ -1,15 +1,16 @@
+/* eslint-disable id-length */
 /* eslint-disable no-param-reassign */
-import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material";
-import { select, Selection } from "d3-selection";
+import { makeStyles } from "@mui/styles";
 import {
   forceCollide,
   forceManyBody,
   forceSimulation,
   SimulationNodeDatum,
 } from "d3-force";
+import { select, Selection } from "d3-selection";
 import debounce from "lodash.debounce";
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const MIN_BLOB_RADIUS = 100;
 const MAX_BLOB_RADIUS = 300;
@@ -53,7 +54,7 @@ const useStyles = makeStyles<Theme>({
 
 const BackgroundAnimation: FC = () => {
   const classes = useStyles();
-  const blobWrapperRef = useRef<SVGGElement>();
+  const blobWrapperRef = useRef<SVGGElement>(null);
 
   const [width, setWidth] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
@@ -88,7 +89,7 @@ const BackgroundAnimation: FC = () => {
 
   const onMouseMove = useCallback(
     debounce(({ x, y }: MouseEvent) => {
-      d3Pointer.datum((d) => {
+      d3Pointer?.datum((d) => {
         d.x = x;
         d.y = y;
         return d;
@@ -114,15 +115,24 @@ const BackgroundAnimation: FC = () => {
         d3Blobs
           .datum((d) => {
             const { x, y } = d;
-            if (x < 0 || x > width || y < 0 || y > height) {
-              d.attractive = true;
+            if (
+              d &&
+              d.x !== undefined &&
+              d.y !== undefined &&
+              x !== undefined &&
+              y !== undefined
+            ) {
+              if (x < 0 || x > width || y < 0 || y > height) {
+                d.attractive = true;
+              }
+              d.x = d.x < 0 ? 0 : d.x > width ? width : d.x;
+              d.y = d.y < 0 ? 0 : d.y > height ? height : d.y;
             }
-            d.x = d.x < 0 ? 0 : d.x > width ? width : d.x;
-            d.y = d.y < 0 ? 0 : d.y > height ? height : d.y;
+
             return d;
           })
-          .attr("cx", ({ x }) => x)
-          .attr("cy", ({ y }) => y);
+          .attr("cx", ({ x }) => x ?? null)
+          .attr("cy", ({ y }) => y ?? null);
 
         simulation.force(
           "charge",
@@ -152,7 +162,7 @@ const BackgroundAnimation: FC = () => {
           .append("circle")
           .classed("blob", true)
           .attr("r", 0)
-          .attr("fill-opacity", 0.5)
+          .attr("fill-opacity", 0.5) as any
       );
 
       const blobsDatum: BlobDatum[] = new Array(NUMBER_OF_BLOBS)

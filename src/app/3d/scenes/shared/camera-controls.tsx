@@ -1,5 +1,5 @@
-import { useRef, FC } from "react";
-import { useThree, useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
+import { FC, useRef } from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 const CameraControls: FC = () => {
@@ -8,9 +8,9 @@ const CameraControls: FC = () => {
     gl: { domElement },
   } = useThree();
 
-  const controlsRef = useRef<OrbitControls>();
+  const controlsRef = useRef<OrbitControls | null>(null);
 
-  useFrame(() => controlsRef.current.update());
+  useFrame(() => controlsRef.current?.update());
 
   return (
     <orbitControls

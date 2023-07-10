@@ -1,10 +1,11 @@
 "use client";
 
-import React, { FunctionComponent } from "react";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import React, { FunctionComponent } from "react";
+
+import CollectionPreview from "../../../components/collection-preview";
 import { Collection } from "../../../lib/gallery";
-import CollectionPreview from "../../../components/CollectionPreview";
 
 export const CollectionPageView: FunctionComponent<{
   collection: Collection;

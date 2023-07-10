@@ -1,5 +1,6 @@
-import React from "react";
 import { NextPage } from "next";
+import React from "react";
+
 import { getCollectionItems, STATIC_COLLECTIONS } from "../../../lib/gallery";
 import { CollectionPageView } from "./collection-page-view";
 

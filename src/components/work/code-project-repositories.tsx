@@ -1,10 +1,11 @@
-import React from "react";
-import { makeStyles } from "@mui/styles";
+import { Theme } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Theme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import React from "react";
+
 import { Repository } from "../../app/work/code/code";
-import GitHubIcon from "../icons/GitHubIcon";
+import GitHubIcon from "../icons/github-icon";
 
 const useStyles = makeStyles<Theme>((theme) => ({
   heading: {

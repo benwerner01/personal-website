@@ -17,8 +17,8 @@ const Bloom: FunctionComponent<
   }>
 > = ({ children, strength = 3, radius = 1, threshold = 0 }) => {
   const { gl, camera, size } = useThree();
-  const sceneRef = useRef<Scene>();
-  const composerRef = useRef<EffectComposer>();
+  const sceneRef = useRef<Scene | null>(null);
+  const composerRef = useRef<EffectComposer | null>(null);
   const aspect = useMemo(() => new Vector2(size.width, size.height), [size]);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Bloom: FunctionComponent<
     }
   }, [sceneRef, composerRef, size]);
 
-  useFrame(() => sceneRef.current && composerRef.current.render(), 1);
+  useFrame(() => sceneRef.current && composerRef.current?.render(), 1);
 
   return (
     <>
@@ -44,11 +44,13 @@ const Bloom: FunctionComponent<
         }}
         args={[gl]}
       >
-        <renderPass
-          attachArray="passes"
-          scene={sceneRef.current}
-          camera={camera}
-        />
+        {sceneRef.current && (
+          <renderPass
+            attachArray="passes"
+            scene={sceneRef.current}
+            camera={camera}
+          />
+        )}
         <unrealBloomPass
           attachArray="passes"
           args={[aspect, strength, radius, threshold]}

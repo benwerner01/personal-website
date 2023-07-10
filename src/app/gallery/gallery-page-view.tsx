@@ -1,12 +1,13 @@
 "use client";
 
-import { FunctionComponent } from "react";
-import Link from "next/link";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
+import { FunctionComponent } from "react";
+
+import CollectionPreview from "../../components/collection-preview";
 import { formatCollectionTimeRange, Gallery } from "../../lib/gallery";
-import CollectionPreview from "../../components/CollectionPreview";
 
 type GalleryPageProps = {
   gallery: Gallery;

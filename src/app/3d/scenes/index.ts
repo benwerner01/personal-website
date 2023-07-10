@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+
 import { CubeCluster } from "./cube-cluster";
 
 type Scene = {

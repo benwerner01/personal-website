@@ -1,16 +1,17 @@
 "use client";
 
-import React from "react";
-import { makeStyles } from "@mui/styles";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
 import { Theme } from "@mui/material";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
 import { NextPage } from "next";
-import GitHubIcon from "../components/icons/GitHubIcon";
-import LinkedInIcon from "../components/icons/LinkedInIcon";
-import TwitterIcon from "../components/icons/TwitterIcon";
-import SoundCloudIcon from "../components/icons/SoundCloudIcon";
+import React from "react";
+
+import GitHubIcon from "../components/icons/github-icon";
+import LinkedInIcon from "../components/icons/linkedin-icon";
+import SoundCloudIcon from "../components/icons/soundcloud-icon";
+import TwitterIcon from "../components/icons/twitter-icon";
 
 type Social = {
   name: string;

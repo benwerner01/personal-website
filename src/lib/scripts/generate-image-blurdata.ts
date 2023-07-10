@@ -1,4 +1,5 @@
-import { readdirSync, readFileSync, writeFileSync } from "fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+
 import sharp from "sharp";
 
 const BLUR_DATA_PATH = "public/gallery/blurdata.json";
@@ -52,4 +53,4 @@ const updateBlurData = async () => {
   writeFileSync(BLUR_DATA_PATH, JSON.stringify(updatedBlurData, null, "\t"));
 };
 
-updateBlurData();
+void updateBlurData();

@@ -1,22 +1,24 @@
-import React, { useState, VoidFunctionComponent } from "react";
-import Link from "next/link";
-import Color from "color";
-import { makeStyles } from "@mui/styles";
-import Button from "@mui/material/Button";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Theme } from "@mui/material";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
-import { Theme } from "@mui/material";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Typography from "@mui/material/Typography";
+import { makeStyles } from "@mui/styles";
+import Color from "color";
+import Link from "next/link";
+import React, { useState, VoidFunctionComponent } from "react";
 import { Carousel } from "react-responsive-carousel";
+
 import { CodeProject, PreviewItem } from "../../app/work/code/code";
 import { WORK_VARIANT_PALETTE } from "../../app/work/work";
-import CodeProjectRepositories from "./CodeProjectRepositories";
-import CodeProjectRelated from "./CodeProjectRelated";
-import CodeProjectPreview from "./CodeProjectPreview";
+import CodeProjectPreview from "./code-project-preview";
+import CodeProjectRelated from "./code-project-related";
+import CodeProjectRepositories from "./code-project-repositories";
 
 const useCodePreviewsCarouselStyles = makeStyles<Theme>((theme) => ({
   carousel: {

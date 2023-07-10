@@ -1,16 +1,17 @@
 import { useThree } from "@react-three/fiber";
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 import { Vector3 } from "three";
-import Bloom from "./shared/Bloom";
-import CameraControls from "./shared/CameraControls";
+
+import Bloom from "./shared/bloom";
+import CameraControls from "./shared/camera-controls";
 import Cube, {
   createCubeDefinition,
-  CubeDefinition,
   CUBE_WIDTH,
+  CubeDefinition,
   getCubeNeighbourDirections,
   NeighourDirection,
   possibleNeighbourDirections,
-} from "./shared/Cube";
+} from "./shared/cube";
 
 type CubeClusterDefinition = {
   cubes: CubeDefinition[];
@@ -118,7 +119,9 @@ export const CubeCluster: FC = () => {
   );
 
   useEffect(() => {
-    if (cubeCluster.cubes.length < 25) addCube();
+    if (cubeCluster.cubes.length < 25) {
+      addCube();
+    }
   }, [cubeCluster, addCube]);
 
   const isDragging = useRef<boolean>(false);

@@ -99,7 +99,7 @@ export const possibleNeighbourDirections = [
   "backward",
 ] as const;
 
-export type NeighourDirection = typeof possibleNeighbourDirections[number];
+export type NeighourDirection = (typeof possibleNeighbourDirections)[number];
 
 export const getCubeNeighbourDirections = (params: {
   center: Vector3;
@@ -109,12 +109,24 @@ export const getCubeNeighbourDirections = (params: {
 
   return possibleNeighbours
     .map((possibleNeighbour) => {
-      if (isBottomNeighbour(center)(possibleNeighbour)) return "bottom";
-      if (isTopNeighbour(center)(possibleNeighbour)) return "top";
-      if (isLeftNeighbour(center)(possibleNeighbour)) return "left";
-      if (isRightNeighbour(center)(possibleNeighbour)) return "right";
-      if (isForwardNeighbour(center)(possibleNeighbour)) return "forward";
-      if (isBackwardNeighbour(center)(possibleNeighbour)) return "backward";
+      if (isBottomNeighbour(center)(possibleNeighbour)) {
+        return "bottom";
+      }
+      if (isTopNeighbour(center)(possibleNeighbour)) {
+        return "top";
+      }
+      if (isLeftNeighbour(center)(possibleNeighbour)) {
+        return "left";
+      }
+      if (isRightNeighbour(center)(possibleNeighbour)) {
+        return "right";
+      }
+      if (isForwardNeighbour(center)(possibleNeighbour)) {
+        return "forward";
+      }
+      if (isBackwardNeighbour(center)(possibleNeighbour)) {
+        return "backward";
+      }
       return [];
     })
     .flat();
@@ -154,7 +166,7 @@ const Cube: FC<CubeDefinition> = ({ edges }) => (
       <Line
         key={[start.toArray().join("-"), end.toArray().join("-")].join("_")}
         points={[start, end]}
-        {...remaining}
+        {...(remaining as any)}
       />
     ))}
   </>

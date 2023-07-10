@@ -1,5 +1,6 @@
 import { readdirSync } from "fs";
 import sizeOf from "image-size";
+
 import blurdata from "../../public/gallery/blurdata.json";
 
 export type CollectionImage = {
@@ -68,10 +69,14 @@ export const getCollectionItems = (slug: string): CollectionItem[] =>
 
       const { width, height } = sizeOf(imageURL);
 
+      if (!width || !height) {
+        throw new Error(`Could not get size of image: ${imageURL}`);
+      }
+
       return {
         variant: "image",
         slug: fileName.replace(/\.[^/.]+$/, ""),
-        blurDataURL: blurdata[imageURL],
+        blurDataURL: (blurdata as any)[imageURL],
         width,
         height,
       };

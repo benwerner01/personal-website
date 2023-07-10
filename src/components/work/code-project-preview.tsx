@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import Image from "next/legacy/image";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import MacOSWindow from "../MacOSWindow";
+import Typography from "@mui/material/Typography";
+import Image from "next/legacy/image";
+import React, { useEffect, useRef, useState } from "react";
+
 import { PreviewItem } from "../../app/work/code/code";
+import MacOSWindow from "../mac-os-window";
 
 type CodeProjectPreviewProps = {
   codeProjectSlug: string;
@@ -25,17 +26,18 @@ const CodeProjectPreview: React.FC<CodeProjectPreviewProps> = ({
   const [width, setWidth] = useState<number>(0);
 
   useEffect(() => {
-    if (wrapperRef.current) {
-      const calculateWidth = () => setWidth(wrapperRef.current.clientWidth);
+    const calculateWidth = () => {
+      if (wrapperRef.current) {
+        setWidth(wrapperRef.current.clientWidth);
+      }
+    };
 
-      calculateWidth();
+    calculateWidth();
 
-      window.addEventListener("resize", calculateWidth);
+    window.addEventListener("resize", calculateWidth);
 
-      return () => window.removeEventListener("resize", calculateWidth);
-    }
-    return undefined;
-  }, [wrapperRef.current]);
+    return () => window.removeEventListener("resize", calculateWidth);
+  }, []);
 
   const contentHeight = width * (preview.height / preview.width);
 
@@ -69,8 +71,10 @@ const CodeProjectPreview: React.FC<CodeProjectPreviewProps> = ({
               playsInline
               controls={false}
               onEnded={({ target }) => {
-                if (onVideoEnded) onVideoEnded();
-                (target as HTMLVideoElement).play();
+                if (onVideoEnded) {
+                  onVideoEnded();
+                }
+                void (target as HTMLVideoElement).play();
               }}
             />
           )}

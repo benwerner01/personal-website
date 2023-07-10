@@ -1,10 +1,11 @@
-import React from "react";
-import Image from "next/legacy/image";
-import Link from "next/link";
-import { makeStyles } from "@mui/styles";
+import { Theme, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Theme, useTheme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Image from "next/legacy/image";
+import Link from "next/link";
+import React from "react";
+
 import { Collection, CollectionImage } from "../lib/gallery";
 
 const IMAGE_HEIGHT = 400;
@@ -61,7 +62,7 @@ const CollectionPreview: React.FC<{ collection: Collection }> = ({
       {new Array(Math.ceil(collection.items.length / itemsPerRow))
         .fill([])
         .map((_, i) => (
-          // eslint-disable-next-line react/no-array-index-key
+           
           <Box key={i} display="flex" m={-1}>
             {collection.items
               .slice(i * itemsPerRow, i * itemsPerRow + itemsPerRow)

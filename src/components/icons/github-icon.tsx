@@ -1,5 +1,5 @@
-import React from "react";
 import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
+import React from "react";
 
 const GitHubIcon: React.FC<SvgIconProps> = (props) => (
   <SvgIcon {...props} data-icon="github" viewBox="0 0 496 512">

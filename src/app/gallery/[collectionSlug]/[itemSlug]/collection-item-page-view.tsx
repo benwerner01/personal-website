@@ -1,17 +1,18 @@
 "use client";
 
-import React, { FunctionComponent, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import Image from "next/legacy/image";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import Box from "@mui/material/Box";
 import { Theme } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
+import Image from "next/legacy/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { FunctionComponent, useEffect } from "react";
+
 import { Collection, CollectionItem } from "../../../../lib/gallery";
 import { NAV_BAR_HEIGHT } from "../../../nav-bar";
 

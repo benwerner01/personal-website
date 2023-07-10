@@ -1,21 +1,25 @@
 "use client";
 
-import { FunctionComponent } from "react";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import {
   Box,
   Button,
-  styled,
   Container,
-  Select,
   MenuItem,
+  Select,
+  styled,
 } from "@mui/material";
-import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { apiSupportedYears, ErgastApiSeasonRaces } from "../shared/ergastF1Api";
+import { FunctionComponent } from "react";
+
 import DriverRaceResultsLineGraph, {
   RaceDriverWithResultsAndConstructor,
-} from "../shared/DriverRaceResultsLineGraph";
+} from "../shared/driver-race-results-line-graph";
+import {
+  apiSupportedYears,
+  ErgastApiSeasonRaces,
+} from "../shared/ergast-f1-api";
 import { f1Color } from "../shared/util";
 
 const F1RedButton = styled(Button)(({ theme }) => ({

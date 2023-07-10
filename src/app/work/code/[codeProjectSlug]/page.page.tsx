@@ -1,16 +1,17 @@
 "use client";
 
-import { NextPage } from "next";
-import React from "react";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import { NextPage } from "next";
 import { useRouter } from "next/navigation";
+import React from "react";
+
+import CodeProjectPreview from "../../../../components/work/code-project-preview";
+import CodeProjectRelated from "../../../../components/work/code-project-related";
+import CodeProjectRepositories from "../../../../components/work/code-project-repositories";
 import { CODE_PROJECTS } from "../code";
-import CodeProjectRepositories from "../../../../components/work/CodeProjectRepositories";
-import CodeProjectRelated from "../../../../components/work/CodeProjectRelated";
-import CodeProjectPreview from "../../../../components/work/CodeProjectPreview";
 
 const CodeProjectPage: NextPage<{ params: { codeProjectSlug: string } }> = ({
   params,

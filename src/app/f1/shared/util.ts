@@ -29,18 +29,32 @@ export const constructorColoursByYear = {
   },
 } as const;
 
+type ConstructorColorYear = keyof typeof constructorColoursByYear;
+type ConstructorColorId =
+  keyof (typeof constructorColoursByYear)[ConstructorColorYear];
+
 export const getConstructorColor = (params: {
   year: string;
   constructorId: string;
 }) => {
   const { year, constructorId } = params;
-  const exactMatch = constructorColoursByYear[year]?.[constructorId];
+  const exactMatch =
+    constructorColoursByYear[year as ConstructorColorYear]?.[
+      constructorId as ConstructorColorId
+    ];
 
-  if (exactMatch) return exactMatch;
+  if (exactMatch) {
+    return exactMatch;
+  }
 
   for (const backupYear of Object.keys(constructorColoursByYear)) {
-    const backupMatch = constructorColoursByYear[backupYear][constructorId];
-    if (backupMatch) return backupMatch;
+    const backupMatch =
+      constructorColoursByYear[backupYear as ConstructorColorYear]?.[
+        constructorId as ConstructorColorId
+      ];
+    if (backupMatch) {
+      return backupMatch;
+    }
   }
   return undefined;
 };

@@ -1,5 +1,5 @@
-import React from "react";
 import SvgIcon, { SvgIconProps } from "@mui/material/SvgIcon";
+import React from "react";
 
 const TwitterIcon: React.FC<SvgIconProps> = (props) => (
   <SvgIcon {...props} data-icon="twitter" viewBox="0 0 512 512">

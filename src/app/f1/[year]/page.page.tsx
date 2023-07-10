@@ -1,14 +1,17 @@
 import { NextPage } from "next";
-import {
-  fetchSeasonRaceResults,
-  fetchSeasonRaces,
-} from "../shared/ergastF1Api";
+
 import {
   RaceDriverWithResultsAndConstructor,
   RaceResultWithRound,
-} from "../shared/DriverRaceResultsLineGraph";
+} from "../shared/driver-race-results-line-graph";
+import {
+  fetchSeasonRaceResults,
+  fetchSeasonRaces,
+} from "../shared/ergast-f1-api";
 import { F1PageView } from "./f1-page-view";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const F1Page: NextPage<{ params: { year: string } }> = async ({ params }) => {
   const { year } = params;
 
@@ -44,6 +47,7 @@ const F1Page: NextPage<{ params: { year: string } }> = async ({ params }) => {
         prevDriversWithResults[existingDriverIndex].Results.push(
           raceResultWithCircuit
         );
+        // eslint-disable-next-line no-param-reassign
         prevDriversWithResults[existingDriverIndex].totalPoints += racePoints;
       }
     }
