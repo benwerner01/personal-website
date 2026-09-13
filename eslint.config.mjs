@@ -133,8 +133,9 @@ export default [
     },
   },
   {
-    // airbnb only whitelists *.test.{js,jsx} for devDependency imports
-    files: ["**/*.test.ts"],
+    // airbnb only whitelists *.test.{js,jsx} for devDependency imports;
+    // build-time scripts run through ts-node, so they may use them too
+    files: ["**/*.test.ts", "src/lib/scripts/**"],
     rules: {
       "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
     },
