@@ -6,15 +6,18 @@ import GitHubIcon from "../icons/GitHubIcon";
 
 type CodeProjectRepositoriesProps = {
   mt?: number;
+  /** Heading element for the section title, so the page keeps a valid heading order */
+  headingComponent: "h2" | "h3";
   repositories: Repository[];
 };
 
 const CodeProjectRepositories: React.FC<CodeProjectRepositoriesProps> = ({
   mt,
+  headingComponent,
   repositories,
 }) => (
   <Box mt={mt}>
-    <Typography variant="h6" sx={{ marginTop: 1 }}>
+    <Typography variant="h6" component={headingComponent} sx={{ marginTop: 1 }}>
       {`Repositor${repositories.length === 1 ? "y" : "ies"}`}
     </Typography>
     <Box display="flex" flexWrap="wrap" ml={1}>
