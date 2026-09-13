@@ -14,6 +14,7 @@ import {
   getCollectionItems,
 } from "../../../lib/gallery";
 import { NAV_BAR_HEIGHT } from "../../../components/NavBar";
+import PageHead, { ogImageUrl } from "../../../components/PageHead";
 
 type ParsedQueryURL = {
   collectionSlug: string;
@@ -97,6 +98,12 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
         flexDirection: "column",
       }}
     >
+      <PageHead
+        title={`${collection.name} — ${item.slug} — Ben Werner`}
+        description={`Photo ${item.slug} from ${collection.name} by Ben Werner.`}
+        path={`/gallery/${collection.slug}/${item.slug}`}
+        image={ogImageUrl(`/gallery/${collection.slug}/${item.slug}.jpeg`)}
+      />
       <Typography gutterBottom variant="h5">
         <Link href={`/gallery/${collection.slug}`}>{collection.name}</Link>
         {" > "}

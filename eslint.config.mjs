@@ -1,15 +1,11 @@
 // Flat config equivalent of the former .eslintrc.json.
 //
-// `airbnb` (eslint-config-airbnb 19) and `next` (eslint-config-next 13) are
+// `airbnb` (eslint-config-airbnb 19) and `next` (eslint-config-next 15) are
 // eslintrc-only configs, so they are translated at load time with FlatCompat.
-// The plugins pulled in by `next` (@next/eslint-plugin-next 13 and its
-// eslint-plugin-react-hooks canary) still use the ESLint 8 rule context API
-// (context.getAncestors / getScope / getFilename), so their rules are wrapped
-// with @eslint/compat's fixup shim.
+// (eslint-config-next only ships a flat config from 16.)
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { fixupPluginRules } from "@eslint/compat";
 import { FlatCompat } from "@eslint/eslintrc";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
@@ -21,28 +17,11 @@ const compat = new FlatCompat({
   baseDirectory: path.dirname(fileURLToPath(import.meta.url)),
 });
 
-const LEGACY_PLUGINS = ["@next/next", "react-hooks"];
-const fixupLegacyPlugins = (configs) =>
-  configs.map((config) => {
-    const plugins = config.plugins ?? {};
-    const legacy = LEGACY_PLUGINS.filter((name) => plugins[name]);
-    if (legacy.length === 0) return config;
-    return {
-      ...config,
-      plugins: {
-        ...plugins,
-        ...Object.fromEntries(
-          legacy.map((name) => [name, fixupPluginRules(plugins[name])]),
-        ),
-      },
-    };
-  });
-
 export default [
   // extends: ["plugin:react/recommended", "airbnb", "prettier", "next"]
   ...compat.extends("plugin:react/recommended", "airbnb"),
   prettier,
-  ...fixupLegacyPlugins(compat.extends("next")),
+  ...compat.extends("next"),
   {
     plugins: { react, "@typescript-eslint": tsPlugin },
     languageOptions: {

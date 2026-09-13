@@ -2,6 +2,7 @@ import React from "react";
 import { Box, SvgIconProps, Typography, Container } from "@mui/material";
 import TwitterIcon from "../components/icons/TwitterIcon";
 import LinkedInIcon from "../components/icons/LinkedInIcon";
+import PageHead from "../components/PageHead";
 
 type ContactMethod = {
   name: string;
@@ -24,6 +25,11 @@ const CONTACT_METHODS: ContactMethod[] = [
 
 const ContactPage: React.FC = () => (
   <Container>
+    <PageHead
+      title="Contact — Ben Werner"
+      description="Get in touch with Ben Werner on LinkedIn or Twitter."
+      path="/contact"
+    />
     <Typography variant="h1">Contact Me</Typography>
     <Box
       component="ul"

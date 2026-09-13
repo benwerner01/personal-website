@@ -3,6 +3,7 @@ import { NextRouter, useRouter } from "next/router";
 import Container from "@mui/material/Container";
 import { WORK_ITEMS, WorkVariant, tbdIsWorkVariant } from "../lib/work";
 import CodeProjectCard from "../components/work/CodeProjectCard";
+import PageHead from "../components/PageHead";
 
 const parseCurrentVariant = (router: NextRouter): WorkVariant | undefined => {
   const { asPath } = router;
@@ -23,6 +24,13 @@ const WorkPage: React.FC = () => {
 
   return (
     <Container maxWidth="md">
+      <PageHead
+        title="Work — Ben Werner"
+        description={`Software projects by Ben Werner: ${WORK_ITEMS.map(
+          ({ name }) => name,
+        ).join(", ")}.`}
+        path="/work"
+      />
       {/* <Box display="flex" mt={1} mb={4}>
         {WORK_VARIANTS.map((variant) => (
           <Link
