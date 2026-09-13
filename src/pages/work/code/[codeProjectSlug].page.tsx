@@ -8,6 +8,7 @@ import { CODE_PROJECTS } from "../../../lib/work/code";
 import CodeProjectRepositories from "../../../components/work/CodeProjectRepositories";
 import CodeProjectRelated from "../../../components/work/CodeProjectRelated";
 import CodeProjectPreview from "../../../components/work/CodeProjectPreview";
+import PageHead, { ogImageUrl } from "../../../components/PageHead";
 
 type ParsedQueryURL = {
   codeProjectSlug: string;
@@ -38,8 +39,24 @@ const CodeProjectPage: NextPage<CodeProjectPageProps> = ({
 }) => {
   const project = CODE_PROJECTS.find(({ slug }) => codeProjectSlug === slug);
 
+  const poster = project.previews?.find(
+    (preview) => preview.variant === "video",
+  );
+
   return (
     <Container maxWidth="md">
+      <PageHead
+        title={`${project.name} — Ben Werner`}
+        description={project.description}
+        path={`/work/code/${codeProjectSlug}`}
+        image={
+          poster && poster.variant === "video"
+            ? ogImageUrl(
+                `/work/code/${codeProjectSlug}/${poster.posterFileName}`,
+              )
+            : undefined
+        }
+      />
       <Box display="flex" justifyContent="space-between">
         <Typography variant="h1">{project.name}</Typography>
         {project.url && (
