@@ -148,10 +148,8 @@ describe("groupResultsByDriver", () => {
     });
   });
 
-  // Half-point races (1975, 1984, 1991, 2009, 2021) award fractional points,
-  // which the current `parseInt` truncates. Unskip once
-  // `bw/cp10-08-09-correctness` (parseInt -> Number) is merged.
-  it.skip("sums fractional half points without truncating them", () => {
+  // half-point races (1975, 1984, 1991, 2009, 2021) award fractional points
+  it("sums fractional half points without truncating them", () => {
     const [prost] = groupResultsByDriver([
       race("5", [result("prost", "mclaren", "9", "1")]),
       race("6", [result("prost", "mclaren", "4.5", "1")]),

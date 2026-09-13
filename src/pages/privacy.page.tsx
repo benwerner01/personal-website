@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
+import PageHead from "../components/PageHead";
 
 const LAST_UPDATED = "13 September 2026";
 
@@ -78,6 +79,11 @@ const SECTIONS: Section[] = [
 
 const PrivacyPage: React.FC = () => (
   <Container>
+    <PageHead
+      title="Privacy Policy — My Super Apps"
+      description="Privacy policy for My Super Apps, a collection of personal automation scripts that access Google Calendar with the owner's consent."
+      path="/privacy"
+    />
     <Typography variant="h1">Privacy Policy</Typography>
     <Typography sx={{ marginBottom: 3, fontStyle: "italic" }}>
       Last updated: {LAST_UPDATED}

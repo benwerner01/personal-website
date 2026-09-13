@@ -29,14 +29,14 @@ const groupResultsByDriver = (
           ({ driverId }) => driverId === driver.driverId,
         );
 
-        const racePoints = parseInt(raceResultWithCircuit.points, 10);
+        const racePoints = Number(raceResultWithCircuit.points);
 
         if (existingDriverIndex < 0) {
           prevDriversWithResults.push({
             ...driver,
             Results: [raceResultWithCircuit],
             Constructor: raceResultWithCircuit.Constructor,
-            totalPoints: parseInt(raceResultWithCircuit.points, 10),
+            totalPoints: racePoints,
           });
         } else {
           prevDriversWithResults[existingDriverIndex].Results.push(

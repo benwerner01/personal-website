@@ -1,5 +1,5 @@
-import { readdirSync } from "fs";
-import sizeOf from "image-size";
+import { readdirSync, readFileSync } from "fs";
+import { imageSize } from "image-size";
 import blurdata from "../../public/gallery/blurdata.json";
 
 export type CollectionImage = {
@@ -42,19 +42,19 @@ export const formatCollectionTimeRange = (collection: Collection) => {
   const endDate = new Date(collection.endDate);
 
   return [
-    MONTHS[startDate.getMonth()],
-    startDate.getFullYear() === endDate.getFullYear()
+    MONTHS[startDate.getUTCMonth()],
+    startDate.getUTCFullYear() === endDate.getUTCFullYear()
       ? ""
       : [
-          ` ${startDate.getFullYear()}`,
-          startDate.getMonth() !== endDate.getMonth()
+          ` ${startDate.getUTCFullYear()}`,
+          startDate.getUTCMonth() !== endDate.getUTCMonth()
             ? ""
-            : ` - ${MONTHS[endDate.getMonth()]}`,
+            : ` - ${MONTHS[endDate.getUTCMonth()]}`,
         ].join(""),
-    startDate.getMonth() === endDate.getMonth()
+    startDate.getUTCMonth() === endDate.getUTCMonth()
       ? ""
-      : ` - ${MONTHS[endDate.getMonth()]}`,
-    ` ${endDate.getFullYear()}`,
+      : ` - ${MONTHS[endDate.getUTCMonth()]}`,
+    ` ${endDate.getUTCFullYear()}`,
   ].join("");
 };
 
@@ -66,7 +66,7 @@ export const getCollectionItems = (slug: string): CollectionItem[] =>
     .map((fileName) => {
       const imageURL = `public/gallery/${slug}/${fileName}`;
 
-      const { width, height } = sizeOf(imageURL);
+      const { width, height } = imageSize(readFileSync(imageURL));
 
       return {
         variant: "image",

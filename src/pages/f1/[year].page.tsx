@@ -23,6 +23,7 @@ import DriverRaceResultsLineGraph, {
 } from "./shared/DriverRaceResultsLineGraph";
 import groupResultsByDriver from "./shared/groupResultsByDriver";
 import { f1Color } from "./shared/util";
+import PageHead from "../../components/PageHead";
 
 const F1RedButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(f1Color),
@@ -96,6 +97,11 @@ const F1Page: NextPage<F1PageProps> = ({
   const yearAsNumber = parseInt(year, 10);
   return (
     <Container sx={{ position: "relative" }}>
+      <PageHead
+        title={`F1 ${year} season results — Ben Werner`}
+        description={`Cumulative driver points after every race of the ${year} Formula 1 season.`}
+        path={`/f1/${year}`}
+      />
       <Box display="flex" position="relative" alignItems="stretch">
         <Link href={`/f1/${yearAsNumber - 1}`}>
           <F1RedButton

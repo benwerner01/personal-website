@@ -76,11 +76,9 @@ describe("formatCollectionTimeRange", () => {
       ]);
     });
 
-    // The formatter uses local-time getters on UTC-midnight ISO strings, so
-    // a process west of UTC currently reads the previous month ("Apr - May
-    // 2020"). Unskip once `bw/cp10-08-09-correctness` (getUTCMonth /
-    // getUTCFullYear) is merged.
-    it.skip("formats by UTC month in a process west of UTC", () => {
+    // a local-time getter would read the previous month here ("Apr - May
+    // 2020"), which is what visitors in the Americas used to see
+    it("formats by UTC month in a process west of UTC", () => {
       process.env.TZ = "America/Los_Angeles";
 
       expect(format()).toEqual([

@@ -1,8 +1,8 @@
 // Flat config equivalent of the former .eslintrc.json.
 //
-// `airbnb` (eslint-config-airbnb 19) and `next` (eslint-config-next 13) are
+// `airbnb` (eslint-config-airbnb 19) and `next` (eslint-config-next 14) are
 // eslintrc-only configs, so they are translated at load time with FlatCompat.
-// The plugins pulled in by `next` (@next/eslint-plugin-next 13 and its
+// The plugins pulled in by `next` (@next/eslint-plugin-next 14 and its
 // eslint-plugin-react-hooks canary) still use the ESLint 8 rule context API
 // (context.getAncestors / getScope / getFilename), so their rules are wrapped
 // with @eslint/compat's fixup shim.
