@@ -13,9 +13,21 @@ const emotionTranspilePackages = process.env.TURBOPACK
   ? ["@emotion/react", "@emotion/styled", "@emotion/cache"]
   : [];
 
+// Left to Node, the server render of /3d loads @react-three/fiber's CommonJS
+// build, which `require("three")`s three's CommonJS build – deprecated since
+// r16x (a build-time THREE_CJS_DEPRECATED warning) and slated for removal.
+// Bundling the three.js stack into the server chunks makes Turbopack resolve
+// it as ESM instead (the webpack fallback still picks the CommonJS build).
+const threeTranspilePackages = [
+  "three",
+  "three-stdlib",
+  "@react-three/fiber",
+  "@react-three/drei",
+];
+
 module.exports = {
   pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js"],
-  transpilePackages: emotionTranspilePackages,
+  transpilePackages: [...emotionTranspilePackages, ...threeTranspilePackages],
   async headers() {
     return [
       {
