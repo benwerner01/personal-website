@@ -18,10 +18,6 @@ export default class MyDocument extends Document<MyDocumentProps> {
     return (
       <Html lang="en">
         <Head>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
           {/* Emotion's critical CSS must be in the SSR HTML, otherwise every
               page paints unstyled and shifts once the client injects styles */}
           {this.props.emotionStyleTags}

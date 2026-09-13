@@ -2,8 +2,11 @@ import { createTheme, ThemeOptions } from "@mui/material/styles";
 
 const defaultTheme = createTheme();
 
-export const createCustomTheme = (params: { dark: boolean }) => {
-  const { dark } = params;
+export const createCustomTheme = (params: {
+  dark: boolean;
+  fontFamily: string;
+}) => {
+  const { dark, fontFamily } = params;
   const palette: ThemeOptions["palette"] = {
     primary: {
       main: "#257DC3",
@@ -25,7 +28,7 @@ export const createCustomTheme = (params: { dark: boolean }) => {
 
   return createTheme({
     typography: {
-      fontFamily: '"Manrope", "Roboto", "Helvetica", "Arial", sans-serif',
+      fontFamily: `${fontFamily}, "Roboto", "Helvetica", "Arial", sans-serif`,
     },
     palette,
     components: {
