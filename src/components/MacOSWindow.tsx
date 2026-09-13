@@ -1,6 +1,5 @@
 import React, { FunctionComponent, PropsWithChildren } from "react";
 import { Typography, Box, Paper } from "@mui/material";
-import Color from "color";
 
 type MacOSWindowProps = PropsWithChildren<{
   title?: string;
@@ -51,21 +50,21 @@ const MacOSWindow: FunctionComponent<MacOSWindowProps> = ({
         component="span"
         sx={{
           backgroundColor: "rgb(238, 107, 96)",
-          borderColor: Color("rgb(238, 107, 96)").darken(0.1).rgb().string(),
+          borderColor: "rgb(235, 79, 66)",
         }}
       />
       <Box
         component="span"
         sx={{
           backgroundColor: "rgb(246, 190, 80)",
-          borderColor: Color("rgb(246, 190, 80)").darken(0.1).rgb().string(),
+          borderColor: "rgb(244, 179, 49)",
         }}
       />
       <Box
         component="span"
         sx={{
           backgroundColor: "rgb(98, 196, 84)",
-          borderColor: Color("rgb(98, 196, 84)").darken(0.1).rgb().string(),
+          borderColor: "rgb(80, 187, 65)",
         }}
       />
     </Box>
