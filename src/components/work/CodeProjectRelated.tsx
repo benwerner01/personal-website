@@ -5,15 +5,18 @@ import { Related } from "../../lib/work/code";
 
 type CodeProjectRelatedProps = {
   mt?: number;
+  /** Heading element for the section title, so the page keeps a valid heading order */
+  headingComponent: "h2" | "h3";
   related: Related[];
 };
 
 const CodeProjectRelated: React.FC<CodeProjectRelatedProps> = ({
   mt,
+  headingComponent,
   related,
 }) => (
   <Box mt={mt}>
-    <Typography variant="h6" sx={{ marginTop: 1 }}>
+    <Typography variant="h6" component={headingComponent} sx={{ marginTop: 1 }}>
       Related
     </Typography>
     <Box

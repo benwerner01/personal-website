@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { createCustomTheme } from "../lib/theme";
 import "../lib/styles/globals.css";
@@ -36,7 +37,11 @@ const MyApp = ({
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <NavBar />
-        <Component {...pageProps} />
+        {/* `display: contents` so the landmark adds no box: pages that size
+            themselves with percentage heights keep resolving against #__next */}
+        <Box component="main" sx={{ display: "contents" }}>
+          <Component {...pageProps} />
+        </Box>
         {/* <BackgroundAnimation /> */}
       </ThemeProvider>
     </CacheProvider>
