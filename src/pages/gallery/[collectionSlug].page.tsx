@@ -2,12 +2,12 @@ import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { getCollectionItems } from "../../lib/gallery";
 import {
   Collection,
   formatCollectionTimeRange,
-  getCollectionItems,
   STATIC_COLLECTIONS,
-} from "../../lib/gallery";
+} from "../../lib/gallery-shared";
 import CollectionPreview from "../../components/CollectionPreview";
 import PageHead, { ogImageUrl } from "../../components/PageHead";
 

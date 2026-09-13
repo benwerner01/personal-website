@@ -20,8 +20,8 @@ import {
 } from "./shared/ergastF1Api";
 import DriverRaceResultsLineGraph, {
   RaceDriverWithResultsAndConstructor,
-  RaceResultWithRound,
 } from "./shared/DriverRaceResultsLineGraph";
+import groupResultsByDriver from "./shared/groupResultsByDriver";
 import { f1Color } from "./shared/util";
 import PageHead from "../../components/PageHead";
 
@@ -72,39 +72,9 @@ export const getStaticProps: GetStaticProps<
     fetchSeasonRaceResults({ year }).catch(handleFetchError),
   ]);
 
-  const seasonRaceResultsByDriver = seasonRaceResults.Races.reduce<
-    RaceDriverWithResultsAndConstructor[]
-  >((prevDriversWithResults, race) => {
-    for (const raceResult of race.Results) {
-      const driver = raceResult.Driver;
-      const raceResultWithCircuit: RaceResultWithRound = {
-        ...raceResult,
-        round: race.round,
-      };
-
-      const existingDriverIndex = prevDriversWithResults.findIndex(
-        ({ driverId }) => driverId === driver.driverId,
-      );
-
-      const racePoints = Number(raceResultWithCircuit.points);
-
-      if (existingDriverIndex < 0) {
-        prevDriversWithResults.push({
-          ...driver,
-          Results: [raceResultWithCircuit],
-          Constructor: raceResultWithCircuit.Constructor,
-          totalPoints: racePoints,
-        });
-      } else {
-        prevDriversWithResults[existingDriverIndex].Results.push(
-          raceResultWithCircuit,
-        );
-        // eslint-disable-next-line no-param-reassign
-        prevDriversWithResults[existingDriverIndex].totalPoints += racePoints;
-      }
-    }
-    return prevDriversWithResults;
-  }, []);
+  const seasonRaceResultsByDriver = groupResultsByDriver(
+    seasonRaceResults.Races,
+  );
 
   return {
     props: {
@@ -136,6 +106,7 @@ const F1Page: NextPage<F1PageProps> = ({
         <Link href={`/f1/${yearAsNumber - 1}`}>
           <F1RedButton
             variant="contained"
+            aria-label="Previous season"
             sx={{
               px: 1,
               height: "100%",
@@ -168,6 +139,7 @@ const F1Page: NextPage<F1PageProps> = ({
               position: "relative",
             }}
             inputProps={{
+              "aria-label": "Season",
               sx: {
                 py: 0.5,
                 px: 1,
@@ -187,6 +159,7 @@ const F1Page: NextPage<F1PageProps> = ({
         <Link href={`/f1/${yearAsNumber + 1}`}>
           <F1RedButton
             variant="contained"
+            aria-label="Next season"
             disabled={new Date().getFullYear() === yearAsNumber}
             sx={{
               px: 1,
