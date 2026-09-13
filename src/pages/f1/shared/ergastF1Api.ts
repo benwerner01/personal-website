@@ -77,35 +77,33 @@ type ErgastApiSeasonRaceResultsResponse = {
   };
 };
 
-export const fetchSeasonRaceResults = async (params: {
-  year: string;
-}): Promise<ErgastApiSeasonRaceResults> => {
+// ergast.com was retired and now 404s; jolpi.ca serves the same API
+const API_BASE_URL = "https://api.jolpi.ca/ergast/f1";
+
+const fetchSeason = async (
+  path: string,
+  limit: number
+): Promise<ErgastApiSeasonRaceResults> => {
   const { data } = await axios.get<ErgastApiSeasonRaceResultsResponse>(
-    `http://ergast.com/api/f1/${params.year}/results.json`,
+    `${API_BASE_URL}/${path}`,
     {
       params: {
-        limit: 1000,
+        limit,
       },
     }
   );
 
   return data.MRData.RaceTable;
 };
+
+export const fetchSeasonRaceResults = async (params: {
+  year: string;
+}): Promise<ErgastApiSeasonRaceResults> =>
+  fetchSeason(`${params.year}/results.json`, 1000);
 
 export const fetchSeasonRaces = async (params: {
   year: string;
-}): Promise<ErgastApiSeasonRaces> => {
-  const { data } = await axios.get<ErgastApiSeasonRaceResultsResponse>(
-    `http://ergast.com/api/f1/${params.year}.json`,
-    {
-      params: {
-        limit: 100,
-      },
-    }
-  );
-
-  return data.MRData.RaceTable;
-};
+}): Promise<ErgastApiSeasonRaces> => fetchSeason(`${params.year}.json`, 100);
 
 const currentYear = new Date().getFullYear();
 

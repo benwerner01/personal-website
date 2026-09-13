@@ -15,6 +15,7 @@ import {
   fetchSeasonRaceResults,
   fetchSeasonRaces,
   ErgastApiSeasonRaces,
+  ErgastApiSeasonRaceResults,
 } from "./shared/ergastF1Api";
 import DriverRaceResultsLineGraph, {
   RaceDriverWithResultsAndConstructor,
@@ -40,12 +41,17 @@ type F1PageProps = {
 
 type ParsedQueryParams = { year: string };
 
+// seasons render on first request instead of at build time, so a slow or
+// rate-limited F1 API cannot hold up a deploy
 export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async () => ({
   fallback: "blocking",
-  paths: apiSupportedYears.map((year) => ({
-    params: { year: year.toString() },
-  })),
+  paths: [],
 });
+
+const EMPTY_SEASON: ErgastApiSeasonRaceResults = {
+  season: "",
+  Races: [],
+};
 
 export const getStaticProps: GetStaticProps<
   F1PageProps,
@@ -54,8 +60,8 @@ export const getStaticProps: GetStaticProps<
   const { year } = params;
 
   const [seasonRaces, seasonRaceResults] = await Promise.all([
-    fetchSeasonRaces({ year }),
-    fetchSeasonRaceResults({ year }),
+    fetchSeasonRaces({ year }).catch(() => EMPTY_SEASON),
+    fetchSeasonRaceResults({ year }).catch(() => EMPTY_SEASON),
   ]);
 
   const seasonRaceResultsByDriver = seasonRaceResults.Races.reduce<
