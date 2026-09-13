@@ -15,7 +15,7 @@ const [, , baseUrl = "https://ben-werner.com", outFile = ".baseline/lighthouse.j
   process.argv;
 
 const ROUTES = ["/", "/work", "/gallery", "/3d"];
-const RUNS = 3;
+const RUNS = Number(process.env.LH_RUNS || 3);
 
 const median = (xs) => {
   const s = [...xs].sort((a, b) => a - b);
