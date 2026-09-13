@@ -1,10 +1,8 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 type NavBarItemDefinition = {
   href: string;
@@ -51,8 +49,6 @@ const NavBarItem: FC<NavBarItemDefinition & { isActive: boolean }> = ({
 
 const NavBar: React.FC = () => {
   const { pathname } = useRouter();
-  const theme = useTheme();
-  const xs = useMediaQuery(theme.breakpoints.down("xs"));
 
   return (
     <Box
@@ -60,7 +56,7 @@ const NavBar: React.FC = () => {
       sx={{
         display: "flex",
         justifyContent: "space-between",
-        px: xs ? 1 : 2,
+        px: 2,
         height: 40,
       }}
     >
