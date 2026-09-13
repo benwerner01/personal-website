@@ -82,7 +82,7 @@ const API_BASE_URL = "https://api.jolpi.ca/ergast/f1";
 
 const fetchSeason = async (
   path: string,
-  limit: number
+  limit: number,
 ): Promise<ErgastApiSeasonRaceResults> => {
   const { data } = await axios.get<ErgastApiSeasonRaceResultsResponse>(
     `${API_BASE_URL}/${path}`,
@@ -90,7 +90,7 @@ const fetchSeason = async (
       params: {
         limit,
       },
-    }
+    },
   );
 
   return data.MRData.RaceTable;
@@ -109,5 +109,5 @@ const currentYear = new Date().getFullYear();
 
 export const apiSupportedYears = Array.from(
   { length: currentYear - 1950 + 1 },
-  (_, i) => currentYear - i
+  (_, i) => currentYear - i,
 );

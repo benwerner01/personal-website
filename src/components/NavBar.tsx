@@ -56,7 +56,7 @@ const NavBar: React.FC = () => {
               isActive={pathname === item.href}
               {...item}
             />
-          )
+          ),
         )}
       </Box>
       <Box display="flex">
@@ -67,7 +67,7 @@ const NavBar: React.FC = () => {
               isActive={pathname === item.href}
               {...item}
             />
-          )
+          ),
         )}
       </Box>
     </Box>

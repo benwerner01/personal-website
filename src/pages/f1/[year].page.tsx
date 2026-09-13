@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps<
       };
 
       const existingDriverIndex = prevDriversWithResults.findIndex(
-        ({ driverId }) => driverId === driver.driverId
+        ({ driverId }) => driverId === driver.driverId,
       );
 
       const racePoints = parseInt(raceResultWithCircuit.points, 10);
@@ -89,7 +89,7 @@ export const getStaticProps: GetStaticProps<
         });
       } else {
         prevDriversWithResults[existingDriverIndex].Results.push(
-          raceResultWithCircuit
+          raceResultWithCircuit,
         );
         // eslint-disable-next-line no-param-reassign
         prevDriversWithResults[existingDriverIndex].totalPoints += racePoints;

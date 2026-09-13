@@ -39,7 +39,7 @@ const getOuterCubesOfCustomShape = (params: {
           center: cube.center,
           possibleNeighbours: cubeCluster.cubes,
         }),
-      })
+      }),
     )
     .filter(({ neighbourDirections }) => neighbourDirections.length < 6);
 };
@@ -72,31 +72,31 @@ export const CubeCluster: FC = () => {
                     (direction === "left"
                       ? -CUBE_WIDTH
                       : direction === "right"
-                      ? CUBE_WIDTH
-                      : 0),
+                        ? CUBE_WIDTH
+                        : 0),
                   center.y +
                     (direction === "top"
                       ? CUBE_WIDTH
                       : direction === "bottom"
-                      ? -CUBE_WIDTH
-                      : 0),
+                        ? -CUBE_WIDTH
+                        : 0),
                   center.z +
                     (direction === "forward"
                       ? CUBE_WIDTH
                       : direction === "backward"
-                      ? -CUBE_WIDTH
-                      : 0)
+                        ? -CUBE_WIDTH
+                        : 0),
                 );
 
                 return prevPositions.find((position) =>
-                  neighbouringPosition.equals(position)
+                  neighbouringPosition.equals(position),
                 )
                   ? []
                   : neighbouringPosition;
               })
               .flat(),
           ],
-          []
+          [],
         );
 
         return {
@@ -114,7 +114,7 @@ export const CubeCluster: FC = () => {
           ],
         };
       }),
-    []
+    [],
   );
 
   useEffect(() => {
