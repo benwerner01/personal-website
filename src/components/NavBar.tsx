@@ -10,13 +10,17 @@ type NavBarItemDefinition = {
   href: string;
   label: string;
   position: "left" | "right";
+  /** `false` stops Next.js prefetching the route's chunks on every page */
+  prefetch?: false;
 };
 
 const NAV_BAR_ITEMS: NavBarItemDefinition[] = [
   { href: "/", label: "BW", position: "left" },
   { href: "/work", label: "Work", position: "left" },
   { href: "/gallery", label: "Gallery", position: "left" },
-  { href: "/3d", label: "3D", position: "left" },
+  // the 3D page's chunks (three.js, ~216 kB gz) shouldn't be downloaded on
+  // every other page; hover/focus still prefetches them
+  { href: "/3d", label: "3D", position: "left", prefetch: false },
   { href: "/contact", label: "Contact", position: "right" },
 ];
 
@@ -26,10 +30,15 @@ const NavBarItem: FC<NavBarItemDefinition & { isActive: boolean }> = ({
   label,
   href,
   isActive,
+  prefetch,
 }) => (
   <Box m={1}>
     <Typography>
-      <Link href={href} style={{ fontWeight: isActive ? 800 : 400 }}>
+      <Link
+        href={href}
+        prefetch={prefetch}
+        style={{ fontWeight: isActive ? 800 : 400 }}
+      >
         {label}
       </Link>
     </Typography>
