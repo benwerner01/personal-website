@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
 import Link from "next/link";
-import Color from "color";
 import {
   Button,
   IconButton,
@@ -169,10 +168,9 @@ const CodeProjectCard: FunctionComponent<CodeProjectCardProps> = ({
                 borderColor: WORK_VARIANT_PALETTE.code,
                 color: WORK_VARIANT_PALETTE.code,
                 "&:hover": {
-                  backgroundColor: Color(WORK_VARIANT_PALETTE.code)
-                    .lighten(0.9)
-                    .fade(0.8)
-                    .hex(),
+                  // WORK_VARIANT_PALETTE.code lightened by 0.9 (the former
+                  // `.fade(0.8)` was discarded by `.hex()`, so it is opaque)
+                  backgroundColor: "#E6F5FF",
                   "& $moreButtonEndIcon": {
                     left: 3,
                   },

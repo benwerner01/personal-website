@@ -12,8 +12,6 @@ import NavBar from "../components/NavBar";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-// import BackgroundAnimation from '../components/BackgroundAnimation';
-
 const DARK_MODE_PATHS = ["/3d"];
 
 const MyApp = ({
@@ -37,7 +35,6 @@ const MyApp = ({
         <CssBaseline />
         <NavBar />
         <Component {...pageProps} />
-        {/* <BackgroundAnimation /> */}
       </ThemeProvider>
     </CacheProvider>
   );

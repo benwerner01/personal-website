@@ -113,4 +113,11 @@ export default [
       "import/prefer-default-export": "off",
     },
   },
+  {
+    // build-time scripts run through ts-node, so they may use devDependencies
+    files: ["src/lib/scripts/**"],
+    rules: {
+      "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
+    },
+  },
 ];
