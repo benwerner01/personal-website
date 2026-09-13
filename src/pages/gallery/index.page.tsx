@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { getGallery } from "../../lib/gallery";
 import { formatCollectionTimeRange, Gallery } from "../../lib/gallery-shared";
 import CollectionPreview from "../../components/CollectionPreview";
+import PageHead from "../../components/PageHead";
 
 type GalleryPageProps = {
   gallery: Gallery;
@@ -18,6 +19,13 @@ export const getStaticProps: GetStaticProps<GalleryPageProps> = async () => ({
 
 const GalleryPage: React.FC<GalleryPageProps> = ({ gallery }) => (
   <Container>
+    <PageHead
+      title="Gallery — Ben Werner"
+      description={`Photography by Ben Werner: ${gallery
+        .map(({ name }) => name)
+        .join(", ")}.`}
+      path="/gallery"
+    />
     {gallery.map((collection) => (
       <Box key={collection.name} mb={4}>
         <Box display="flex" justifyContent="space-between" mb={2}>

@@ -2,8 +2,8 @@
 //
 // Only import this module from `getStaticProps` / `getStaticPaths`. Types and
 // helpers that page components need live in `./gallery-shared.ts`.
-import { readdirSync } from "fs";
-import sizeOf from "image-size";
+import { readdirSync, readFileSync } from "fs";
+import { imageSize } from "image-size";
 import blurdata from "../../public/gallery/blurdata.json";
 import { CollectionItem, Gallery, STATIC_COLLECTIONS } from "./gallery-shared";
 
@@ -13,7 +13,7 @@ export const getCollectionItems = (slug: string): CollectionItem[] =>
     .map((fileName) => {
       const imageURL = `public/gallery/${slug}/${fileName}`;
 
-      const { width, height } = sizeOf(imageURL);
+      const { width, height } = imageSize(readFileSync(imageURL));
 
       return {
         variant: "image",

@@ -1,9 +1,19 @@
 import React from "react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, {
+  DocumentProps,
+  Html,
+  Head,
+  Main,
+  NextScript,
+} from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import createEmotionCache from "../lib/createEmotionCache";
 
-export default class MyDocument extends Document {
+type MyDocumentProps = DocumentProps & {
+  emotionStyleTags: React.ReactNode[];
+};
+
+export default class MyDocument extends Document<MyDocumentProps> {
   render() {
     return (
       <Html lang="en">
@@ -12,6 +22,9 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          {/* Emotion's critical CSS must be in the SSR HTML, otherwise every
+              page paints unstyled and shifts once the client injects styles */}
+          {this.props.emotionStyleTags}
         </Head>
         <body>
           <Main />

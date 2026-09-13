@@ -46,19 +46,19 @@ export const formatCollectionTimeRange = (collection: Collection) => {
   const endDate = new Date(collection.endDate);
 
   return [
-    MONTHS[startDate.getMonth()],
-    startDate.getFullYear() === endDate.getFullYear()
+    MONTHS[startDate.getUTCMonth()],
+    startDate.getUTCFullYear() === endDate.getUTCFullYear()
       ? ""
       : [
-          ` ${startDate.getFullYear()}`,
-          startDate.getMonth() !== endDate.getMonth()
+          ` ${startDate.getUTCFullYear()}`,
+          startDate.getUTCMonth() !== endDate.getUTCMonth()
             ? ""
-            : ` - ${MONTHS[endDate.getMonth()]}`,
+            : ` - ${MONTHS[endDate.getUTCMonth()]}`,
         ].join(""),
-    startDate.getMonth() === endDate.getMonth()
+    startDate.getUTCMonth() === endDate.getUTCMonth()
       ? ""
-      : ` - ${MONTHS[endDate.getMonth()]}`,
-    ` ${endDate.getFullYear()}`,
+      : ` - ${MONTHS[endDate.getUTCMonth()]}`,
+    ` ${endDate.getUTCFullYear()}`,
   ].join("");
 };
 

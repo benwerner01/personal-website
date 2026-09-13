@@ -10,6 +10,7 @@ import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
 import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
 import { scenes } from "./scenes";
 import { NAV_BAR_HEIGHT } from "../../components/NavBar";
+import PageHead from "../../components/PageHead";
 
 extend({
   Line_: Line,
@@ -24,6 +25,11 @@ extend({
 
 const ThreeDPage: NextPage = () => (
   <>
+    <PageHead
+      title="3D — Ben Werner"
+      description="Interactive 3D scenes by Ben Werner, rendered in the browser with three.js."
+      path="/3d"
+    />
     {scenes.map(({ name, Component }) => (
       <Canvas
         key={name}
