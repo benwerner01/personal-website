@@ -28,7 +28,7 @@ const MyApp = ({
 
   const theme = useMemo(
     () => createCustomTheme({ dark: isDarkTheme }),
-    [isDarkTheme]
+    [isDarkTheme],
   );
 
   return (

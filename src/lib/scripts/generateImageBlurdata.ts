@@ -9,7 +9,7 @@ type BlurData = {
 
 const updateBlurData = async () => {
   const previousBlurData: BlurData = JSON.parse(
-    readFileSync(BLUR_DATA_PATH, "utf8")
+    readFileSync(BLUR_DATA_PATH, "utf8"),
   );
 
   const freshImageURLs = readdirSync("public/gallery", { withFileTypes: true })
@@ -18,7 +18,7 @@ const updateBlurData = async () => {
     .map((collectionSlug) =>
       readdirSync(`public/gallery/${collectionSlug}`)
         .filter((fileName) => fileName.endsWith(".jpeg"))
-        .map((fileName) => `public/gallery/${collectionSlug}/${fileName}`)
+        .map((fileName) => `public/gallery/${collectionSlug}/${fileName}`),
     )
     .flat()
     .filter((imageURL) => previousBlurData[imageURL] === undefined);
@@ -27,7 +27,7 @@ const updateBlurData = async () => {
   console.log(
     `${freshImageURLs.length} fresh image${
       freshImageURLs.length === 1 ? "" : "s"
-    } found`
+    } found`,
   );
 
   const updatedBlurData = await freshImageURLs.reduce(
@@ -46,7 +46,7 @@ const updateBlurData = async () => {
         [imageURL]: `data:image/jpeg;base64,${blurredImage.toString("base64")}`,
       };
     },
-    Promise.resolve(previousBlurData)
+    Promise.resolve(previousBlurData),
   );
 
   writeFileSync(BLUR_DATA_PATH, JSON.stringify(updatedBlurData, null, "\t"));

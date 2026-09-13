@@ -99,7 +99,7 @@ const CodePreviewsCarousel: FunctionComponent<CodePreviewsCarouselProps> = ({
                 if (autoIncrement) {
                   if (selectedItem === i) {
                     setSelectedItem((prev) =>
-                      prev === previews.length - 1 ? 0 : prev + 1
+                      prev === previews.length - 1 ? 0 : prev + 1,
                     );
                   }
                 } else {

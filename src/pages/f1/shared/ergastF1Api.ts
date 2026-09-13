@@ -89,7 +89,7 @@ const API_BASE_URL = "https://api.jolpi.ca/ergast/f1";
 const PAGE_SIZE = 100;
 
 const fetchSeason = async (
-  path: string
+  path: string,
 ): Promise<ErgastApiSeasonRaceResults> => {
   const races: ErgastApiRace[] = [];
   let season = "";
@@ -106,7 +106,7 @@ const fetchSeason = async (
           limit: PAGE_SIZE,
           offset,
         },
-      }
+      },
     );
 
     season = data.MRData.RaceTable.season;
@@ -142,5 +142,5 @@ const currentYear = new Date().getFullYear();
 
 export const apiSupportedYears = Array.from(
   { length: currentYear - 1950 + 1 },
-  (_, i) => currentYear - i
+  (_, i) => currentYear - i,
 );

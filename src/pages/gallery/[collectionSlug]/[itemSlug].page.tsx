@@ -33,7 +33,7 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryURL> = async () => ({
           collectionSlug: slug,
           itemSlug: item.slug,
         },
-      }))
+      })),
     )
     .flat(),
   fallback: false,
@@ -65,7 +65,7 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
   const router = useRouter();
 
   const itemIndex = collection.items.findIndex(
-    ({ slug }) => slug === item.slug
+    ({ slug }) => slug === item.slug,
   );
 
   const previousItemIndex =

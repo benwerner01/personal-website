@@ -19,7 +19,7 @@ const prefixZero = (number: number) => (number < 10 ? `0${number}` : number);
 // eslint-disable-next-line no-unused-vars
 const formatLastMod = (date: Date) =>
   `${date.getFullYear()}-${prefixZero(date.getMonth() + 1)}-${prefixZero(
-    date.getDate()
+    date.getDate(),
   )}`;
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
@@ -61,8 +61,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
         ],
         {
           declaration: true,
-        }
-      )
+        },
+      ),
     );
     res.end();
   }

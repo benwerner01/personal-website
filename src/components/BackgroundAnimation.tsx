@@ -67,10 +67,10 @@ const BackgroundAnimation: FC = () => {
       forceSimulation().force(
         "collision",
         forceCollide<NodeDatum>().radius((d) =>
-          d.variant === "pointer" ? 0 : d.radius + 1
-        )
+          d.variant === "pointer" ? 0 : d.radius + 1,
+        ),
       ),
-    []
+    [],
   );
 
   useEffect(() => {
@@ -111,8 +111,8 @@ const BackgroundAnimation: FC = () => {
         simulation.force(
           "charge",
           forceManyBody<NodeDatum>().strength((d) =>
-            d.variant === "pointer" ? -50 : (d.attractive ? 1 : -1) * 50
-          )
+            d.variant === "pointer" ? -50 : (d.attractive ? 1 : -1) * 50,
+          ),
         );
       });
     }
@@ -136,7 +136,7 @@ const BackgroundAnimation: FC = () => {
           .append("circle")
           .classed("blob", true)
           .attr("r", 0)
-          .attr("fill-opacity", 0.5)
+          .attr("fill-opacity", 0.5),
       );
 
       const blobsDatum: BlobDatum[] = new Array(NUMBER_OF_BLOBS)
@@ -161,7 +161,7 @@ const BackgroundAnimation: FC = () => {
           .append("circle")
           .classed("blob", true)
           .attr("r", ({ radius }) => radius)
-          .attr("fill", ({ fill }) => fill)
+          .attr("fill", ({ fill }) => fill),
       );
 
       const nodeDatum = [...pointerDatum, ...blobsDatum];
