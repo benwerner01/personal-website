@@ -6,6 +6,7 @@ import {
   Container,
   Select,
   MenuItem,
+  Typography,
 } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import Link from "next/link";
@@ -59,9 +60,15 @@ export const getStaticProps: GetStaticProps<
 > = async ({ params }) => {
   const { year } = params;
 
+  let fetchFailed = false;
+  const handleFetchError = () => {
+    fetchFailed = true;
+    return EMPTY_SEASON;
+  };
+
   const [seasonRaces, seasonRaceResults] = await Promise.all([
-    fetchSeasonRaces({ year }).catch(() => EMPTY_SEASON),
-    fetchSeasonRaceResults({ year }).catch(() => EMPTY_SEASON),
+    fetchSeasonRaces({ year }).catch(handleFetchError),
+    fetchSeasonRaceResults({ year }).catch(handleFetchError),
   ]);
 
   const seasonRaceResultsByDriver = seasonRaceResults.Races.reduce<
@@ -104,7 +111,8 @@ export const getStaticProps: GetStaticProps<
       seasonRaceResultsByDriver,
       seasonRaces,
     },
-    revalidate: 100,
+    // a throttled or failed fetch shouldn't cache an empty season for long
+    revalidate: fetchFailed ? 5 : 100,
   };
 };
 
@@ -187,11 +195,17 @@ const F1Page: NextPage<F1PageProps> = ({
           </F1RedButton>
         </Link>
       </Box>
-      <DriverRaceResultsLineGraph
-        year={year}
-        seasonRaceResultsByDriver={seasonRaceResultsByDriver}
-        seasonRaces={seasonRaces}
-      />
+      {seasonRaceResultsByDriver.length > 0 ? (
+        <DriverRaceResultsLineGraph
+          year={year}
+          seasonRaceResultsByDriver={seasonRaceResultsByDriver}
+          seasonRaces={seasonRaces}
+        />
+      ) : (
+        <Typography sx={{ mt: 4 }}>
+          No race results are available for the {year} season yet.
+        </Typography>
+      )}
     </Container>
   );
 };
