@@ -4,6 +4,7 @@ import GitHubIcon from "../components/icons/GitHubIcon";
 import LinkedInIcon from "../components/icons/LinkedInIcon";
 import TwitterIcon from "../components/icons/TwitterIcon";
 import SoundCloudIcon from "../components/icons/SoundCloudIcon";
+import PageHead from "../components/PageHead";
 
 type Social = {
   name: string;
@@ -36,6 +37,11 @@ const SOCIALS: Social[] = [
 
 const Home = () => (
   <Container>
+    <PageHead
+      title="Ben Werner"
+      description="The personal website of Ben Werner: software projects, photography and ways to get in touch."
+      path="/"
+    />
     <Box my={10}>
       <Typography>Hi, my name is</Typography>
       <Typography
@@ -61,6 +67,8 @@ const Home = () => (
             href={url}
             rel="noopener noreferrer"
             target="_blank"
+            aria-label={name}
+            title={name}
             sx={{
               marginRight: ({ spacing }) => spacing(1),
               backgroundColor: ({ palette }) => palette.common.black,
