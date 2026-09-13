@@ -24,8 +24,6 @@ module.exports = {
       },
     ];
   },
-<<<<<<< HEAD
-=======
   async headers() {
     return [
       {
@@ -42,21 +40,4 @@ module.exports = {
       },
     ];
   },
-  webpack: (config, { isServer }) => {
-    // Fixes npm packages that depend on `fs` module
-    if (!isServer) {
-      // eslint-disable-next-line no-param-reassign
-      config.resolve = {
-        ...config.resolve,
-        fallback: {
-          ...config.resolve.fallback,
-          fs: false,
-          child_process: false,
-        },
-      };
-    }
-
-    return config;
-  },
->>>>>>> origin/main
 };
