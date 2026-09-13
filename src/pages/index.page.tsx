@@ -67,6 +67,8 @@ const Home = () => (
             href={url}
             rel="noopener noreferrer"
             target="_blank"
+            aria-label={name}
+            title={name}
             sx={{
               marginRight: ({ spacing }) => spacing(1),
               backgroundColor: ({ palette }) => palette.common.black,
