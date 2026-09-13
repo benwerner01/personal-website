@@ -36,7 +36,7 @@ const slug = (route) => (route === "/" ? "index" : route.replace(/^\//, "").repl
       deviceScaleFactor: 1,
       reducedMotion: "reduce",
     });
-    for (const route of routes) {
+    await Promise.all(routes.map(async (route) => {
       const page = await context.newPage();
       const errors = [];
       page.on("console", (msg) => {
@@ -49,7 +49,7 @@ const slug = (route) => (route === "/" ? "index" : route.replace(/^\//, "").repl
       });
       statuses[`${name} ${route}`] = response ? response.status() : "no response";
       // Let JS-driven animations (react-spring, three.js) settle.
-      await page.waitForTimeout(2000);
+      await page.waitForTimeout(1000);
       await page.screenshot({
         path: path.join(outDir, `${slug(route)}.${name}.png`),
         fullPage: true,
@@ -57,7 +57,7 @@ const slug = (route) => (route === "/" ? "index" : route.replace(/^\//, "").repl
       });
       if (errors.length) consoleErrors[`${name} ${route}`] = errors;
       await page.close();
-    }
+    }));
     await context.close();
   }
 
