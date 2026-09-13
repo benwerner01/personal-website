@@ -1,0 +1,103 @@
+{
+  "baseUrl": "https://ben-werner.com",
+  "date": "2026-09-13T19:06:14.576Z",
+  "runs": 3,
+  "results": {
+    "/ [mobile]": {
+      "performance": 79,
+      "accessibility": 88,
+      "bestPractices": 100,
+      "seo": 80,
+      "lcpMs": 1966,
+      "cls": 0.438,
+      "tbtMs": 0,
+      "fcpMs": 1540,
+      "speedIndexMs": 1540,
+      "totalByteWeightKb": 436
+    },
+    "/ [desktop]": {
+      "performance": 76,
+      "accessibility": 88,
+      "bestPractices": 100,
+      "seo": 80,
+      "lcpMs": 439,
+      "cls": 0.961,
+      "tbtMs": 0,
+      "fcpMs": 439,
+      "speedIndexMs": 439,
+      "totalByteWeightKb": 436
+    },
+    "/work [mobile]": {
+      "performance": 50,
+      "accessibility": 94,
+      "bestPractices": 100,
+      "seo": 70,
+      "lcpMs": 7605,
+      "cls": 1.162,
+      "tbtMs": 8,
+      "fcpMs": 1565,
+      "speedIndexMs": 2825,
+      "totalByteWeightKb": 19928
+    },
+    "/work [desktop]": {
+      "performance": 70,
+      "accessibility": 94,
+      "bestPractices": 100,
+      "seo": 70,
+      "lcpMs": 1523,
+      "cls": 1.146,
+      "tbtMs": 0,
+      "fcpMs": 476,
+      "speedIndexMs": 827,
+      "totalByteWeightKb": 19880
+    },
+    "/gallery [mobile]": {
+      "performance": 50,
+      "accessibility": 93,
+      "bestPractices": 100,
+      "seo": 82,
+      "lcpMs": 37457,
+      "cls": 1.004,
+      "tbtMs": 0,
+      "fcpMs": 1706,
+      "speedIndexMs": 1706,
+      "totalByteWeightKb": 7032
+    },
+    "/gallery [desktop]": {
+      "performance": 65,
+      "accessibility": 93,
+      "bestPractices": 100,
+      "seo": 82,
+      "lcpMs": 2180,
+      "cls": 1.011,
+      "tbtMs": 0,
+      "fcpMs": 491,
+      "speedIndexMs": 491,
+      "totalByteWeightKb": 2316
+    },
+    "/3d [mobile]": {
+      "performance": 72,
+      "accessibility": 92,
+      "bestPractices": 100,
+      "seo": 80,
+      "lcpMs": 3466,
+      "cls": 0.405,
+      "tbtMs": 16,
+      "fcpMs": 1546,
+      "speedIndexMs": 1678,
+      "totalByteWeightKb": 433
+    },
+    "/3d [desktop]": {
+      "performance": 75,
+      "accessibility": 92,
+      "bestPractices": 100,
+      "seo": 80,
+      "lcpMs": 776,
+      "cls": 0.941,
+      "tbtMs": 0,
+      "fcpMs": 450,
+      "speedIndexMs": 564,
+      "totalByteWeightKb": 433
+    }
+  }
+}

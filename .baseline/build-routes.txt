@@ -1,0 +1,35 @@
+Route (pages)                                      Size     First Load JS
+┌ ○ /                                              4.84 kB         109 kB
+├   /_app                                          0 B             104 kB
+├ ○ /3d                                            208 kB          312 kB
+├ ○ /404                                           181 B           104 kB
+├ ○ /contact                                       3.04 kB         107 kB
+├ ● /f1/[year]                                     53.6 kB         166 kB
+├ ● /gallery                                       16.8 kB         125 kB
+├ ● /gallery/[collectionSlug]                      776 B           109 kB
+├   ├ /gallery/burning-man-2022
+├   ├ /gallery/london-lockdown
+├   └ /gallery/nyc-lockdown
+├ ● /gallery/[collectionSlug]/[itemSlug] (313 ms)  1.66 kB         118 kB
+├   ├ /gallery/burning-man-2022/DSC02453
+├   ├ /gallery/burning-man-2022/DSC02496
+├   ├ /gallery/burning-man-2022/DSC02522
+├   └ [+61 more paths]
+├ ○ /privacy                                       2.15 kB         106 kB
+├ λ /sitemap                                       242 B           104 kB
+├ ○ /work                                          15.1 kB         141 kB
+├   └ css/ae4ed9c503fd1e33.css                     1.05 kB
+└ ● /work/code/[codeProjectSlug]                   3.48 kB         129 kB
+    ├ /work/code/provviz
+    └ /work/code/cortex
++ First Load JS shared by all                      104 kB
+  ├ chunks/framework-2bb1844fb22814b3.js           45.2 kB
+  ├ chunks/main-69bfa04d4cdce22d.js                31.1 kB
+  ├ chunks/pages/_app-17c84145da68be5a.js          26.6 kB
+  ├ chunks/webpack-36d12a75f0098f30.js             1.05 kB
+  └ css/71f13c51f0a9f1e0.css                       298 B
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)
+
