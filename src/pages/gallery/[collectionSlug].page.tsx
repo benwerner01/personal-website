@@ -2,11 +2,8 @@ import React from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import {
-  Collection,
-  getCollectionItems,
-  STATIC_COLLECTIONS,
-} from "../../lib/gallery";
+import { getCollectionItems } from "../../lib/gallery";
+import { Collection, STATIC_COLLECTIONS } from "../../lib/gallery-shared";
 import CollectionPreview from "../../components/CollectionPreview";
 
 type ParsedQueryURL = {

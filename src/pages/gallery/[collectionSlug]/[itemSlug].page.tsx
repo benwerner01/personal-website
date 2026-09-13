@@ -6,13 +6,12 @@ import Image from "next/legacy/image";
 import { Typography, Container, Button, Box } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { getGallery, getCollectionItems } from "../../../lib/gallery";
 import {
-  getGallery,
   Collection,
   CollectionItem,
   STATIC_COLLECTIONS,
-  getCollectionItems,
-} from "../../../lib/gallery";
+} from "../../../lib/gallery-shared";
 import { NAV_BAR_HEIGHT } from "../../../components/NavBar";
 
 type ParsedQueryURL = {
