@@ -20,7 +20,6 @@
     "@emotion/styled": "^11.10.8",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.2",
-    "@mui/styles": "^5.12.0",
     "@react-three/drei": "9.14.3",
     "@react-three/fiber": "^7.0.26",
     "axios": "^1.4.0",
