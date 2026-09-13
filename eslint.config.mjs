@@ -132,4 +132,11 @@ export default [
       "import/prefer-default-export": "off",
     },
   },
+  {
+    // airbnb only whitelists *.test.{js,jsx} for devDependency imports
+    files: ["**/*.test.ts"],
+    rules: {
+      "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
+    },
+  },
 ];
