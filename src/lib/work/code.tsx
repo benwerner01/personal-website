@@ -49,6 +49,8 @@ export type CodeProject = {
   name: string;
   slug: string;
   blurb?: string | ReactNode;
+  /** Plain-text version of `blurb` for meta tags and link previews */
+  description: string;
   url?: string;
   previews?: PreviewItem[];
   related?: Related[];
@@ -60,6 +62,8 @@ export const CODE_PROJECTS: CodeProject[] = [
     variant: "code",
     name: "ProvViz",
     slug: "provviz",
+    description:
+      "An intuitive in-browser editor for editing and visualising data provenance using the PROV model.",
     blurb: (
       <>
         {
@@ -125,6 +129,8 @@ export const CODE_PROJECTS: CodeProject[] = [
     variant: "code",
     name: "Cortex",
     slug: "cortex",
+    description:
+      "A platform that enables non-technical users to create and maintain a personal knowledge graph as a second brain, to bring the benefits of networked structured data, currently harnessed primarily by large organisations, to anyone.",
     blurb: (
       <>
         {
