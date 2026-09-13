@@ -36,7 +36,11 @@ const SOCIALS: Social[] = [
 
 const Home = () => (
   <Container>
-    <Box my={10}>
+    <Box
+      sx={{
+        my: 10,
+      }}
+    >
       <Typography>Hi, my name is</Typography>
       <Typography
         sx={({ breakpoints }) => ({
@@ -53,7 +57,12 @@ const Home = () => (
       >
         Ben Werner
       </Typography>
-      <Box display="flex" mb={1}>
+      <Box
+        sx={{
+          display: "flex",
+          mb: 1,
+        }}
+      >
         {SOCIALS.map(({ name, url, icon }) => (
           <Box
             component="a"

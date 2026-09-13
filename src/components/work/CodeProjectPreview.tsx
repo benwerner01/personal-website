@@ -78,8 +78,19 @@ const CodeProjectPreview: React.FC<CodeProjectPreviewProps> = ({
         </div>
       </MacOSWindow>
       {displayCaption && preview.caption && (
-        <Box mt={1} width="100%" display="flex" justifyContent="center">
-          <Box maxWidth={500}>
+        <Box
+          sx={{
+            mt: 1,
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
+              maxWidth: 500,
+            }}
+          >
             <Typography align="center">{preview.caption}</Typography>
           </Box>
         </Box>

@@ -207,8 +207,10 @@ const DriverList: FC<{
     <Box sx={{ width: driverListWidth }}>
       <Typography variant="h5">Drivers</Typography>
       <Box
-        position="relative"
-        sx={{ height: drivers.length * driverCardHeight }}
+        sx={{
+          position: "relative",
+          height: drivers.length * driverCardHeight,
+        }}
       >
         {transitions((style, item, _, index) => (
           <animated.div
@@ -359,7 +361,11 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
   );
 
   return (
-    <Box display="flex">
+    <Box
+      sx={{
+        display: "flex",
+      }}
+    >
       <svg
         ref={svgRef}
         style={{

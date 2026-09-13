@@ -37,7 +37,11 @@ const CodePreviewsCarousel: FunctionComponent<CodePreviewsCarouselProps> = ({
   };
 
   return previews.length > 1 ? (
-    <Box marginTop={2}>
+    <Box
+      sx={{
+        marginTop: 2,
+      }}
+    >
       <Carousel
         selectedItem={selectedItem}
         onChange={handleChange}
@@ -147,18 +151,30 @@ const CodeProjectCard: FunctionComponent<CodeProjectCardProps> = ({
     }}
   >
     <CardContent>
-      <Box display="flex" justifyContent="space-between">
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <Typography variant="h5">
           <strong>{project.name}</strong>
         </Typography>
-        <Box display="flex" columnGap={1}>
+        <Box
+          sx={{
+            display: "flex",
+            columnGap: 1,
+          }}
+        >
           {project.url && (
             <Box
               component="a"
               href={project.url}
               rel="noopener noreferrer"
               target="_blank"
-              marginLeft={1}
+              sx={{
+                marginLeft: 1,
+              }}
             >
               <Button variant="outlined">Visit</Button>
             </Box>

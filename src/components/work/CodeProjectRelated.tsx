@@ -12,7 +12,11 @@ const CodeProjectRelated: React.FC<CodeProjectRelatedProps> = ({
   mt,
   related,
 }) => (
-  <Box mt={mt}>
+  <Box
+    sx={{
+      mt,
+    }}
+  >
     <Typography variant="h6" sx={{ marginTop: 1 }}>
       Related
     </Typography>
@@ -32,7 +36,11 @@ const CodeProjectRelated: React.FC<CodeProjectRelatedProps> = ({
           sx={{ display: "flex", marginTop: 1 }}
         >
           <DescriptionIcon />
-          <Box ml={1}>
+          <Box
+            sx={{
+              ml: 1,
+            }}
+          >
             <Typography>
               <a
                 href={relatedItem.url}

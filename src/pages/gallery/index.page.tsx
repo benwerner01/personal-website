@@ -22,8 +22,19 @@ export const getStaticProps: GetStaticProps<GalleryPageProps> = async () => ({
 const GalleryPage: React.FC<GalleryPageProps> = ({ gallery }) => (
   <Container>
     {gallery.map((collection) => (
-      <Box key={collection.name} mb={4}>
-        <Box display="flex" justifyContent="space-between" mb={2}>
+      <Box
+        key={collection.name}
+        sx={{
+          mb: 4,
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            mb: 2,
+          }}
+        >
           <Typography variant="h5">
             <Link href={`/gallery/${collection.slug}`}>{collection.name}</Link>
           </Typography>

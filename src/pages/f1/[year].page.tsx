@@ -126,7 +126,13 @@ const F1Page: NextPage<F1PageProps> = ({
   const yearAsNumber = parseInt(year, 10);
   return (
     <Container sx={{ position: "relative" }}>
-      <Box display="flex" position="relative" alignItems="stretch">
+      <Box
+        sx={{
+          display: "flex",
+          position: "relative",
+          alignItems: "stretch",
+        }}
+      >
         <Link href={`/f1/${yearAsNumber - 1}`}>
           <F1RedButton
             variant="contained"

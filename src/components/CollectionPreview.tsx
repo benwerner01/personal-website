@@ -18,8 +18,8 @@ const CollectionImageComponent: React.FC<CollectionImageComponentProps> = ({
   image,
 }) => (
   <Box
-    m={1}
     sx={{
+      m: 1,
       "& image": {
         opacity: 1,
         transition: ({ transitions }) => transitions.create("opacity"),
@@ -56,8 +56,14 @@ const CollectionPreview: React.FC<{ collection: Collection }> = ({
       {new Array(Math.ceil(collection.items.length / itemsPerRow))
         .fill([])
         .map((_, i) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <Box key={i} display="flex" m={-1}>
+          <Box
+            // eslint-disable-next-line react/no-array-index-key
+            key={i}
+            sx={{
+              display: "flex",
+              m: -1,
+            }}
+          >
             {collection.items
               .slice(i * itemsPerRow, i * itemsPerRow + itemsPerRow)
               .map((item) => (

@@ -13,13 +13,30 @@ const CodeProjectRepositories: React.FC<CodeProjectRepositoriesProps> = ({
   mt,
   repositories,
 }) => (
-  <Box mt={mt}>
+  <Box
+    sx={{
+      mt,
+    }}
+  >
     <Typography variant="h6" sx={{ marginTop: 1 }}>
       {`Repositor${repositories.length === 1 ? "y" : "ies"}`}
     </Typography>
-    <Box display="flex" flexWrap="wrap" ml={1}>
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        ml: 1,
+      }}
+    >
       {repositories.map((repo) => (
-        <Box key={repo.slug} display="flex" mt={1} mr={4}>
+        <Box
+          key={repo.slug}
+          sx={{
+            display: "flex",
+            mt: 1,
+            mr: 4,
+          }}
+        >
           <GitHubIcon />
           <Box sx={{ marginLeft: 1, position: "relative", top: -4 }}>
             <Typography>
