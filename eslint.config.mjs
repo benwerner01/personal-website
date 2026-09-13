@@ -61,8 +61,11 @@ export default [
     rules: {
       // eslint-config-next 16 pulls in eslint-plugin-react-hooks 7, whose
       // recommended config also enables the React Compiler rules. Keep the
-      // pre-16 rule set (rules-of-hooks + exhaustive-deps) until the React 19 /
-      // React Compiler upgrade, where these should be revisited.
+      // pre-16 rule set (rules-of-hooks + exhaustive-deps): the project does
+      // not use the React Compiler, and enabling them (revisited with the
+      // React 19 upgrade) only flags long-standing patterns in the F1 line
+      // graph (refs read during render, a mutable `height`) and the cube
+      // cluster's grow-by-effect loop, which are correct without the compiler.
       "react-hooks/config": "off",
       "react-hooks/error-boundaries": "off",
       "react-hooks/gating": "off",

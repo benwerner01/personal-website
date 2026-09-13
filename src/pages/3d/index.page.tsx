@@ -1,26 +1,21 @@
 import { NextPage } from "next";
 import { Canvas, extend } from "@react-three/fiber";
-import { Line } from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
-import { Line2 } from "three/examples/jsm/lines/Line2";
-import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
-import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+// The postprocessing passes come from three-stdlib rather than three/addons:
+// three rewrote UnrealBloomPass in r18x (wider blur kernels and a 3× stronger
+// composite), which changes the look of the scene. three-stdlib carries the
+// original algorithm the scene was tuned for.
+import { EffectComposer, RenderPass, UnrealBloomPass } from "three-stdlib";
 import { scenes } from "./scenes";
 import { NAV_BAR_HEIGHT } from "../../components/NavBar";
 import PageHead from "../../components/PageHead";
 
+// The JSX element types for these are declared in /three.d.ts.
 extend({
-  Line_: Line,
   OrbitControls,
   UnrealBloomPass,
   EffectComposer,
   RenderPass,
-  Line2,
-  LineMaterial,
-  LineGeometry,
 });
 
 const ThreeDPage: NextPage = () => (

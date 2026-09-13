@@ -46,15 +46,15 @@ const YAxis: FC<{
 }> = ({ linearScale, x }) => {
   const ticks = linearScale.ticks();
 
-  const [springs, set] = useSprings(ticks.length, (_i) => ({
+  const [springs, api] = useSprings(ticks.length, (_i) => ({
     transform: `translate(${x}, ${linearScale(0)})`,
   }));
 
   useEffect(() => {
-    set((i) => ({
+    api.start((i) => ({
       transform: `translate(${x}, ${linearScale(ticks[i])})`,
     }));
-  }, [ticks, linearScale, x, set]);
+  }, [ticks, linearScale, x, api]);
 
   return (
     <>
