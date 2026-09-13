@@ -381,7 +381,7 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
           let totalPoints = 0;
 
           const coordinates = Results.map(({ round, points }) => {
-            const pointsInRace = parseInt(points, 10);
+            const pointsInRace = Number(points);
             totalPoints += pointsInRace;
             return { round, totalPoints };
             // eslint-disable-next-line no-shadow
