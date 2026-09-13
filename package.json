@@ -45,7 +45,6 @@
     "xml": "^1.0.1"
   },
   "devDependencies": {
-    "@eslint/compat": "^1.4.1",
     "@eslint/eslintrc": "^3.3.7",
     "@next/eslint-plugin-next": "^15.5.25",
     "@types/color": "^3.0.3",
