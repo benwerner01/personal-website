@@ -23,6 +23,7 @@ import DriverRaceResultsLineGraph, {
   RaceResultWithRound,
 } from "./shared/DriverRaceResultsLineGraph";
 import { f1Color } from "./shared/util";
+import PageHead from "../../components/PageHead";
 
 const F1RedButton = styled(Button)(({ theme }) => ({
   color: theme.palette.getContrastText(f1Color),
@@ -85,14 +86,14 @@ export const getStaticProps: GetStaticProps<
         ({ driverId }) => driverId === driver.driverId,
       );
 
-      const racePoints = parseInt(raceResultWithCircuit.points, 10);
+      const racePoints = Number(raceResultWithCircuit.points);
 
       if (existingDriverIndex < 0) {
         prevDriversWithResults.push({
           ...driver,
           Results: [raceResultWithCircuit],
           Constructor: raceResultWithCircuit.Constructor,
-          totalPoints: parseInt(raceResultWithCircuit.points, 10),
+          totalPoints: racePoints,
         });
       } else {
         prevDriversWithResults[existingDriverIndex].Results.push(
@@ -126,6 +127,11 @@ const F1Page: NextPage<F1PageProps> = ({
   const yearAsNumber = parseInt(year, 10);
   return (
     <Container sx={{ position: "relative" }}>
+      <PageHead
+        title={`F1 ${year} season results — Ben Werner`}
+        description={`Cumulative driver points after every race of the ${year} Formula 1 season.`}
+        path={`/f1/${year}`}
+      />
       <Box display="flex" position="relative" alignItems="stretch">
         <Link href={`/f1/${yearAsNumber - 1}`}>
           <F1RedButton
