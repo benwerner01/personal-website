@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export type ErgastApiRaceLocation = {
   country: string;
   lat: string;
@@ -97,17 +95,25 @@ const fetchSeason = async (
   let total = Infinity;
 
   while (offset < total) {
+    const query = new URLSearchParams({
+      limit: String(PAGE_SIZE),
+      offset: String(offset),
+    });
+    const url = `${API_BASE_URL}/${path}?${query}`;
+
     // pages must be fetched in order so races are merged in order
     // eslint-disable-next-line no-await-in-loop
-    const { data } = await axios.get<ErgastApiSeasonRaceResultsResponse>(
-      `${API_BASE_URL}/${path}`,
-      {
-        params: {
-          limit: PAGE_SIZE,
-          offset,
-        },
-      },
-    );
+    const response = await fetch(url);
+    // unlike axios, fetch resolves on 4xx/5xx; throwing keeps the caller's
+    // catch (which renders an empty season and shortens revalidation) working
+    // when jolpi.ca throttles
+    if (!response.ok) {
+      throw new Error(
+        `Request to ${url} failed: ${response.status} ${response.statusText}`,
+      );
+    }
+    // eslint-disable-next-line no-await-in-loop
+    const data: ErgastApiSeasonRaceResultsResponse = await response.json();
 
     season = data.MRData.RaceTable.season;
     total = parseInt(data.MRData.total, 10);

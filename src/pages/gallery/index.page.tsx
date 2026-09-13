@@ -4,11 +4,8 @@ import Link from "next/link";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import {
-  getGallery,
-  formatCollectionTimeRange,
-  Gallery,
-} from "../../lib/gallery";
+import { getGallery } from "../../lib/gallery";
+import { formatCollectionTimeRange, Gallery } from "../../lib/gallery-shared";
 import CollectionPreview from "../../components/CollectionPreview";
 import PageHead from "../../components/PageHead";
 

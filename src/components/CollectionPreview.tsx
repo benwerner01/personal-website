@@ -4,7 +4,7 @@ import Link from "next/link";
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material";
-import { Collection, CollectionImage } from "../lib/gallery";
+import { Collection, CollectionImage } from "../lib/gallery-shared";
 
 const IMAGE_HEIGHT = 400;
 
