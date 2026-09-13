@@ -102,7 +102,13 @@ const F1Page: NextPage<F1PageProps> = ({
         description={`Cumulative driver points after every race of the ${year} Formula 1 season.`}
         path={`/f1/${year}`}
       />
-      <Box display="flex" position="relative" alignItems="stretch">
+      <Box
+        sx={{
+          display: "flex",
+          position: "relative",
+          alignItems: "stretch",
+        }}
+      >
         <Link href={`/f1/${yearAsNumber - 1}`}>
           <F1RedButton
             variant="contained"

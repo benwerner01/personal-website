@@ -31,7 +31,12 @@ const ContactPage: React.FC = () => (
       path="/contact"
     />
     <Typography variant="h1">Contact Me</Typography>
-    <Box component="ul" paddingLeft={0}>
+    <Box
+      component="ul"
+      sx={{
+        paddingLeft: 0,
+      }}
+    >
       {CONTACT_METHODS.map(({ Icon, href, name }) => (
         <Box
           key={name}

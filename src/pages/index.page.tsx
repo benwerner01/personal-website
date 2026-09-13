@@ -42,7 +42,11 @@ const Home = () => (
       description="The personal website of Ben Werner: software projects, photography and ways to get in touch."
       path="/"
     />
-    <Box my={10}>
+    <Box
+      sx={{
+        my: 10,
+      }}
+    >
       <Typography>Hi, my name is</Typography>
       <Typography
         sx={({ breakpoints }) => ({
@@ -59,7 +63,12 @@ const Home = () => (
       >
         Ben Werner
       </Typography>
-      <Box display="flex" mb={1}>
+      <Box
+        sx={{
+          display: "flex",
+          mb: 1,
+        }}
+      >
         {SOCIALS.map(({ name, url, icon }) => (
           <Box
             component="a"

@@ -118,7 +118,12 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
         {" > "}
         {item.slug}
       </Typography>
-      <Box position="relative" flexGrow={1}>
+      <Box
+        sx={{
+          position: "relative",
+          flexGrow: 1,
+        }}
+      >
         <Image
           alt={item.slug}
           src={`/gallery/${collection.slug}/${item.slug}.jpeg`}
@@ -130,7 +135,14 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
           sizes="(max-width: 1200px) 100vw, 1200px"
         />
       </Box>
-      <Box display="flex" justifyContent="space-between" mb={2} mt={2}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          mb: 2,
+          mt: 2,
+        }}
+      >
         <Link href={`/gallery/${collection.slug}/${previousItem.slug}`}>
           <Button startIcon={<ChevronLeftIcon />}>Previous</Button>
         </Link>

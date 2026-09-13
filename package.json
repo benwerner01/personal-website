@@ -20,8 +20,8 @@
     "@emotion/react": "^11.10.8",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.8",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.12.2",
+    "@mui/icons-material": "^9.4.0",
+    "@mui/material": "^9.4.0",
     "@react-three/drei": "9.14.3",
     "@react-three/fiber": "^7.0.26",
     "d3-interpolate-path": "^2.2.3",
@@ -60,6 +60,7 @@
     "vitest": "^4.1.11"
   },
   "resolutions": {
-    "three-stdlib": "2.12.1"
+    "three-stdlib": "2.12.1",
+    "react-is": "^18.3.1"
   }
 }

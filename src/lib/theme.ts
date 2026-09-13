@@ -32,6 +32,20 @@ export const createCustomTheme = (params: {
     },
     palette,
     components: {
+      MuiSelect: {
+        styleOverrides: {
+          // MUI 6 dropped the standard Select's focus background; keep the
+          // v5 look for keyboard users of the F1 year picker
+          select: ({ theme }) => ({
+            "&:focus": {
+              backgroundColor:
+                theme.palette.mode === "light"
+                  ? "rgba(0, 0, 0, 0.05)"
+                  : "rgba(255, 255, 255, 0.05)",
+            },
+          }),
+        },
+      },
       MuiCssBaseline: {
         styleOverrides: {
           body: {

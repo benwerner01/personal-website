@@ -57,7 +57,12 @@ const CodeProjectPage: NextPage<CodeProjectPageProps> = ({
             : undefined
         }
       />
-      <Box display="flex" justifyContent="space-between">
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <Typography variant="h1">{project.name}</Typography>
         {project.url && (
           <a
@@ -75,7 +80,12 @@ const CodeProjectPage: NextPage<CodeProjectPageProps> = ({
       <Typography>{project.blurb}</Typography>
       {project.previews &&
         project.previews.map((preview) => (
-          <Box mt={4} key={preview.fileName}>
+          <Box
+            key={preview.fileName}
+            sx={{
+              mt: 4,
+            }}
+          >
             <CodeProjectPreview
               codeProjectSlug={codeProjectSlug}
               preview={preview}

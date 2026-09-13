@@ -79,14 +79,17 @@ const CollectionImageComponent: React.FC<CollectionImageComponentProps> = ({
 
   return (
     <Box
-      mt={1}
-      mx={1}
       sx={{
+        mt: 1,
+        mx: 1,
+
         // Grow in proportion to the intrinsic width so every image in a row
         // ends up the same height, but never beyond the intrinsic width
         flex: `${width} 1 0px`,
+
         maxWidth: width,
         minWidth: 0,
+
         "& image": {
           opacity: 1,
           transition: ({ transitions }) => transitions.create("opacity"),
@@ -142,7 +145,14 @@ const CollectionPreview: React.FC<{ collection: Collection }> = ({
   const smShares = rowShares(collection.items, ITEMS_PER_ROW_SM);
 
   return (
-    <Box display="flex" flexWrap="wrap" mt={-1} mx={-1}>
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        mt: -1,
+        mx: -1,
+      }}
+    >
       {collection.items.map((item, i) => (
         <React.Fragment key={item.slug}>
           <CollectionImageComponent

@@ -69,17 +69,21 @@ const MacOSWindow: FunctionComponent<MacOSWindowProps> = ({
       />
     </Box>
     <Box
-      display="flex"
-      justifyContent="center"
-      sx={({ palette, breakpoints }) => ({
-        height: 30,
-        borderBottomColor: palette.grey[300],
-        borderBottomWidth: 1,
-        borderBottomStyle: "solid",
-        [breakpoints.down("sm")]: {
-          height: 20,
+      sx={[
+        {
+          display: "flex",
+          justifyContent: "center",
         },
-      })}
+        ({ palette, breakpoints }) => ({
+          height: 30,
+          borderBottomColor: palette.grey[300],
+          borderBottomWidth: 1,
+          borderBottomStyle: "solid",
+          [breakpoints.down("sm")]: {
+            height: 20,
+          },
+        }),
+      ]}
     >
       {title && (
         <Typography

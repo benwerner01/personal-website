@@ -30,7 +30,11 @@ const NavBarItem: FC<NavBarItemDefinition & { isActive: boolean }> = ({
   isActive,
   prefetch,
 }) => (
-  <Box m={1}>
+  <Box
+    sx={{
+      m: 1,
+    }}
+  >
     <Typography>
       <Link
         href={href}
@@ -49,12 +53,18 @@ const NavBar: React.FC = () => {
   return (
     <Box
       component="nav"
-      display="flex"
-      justifyContent="space-between"
-      px={2}
-      height={40}
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        px: 2,
+        height: 40,
+      }}
     >
-      <Box display="flex">
+      <Box
+        sx={{
+          display: "flex",
+        }}
+      >
         {NAV_BAR_ITEMS.filter(({ position }) => position === "left").map(
           (item) => (
             <NavBarItem
@@ -65,7 +75,11 @@ const NavBar: React.FC = () => {
           ),
         )}
       </Box>
-      <Box display="flex">
+      <Box
+        sx={{
+          display: "flex",
+        }}
+      >
         {NAV_BAR_ITEMS.filter(({ position }) => position === "right").map(
           (item) => (
             <NavBarItem
