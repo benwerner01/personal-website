@@ -3,7 +3,7 @@ import {
   Collection,
   formatCollectionTimeRange,
   STATIC_COLLECTIONS,
-} from "./gallery";
+} from "./gallery-shared";
 
 const collection = (startDate: string, endDate: string): Collection => ({
   name: "Test",
