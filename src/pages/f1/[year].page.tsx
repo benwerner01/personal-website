@@ -142,6 +142,7 @@ const F1Page: NextPage<F1PageProps> = ({
         <Link href={`/f1/${yearAsNumber - 1}`}>
           <F1RedButton
             variant="contained"
+            aria-label="Previous season"
             sx={{
               px: 1,
               height: "100%",
@@ -174,6 +175,7 @@ const F1Page: NextPage<F1PageProps> = ({
               position: "relative",
             }}
             inputProps={{
+              "aria-label": "Season",
               sx: {
                 py: 0.5,
                 px: 1,
@@ -193,6 +195,7 @@ const F1Page: NextPage<F1PageProps> = ({
         <Link href={`/f1/${yearAsNumber + 1}`}>
           <F1RedButton
             variant="contained"
+            aria-label="Next season"
             disabled={new Date().getFullYear() === yearAsNumber}
             sx={{
               px: 1,

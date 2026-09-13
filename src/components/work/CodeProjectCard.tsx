@@ -157,7 +157,7 @@ const CodeProjectCard: FunctionComponent<CodeProjectCardProps> = ({
           justifyContent: "space-between",
         }}
       >
-        <Typography variant="h5">
+        <Typography variant="h5" component="h2">
           <strong>{project.name}</strong>
         </Typography>
         <Box
@@ -179,7 +179,10 @@ const CodeProjectCard: FunctionComponent<CodeProjectCardProps> = ({
               <Button variant="outlined">Visit</Button>
             </Box>
           )}
-          <Link href={`/work/code/${project.slug}`}>
+          <Link
+            href={`/work/code/${project.slug}`}
+            aria-label={`More about ${project.name}`}
+          >
             <Button
               sx={{
                 borderColor: WORK_VARIANT_PALETTE.code,
@@ -220,10 +223,13 @@ const CodeProjectCard: FunctionComponent<CodeProjectCardProps> = ({
         />
       )}
       {project.repositories && project.repositories.length > 0 && (
-        <CodeProjectRepositories repositories={project.repositories} />
+        <CodeProjectRepositories
+          headingComponent="h3"
+          repositories={project.repositories}
+        />
       )}
       {project.related && project.related.length > 0 && (
-        <CodeProjectRelated related={project.related} />
+        <CodeProjectRelated headingComponent="h3" related={project.related} />
       )}
     </CardContent>
   </Card>

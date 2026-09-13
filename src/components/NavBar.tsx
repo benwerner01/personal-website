@@ -47,6 +47,7 @@ const NavBar: React.FC = () => {
 
   return (
     <Box
+      component="nav"
       sx={{
         display: "flex",
         justifyContent: "space-between",
