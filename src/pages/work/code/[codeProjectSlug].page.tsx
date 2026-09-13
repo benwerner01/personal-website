@@ -60,7 +60,14 @@ const CodeProjectPage: NextPage<CodeProjectPageProps> = ({
       <Box display="flex" justifyContent="space-between">
         <Typography variant="h1">{project.name}</Typography>
         {project.url && (
-          <a href={project.url} rel="noopener noreferrer" target="_blank">
+          <a
+            href={project.url}
+            rel="noopener noreferrer"
+            target="_blank"
+            // the link is a flex item: keep it button-sized rather than
+            // stretched to the heading row, so its hit area isn't obscured
+            style={{ alignSelf: "flex-start" }}
+          >
             <Button variant="outlined">Visit</Button>
           </a>
         )}
@@ -76,10 +83,14 @@ const CodeProjectPage: NextPage<CodeProjectPageProps> = ({
           </Box>
         ))}
       {project.repositories && project.repositories.length > 0 && (
-        <CodeProjectRepositories mt={4} repositories={project.repositories} />
+        <CodeProjectRepositories
+          mt={4}
+          headingComponent="h2"
+          repositories={project.repositories}
+        />
       )}
       {project.related && project.related.length > 0 && (
-        <CodeProjectRelated related={project.related} />
+        <CodeProjectRelated headingComponent="h2" related={project.related} />
       )}
     </Container>
   );
