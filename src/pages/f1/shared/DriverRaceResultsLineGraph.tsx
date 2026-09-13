@@ -183,7 +183,7 @@ const DriverList: FC<{
         }
         return isDisplayingA ? -1 : 1;
       }),
-    [drivers, displayingDrivers]
+    [drivers, displayingDrivers],
   );
 
   let height = 0;
@@ -200,7 +200,7 @@ const DriverList: FC<{
       leave: { height: 0, opacity: 0 },
       enter: ({ y }) => ({ y, height: driverCardHeight, opacity: 1 }),
       update: ({ y }) => ({ y, height: driverCardHeight }),
-    }
+    },
   );
 
   return (
@@ -238,7 +238,7 @@ const DriverList: FC<{
                         ? prev.length === 1
                           ? prev
                           : prev.filter((id) => item.driverId !== id)
-                        : [...prev, item.driverId]
+                        : [...prev, item.driverId],
                     )
                   }
                   sx={{
@@ -308,16 +308,16 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
   const sortedSeasonRaceResultsByDriver = useMemo(
     () =>
       seasonRaceResultsByDriver.sort((a, b) => b.totalPoints - a.totalPoints),
-    [seasonRaceResultsByDriver]
+    [seasonRaceResultsByDriver],
   );
 
   const [displayingDrivers, setDisplayingDrivers] = useState<string[]>(
-    seasonRaceResultsByDriver.map(({ driverId }) => driverId)
+    seasonRaceResultsByDriver.map(({ driverId }) => driverId),
   );
 
   useEffect(() => {
     setDisplayingDrivers(
-      seasonRaceResultsByDriver.map(({ driverId }) => driverId)
+      seasonRaceResultsByDriver.map(({ driverId }) => driverId),
     );
   }, [seasonRaceResultsByDriver]);
 
@@ -334,15 +334,15 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
         .domain(allRaces.map(({ round }) => round))
         .range([x1, x2])
         .padding(1),
-    [allRaces, x1, x2]
+    [allRaces, x1, x2],
   );
 
   const displayingMaxiumPoints = useMemo(
     () =>
       sortedSeasonRaceResultsByDriver.filter(({ driverId }) =>
-        displayingDrivers.includes(driverId)
+        displayingDrivers.includes(driverId),
       )[0].totalPoints,
-    [sortedSeasonRaceResultsByDriver, displayingDrivers]
+    [sortedSeasonRaceResultsByDriver, displayingDrivers],
   );
 
   const yAxisLinearScale = useMemo(
@@ -355,7 +355,7 @@ const DriverRaceResultsLineGraph: FC<DriverRaceResultsLineGraphProps> = ({
             : 50,
         ])
         .range([y1, y2]),
-    [y1, y2, displayingMaxiumPoints]
+    [y1, y2, displayingMaxiumPoints],
   );
 
   return (

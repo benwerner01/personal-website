@@ -43,11 +43,11 @@ const WorkPage: React.FC = () => {
         ))}
       </Box> */}
       {WORK_ITEMS.filter(({ variant }) =>
-        currentVariant ? variant === currentVariant : true
+        currentVariant ? variant === currentVariant : true,
       ).map((item) =>
         item.variant === "code" ? (
           <CodeProjectCard key={item.name} project={item} />
-        ) : null
+        ) : null,
       )}
     </Container>
   );
