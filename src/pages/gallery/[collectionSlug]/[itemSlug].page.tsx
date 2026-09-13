@@ -52,7 +52,17 @@ export const getStaticProps: GetStaticProps<
 
   return {
     props: {
-      collection,
+      collection: {
+        ...collection,
+        // The page only navigates between the siblings by slug, so don't
+        // ship every sibling's blur placeholder in the page data
+        items: collection.items.map(({ variant, slug, width, height }) => ({
+          variant,
+          slug,
+          width,
+          height,
+        })),
+      },
       item: collection.items.find((item) => item.slug === itemSlug),
     },
   };
@@ -114,6 +124,10 @@ const CollectionItemPage: React.FC<CollectionItemPageProps> = ({
           src={`/gallery/${collection.slug}/${item.slug}.jpeg`}
           layout="fill"
           objectFit="contain"
+          // The photo is the largest contentful paint, so preload it and
+          // size it to the Container (maxWidth "lg") rather than 100vw
+          priority
+          sizes="(max-width: 1200px) 100vw, 1200px"
         />
       </Box>
       <Box display="flex" justifyContent="space-between" mb={2} mt={2}>
