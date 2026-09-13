@@ -16,14 +16,6 @@ const emotionTranspilePackages = process.env.TURBOPACK
 module.exports = {
   pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js"],
   transpilePackages: emotionTranspilePackages,
-  async rewrites() {
-    return [
-      {
-        source: "/sitemap.xml",
-        destination: "/sitemap",
-      },
-    ];
-  },
   async headers() {
     return [
       {
