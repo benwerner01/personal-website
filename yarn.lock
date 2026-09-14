@@ -820,32 +820,12 @@
     "@react-spring/shared" "~10.1.2"
     "@react-spring/types" "~10.1.2"
 
-"@react-spring/core@~10.1.0", "@react-spring/core@~10.1.2":
+"@react-spring/core@~10.1.2":
   version "10.1.2"
   resolved "https://registry.yarnpkg.com/@react-spring/core/-/core-10.1.2.tgz#9d346bd939d49a57f01b2c656cace13d79da9066"
   integrity sha512-lPGOAg0V+PV3ucopOajD+YCxoe8twALqAeG4c/+sqVjBsyUNNdx8qfz/DcNSPKA8PV3+AyQELlCxlDfap9cmBQ==
   dependencies:
     "@react-spring/animated" "~10.1.2"
-    "@react-spring/shared" "~10.1.2"
-    "@react-spring/types" "~10.1.2"
-
-"@react-spring/konva@~10.1.0":
-  version "10.1.2"
-  resolved "https://registry.yarnpkg.com/@react-spring/konva/-/konva-10.1.2.tgz#656ec4a81ce4689d270068016c5004cfe4197de0"
-  integrity sha512-C4zp6pSgXooJGsGN/CV9kfniHl3E5j807E+j93Gm1lLNjBy2+dr6I1d5B/B/vdacP8Xg/igVaxoNne0Yc9XTFA==
-  dependencies:
-    "@react-spring/animated" "~10.1.2"
-    "@react-spring/core" "~10.1.2"
-    "@react-spring/shared" "~10.1.2"
-    "@react-spring/types" "~10.1.2"
-
-"@react-spring/native@~10.1.0":
-  version "10.1.2"
-  resolved "https://registry.yarnpkg.com/@react-spring/native/-/native-10.1.2.tgz#96bab118e285bf726012e576a9fa228b5b1571df"
-  integrity sha512-evWr3Nl/JCWK/ZcaXwLwx07wt2pQ51h13Rs3g4pjHnoGAojw9oyCd5yhHxm06OHEBAD+zXRvimb06CGojll+Qw==
-  dependencies:
-    "@react-spring/animated" "~10.1.2"
-    "@react-spring/core" "~10.1.2"
     "@react-spring/shared" "~10.1.2"
     "@react-spring/types" "~10.1.2"
 
@@ -862,22 +842,12 @@
     "@react-spring/rafz" "~10.1.2"
     "@react-spring/types" "~10.1.2"
 
-"@react-spring/three@~10.1.0":
-  version "10.1.2"
-  resolved "https://registry.yarnpkg.com/@react-spring/three/-/three-10.1.2.tgz#bfb600f40b870318da40b87af92a1a00b978808b"
-  integrity sha512-3Bc+N0b23vE3ixTyOvGsaUeE/JpP3KiX3LQ86xt0roNqqwk2GJzx1iDNOoH/cwvYMfg2I569gAVnOQriSL0H7Q==
-  dependencies:
-    "@react-spring/animated" "~10.1.2"
-    "@react-spring/core" "~10.1.2"
-    "@react-spring/shared" "~10.1.2"
-    "@react-spring/types" "~10.1.2"
-
 "@react-spring/types@~10.1.2":
   version "10.1.2"
   resolved "https://registry.yarnpkg.com/@react-spring/types/-/types-10.1.2.tgz#514fce71d1334720549a10f1242b656bea58df59"
   integrity sha512-G4CWowmVPz+rDG1y9QRVq/prZNxiNwQaHC0kgT/MgY6jAGgdRgTV4VThpvJDwWvUitk3xZB4soP4d36fjeQ09g==
 
-"@react-spring/web@~10.1.0":
+"@react-spring/web@^10.1.2":
   version "10.1.2"
   resolved "https://registry.yarnpkg.com/@react-spring/web/-/web-10.1.2.tgz#ab410d1d51487e028f6e99722ba74242f5032443"
   integrity sha512-KxDB3zaDqy9qFsu7fdxjyraAxweHH4k5TW5WGT/OuMK6hKaxSDfhrQfRBzfFaSVvMBf+NghbJFanllV4ia6i7A==
@@ -887,16 +857,6 @@
     "@react-spring/shared" "~10.1.2"
     "@react-spring/types" "~10.1.2"
     csstype "^3.2.3"
-
-"@react-spring/zdog@~10.1.0":
-  version "10.1.2"
-  resolved "https://registry.yarnpkg.com/@react-spring/zdog/-/zdog-10.1.2.tgz#1766cc453ff0f26ffb12b9f01d7368ce97221aef"
-  integrity sha512-M87yBuBfbn9abVXT5H/P8PgA+2zcBHvKe/qBCXAYA1fPwRrrJJKMvxngkGxa7EpHJVXgCYDnqoAIi8tt9ncOeA==
-  dependencies:
-    "@react-spring/animated" "~10.1.2"
-    "@react-spring/core" "~10.1.2"
-    "@react-spring/shared" "~10.1.2"
-    "@react-spring/types" "~10.1.2"
 
 "@react-three/drei@^10.7.8":
   version "10.7.8"
@@ -3674,18 +3634,6 @@ react-responsive-carousel@^3.2.23:
     classnames "^2.2.5"
     prop-types "^15.5.8"
     react-easy-swipe "^0.0.21"
-
-react-spring@^10.0.4:
-  version "10.0.4"
-  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-10.0.4.tgz#38138a07027db338f98e2ff8d11511036dd25b1c"
-  integrity sha512-6qcqwgdACEyBj2tpjaeaCTtODPnAJ4fux6yCKf9kJQyGcv/kBMUxsY1GHOxpGBiksW3PqYdPLhXpqZj4GqQsjg==
-  dependencies:
-    "@react-spring/core" "~10.1.0"
-    "@react-spring/konva" "~10.1.0"
-    "@react-spring/native" "~10.1.0"
-    "@react-spring/three" "~10.1.0"
-    "@react-spring/web" "~10.1.0"
-    "@react-spring/zdog" "~10.1.0"
 
 react-transition-group@^4.4.5:
   version "4.4.5"
