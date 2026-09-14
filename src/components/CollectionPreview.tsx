@@ -92,7 +92,7 @@ const CollectionImageComponent: React.FC<CollectionImageComponentProps> = ({
         maxWidth: width,
         minWidth: 0,
 
-        "& image": {
+        "& img": {
           opacity: 1,
           transition: ({ transitions }) => transitions.create("opacity"),
           "&:hover": {
