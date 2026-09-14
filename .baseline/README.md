@@ -1,11 +1,14 @@
 # Regression baseline
 
-Captured on `main` at 14587ba (13 Sep 2026) before any dependency changes, so
-later upgrades can be diffed against it mechanically.
+Re-captured on `main` at dfbddbf (14 Sep 2026) after the modernisation
+(Next 16 App Router, React 19, MUI 9, three 0.186) and the CP10 performance
+work, so later changes can be diffed against the current site. The original
+Next 13 baseline (`main` at 14587ba, 13 Sep 2026) is in git history.
 
 | File | What |
 | --- | --- |
-| `build-routes.txt` | `next build` route table and First Load JS sizes |
+| `build-routes.txt` | `next build` route table (Next 16 no longer prints sizes) |
+| `build-sizes.txt` | gzip JS per route from a local `next start`, via `scripts/jsbytes.cjs` |
 | `screenshots/local/` | full-page screenshots of every route at 1440px and 375px, from `next build && next start` |
 | `screenshots/production/` | the same routes captured from https://ben-werner.com |
 | `lighthouse.production.json` | Lighthouse medians of 3 runs (mobile + desktop) for `/`, `/work`, `/gallery`, `/3d` on production |
@@ -40,7 +43,14 @@ node .baseline/scripts/lighthouse.cjs https://ben-werner.com /tmp/lighthouse.jso
 Known noise:
 
 - `/3d` is an animated WebGL scene, so its screenshots never match pixel-for-pixel.
-  Judge it by eye (scene present, bloom present, nav rendered) rather than by percentage.
-- `/f1/2023` depends on a live third-party API; a rate-limited request renders an empty chart.
-- Local vs production screenshots on `main` were otherwise identical (0 px) except a
-  0.4% diff on `/work/code/provviz` mobile, which is a video poster frame.
+  Judge it by eye, or use the seeded deterministic capture described in PR #28
+  (constant `Math.random`, stepped `requestAnimationFrame`) for 0 px comparisons.
+- `/work` and `/work/code/provviz` autoplay videos; diffs inside the `<video>`
+  boxes (0.2–1.5%) are playback frames.
+- `/f1/2023` depends on a live third-party API; a throttled request renders the
+  empty-season message. Its legend labels can differ by ~0.1% (react-spring timing).
+- Gallery thumbnails use native `loading="lazy"`; an unscrolled full-page capture of
+  `/gallery` shows blur placeholders below the fold, so compare gallery captures
+  taken the same way, or scroll to the bottom before capturing.
+- Local vs production screenshots at this capture were identical (0 px) on every
+  route except `/3d` and the `/work*` video frames.

@@ -2,29 +2,25 @@
   "baseUrl": "http://localhost:3000",
   "statuses": {
     "desktop /": 200,
-    "desktop /work": 200,
-    "desktop /work/code/provviz": 200,
-    "desktop /gallery": 200,
-    "desktop /gallery/burning-man-2022": 200,
-    "desktop /gallery/burning-man-2022/DSC02453": 200,
     "desktop /contact": 200,
-    "desktop /3d": 200,
-    "desktop /f1/2023": 200,
     "desktop /privacy": 200,
-    "mobile /": 200,
-    "mobile /work": 200,
-    "mobile /work/code/provviz": 200,
-    "mobile /gallery": 200,
-    "mobile /gallery/burning-man-2022": 200,
-    "mobile /gallery/burning-man-2022/DSC02453": 200,
-    "mobile /contact": 200,
+    "desktop /3d": 200,
+    "desktop /work/code/provviz": 200,
+    "desktop /work": 200,
+    "desktop /gallery/burning-man-2022/DSC02453": 200,
+    "desktop /gallery/burning-man-2022": 200,
+    "desktop /gallery": 200,
+    "desktop /f1/2023": 200,
     "mobile /3d": 200,
+    "mobile /privacy": 200,
+    "mobile /contact": 200,
+    "mobile /": 200,
+    "mobile /work/code/provviz": 200,
+    "mobile /work": 200,
+    "mobile /gallery/burning-man-2022/DSC02453": 200,
     "mobile /f1/2023": 200,
-    "mobile /privacy": 200
+    "mobile /gallery/burning-man-2022": 200,
+    "mobile /gallery": 200
   },
-  "consoleErrors": {
-    "desktop /f1/2023": [
-      "Failed to load resource: the server responded with a status of 500 (Internal Server Error)"
-    ]
-  }
+  "consoleErrors": {}
 }
