@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useEffect, useRef } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import MacOSWindow from "../MacOSWindow";
@@ -62,7 +64,11 @@ const CodeProjectPreview: React.FC<CodeProjectPreviewProps> = ({
               src={`/work/code/${codeProjectSlug}/${preview.fileName}`}
               width={preview.width}
               height={preview.height}
-              layout="responsive"
+              // the legacy "responsive" layout: fill the aspect-ratio box
+              // above, and a `sizes` of 100vw (its default) so the srcset
+              // keeps the same width candidates
+              sizes="100vw"
+              style={{ display: "block", width: "100%", height: "auto" }}
             />
           ) : (
             <video

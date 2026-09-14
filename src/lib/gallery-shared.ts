@@ -1,8 +1,8 @@
 // Gallery types and helpers that are safe to import from client code.
 //
 // Anything that touches the filesystem (`fs`, `image-size`) lives in
-// `./gallery.ts` and must only be imported from `getStaticProps` /
-// `getStaticPaths`, so that it is stripped from the browser bundle.
+// `./gallery.ts` and must only be imported from server code, so that it is
+// never part of the browser bundle.
 
 export type CollectionImage = {
   variant: "image";

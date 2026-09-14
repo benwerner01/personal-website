@@ -6,10 +6,6 @@ body {
   /* font-family comes from the MUI theme via CssBaseline (Manrope) */
 }
 
-#__next {
-  height: 100%;
-}
-
 a {
   color: inherit;
   text-decoration: none;
