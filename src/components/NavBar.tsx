@@ -1,8 +1,11 @@
+"use client";
+
 import React, { FC } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { NAV_BAR_HEIGHT } from "../lib/navBar";
 
 type NavBarItemDefinition = {
   href: string;
@@ -21,8 +24,6 @@ const NAV_BAR_ITEMS: NavBarItemDefinition[] = [
   { href: "/3d", label: "3D", position: "left", prefetch: false },
   { href: "/contact", label: "Contact", position: "right" },
 ];
-
-export const NAV_BAR_HEIGHT = 40;
 
 const NavBarItem: FC<NavBarItemDefinition & { isActive: boolean }> = ({
   label,
@@ -48,7 +49,7 @@ const NavBarItem: FC<NavBarItemDefinition & { isActive: boolean }> = ({
 );
 
 const NavBar: React.FC = () => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
 
   return (
     <Box
@@ -57,7 +58,7 @@ const NavBar: React.FC = () => {
         display: "flex",
         justifyContent: "space-between",
         px: 2,
-        height: 40,
+        height: NAV_BAR_HEIGHT,
       }}
     >
       <Box

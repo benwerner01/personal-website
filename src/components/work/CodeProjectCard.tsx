@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FunctionComponent, useState } from "react";
 import Link from "next/link";
 import {

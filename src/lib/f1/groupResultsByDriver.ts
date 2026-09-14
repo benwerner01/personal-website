@@ -1,10 +1,17 @@
-import type { ErgastApiRace } from "./ergastF1Api";
 import type {
-  RaceDriverWithResultsAndConstructor,
-  RaceResultWithRound,
-} from "./DriverRaceResultsLineGraph";
+  ErgastApiRace,
+  ErgastApiRaceConstructor,
+  ErgastApiRaceDriver,
+  ErgastApiRaceResult,
+} from "./ergastF1Api";
 
-// Not a route: next.config.js only treats `*.page.tsx` files as pages.
+export type RaceResultWithRound = ErgastApiRaceResult & { round: string };
+
+export type RaceDriverWithResultsAndConstructor = ErgastApiRaceDriver & {
+  Results: RaceResultWithRound[];
+  Constructor: ErgastApiRaceConstructor;
+  totalPoints: number;
+};
 
 /**
  * Regroups a season's race results (one entry per race) into one entry per

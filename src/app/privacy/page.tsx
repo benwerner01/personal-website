@@ -1,6 +1,14 @@
 import React from "react";
+import type { Metadata } from "next";
 import { Container, Typography } from "@mui/material";
-import PageHead from "../components/PageHead";
+import { pageMetadata } from "../../lib/metadata";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy Policy — My Super Apps",
+  description:
+    "Privacy policy for My Super Apps, a collection of personal automation scripts that access Google Calendar with the owner's consent.",
+  path: "/privacy",
+});
 
 const LAST_UPDATED = "13 September 2026";
 
@@ -79,11 +87,6 @@ const SECTIONS: Section[] = [
 
 const PrivacyPage: React.FC = () => (
   <Container>
-    <PageHead
-      title="Privacy Policy — My Super Apps"
-      description="Privacy policy for My Super Apps, a collection of personal automation scripts that access Google Calendar with the owner's consent."
-      path="/privacy"
-    />
     <Typography variant="h1">Privacy Policy</Typography>
     <Typography sx={{ marginBottom: 3, fontStyle: "italic" }}>
       Last updated: {LAST_UPDATED}

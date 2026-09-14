@@ -1,62 +1,62 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import React from "react";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CODE_PROJECTS } from "../../../lib/work/code";
-import CodeProjectRepositories from "../../../components/work/CodeProjectRepositories";
-import CodeProjectRelated from "../../../components/work/CodeProjectRelated";
-import CodeProjectPreview from "../../../components/work/CodeProjectPreview";
-import PageHead, { ogImageUrl } from "../../../components/PageHead";
+import { CODE_PROJECTS } from "../../../../lib/work/code";
+import CodeProjectRepositories from "../../../../components/work/CodeProjectRepositories";
+import CodeProjectRelated from "../../../../components/work/CodeProjectRelated";
+import CodeProjectPreview from "../../../../components/work/CodeProjectPreview";
+import { ogImageUrl, pageMetadata } from "../../../../lib/metadata";
 
-type ParsedQueryURL = {
+type Params = {
   codeProjectSlug: string;
 };
-
-export const getStaticPaths: GetStaticPaths<ParsedQueryURL> = async () => ({
-  paths: CODE_PROJECTS.map(({ slug }) => ({
-    params: { codeProjectSlug: slug },
-  })),
-  fallback: false,
-});
 
 type CodeProjectPageProps = {
-  codeProjectSlug: string;
+  params: Promise<Params>;
 };
 
-export const getStaticProps: GetStaticProps<
-  CodeProjectPageProps,
-  ParsedQueryURL
-> = async ({ params }) => ({
-  props: {
-    codeProjectSlug: params.codeProjectSlug,
-  },
-});
+// every project is prerendered; unknown slugs 404 (`fallback: false`)
+export const dynamicParams = false;
 
-const CodeProjectPage: NextPage<CodeProjectPageProps> = ({
-  codeProjectSlug,
-}) => {
-  const project = CODE_PROJECTS.find(({ slug }) => codeProjectSlug === slug);
+export const generateStaticParams = (): Params[] =>
+  CODE_PROJECTS.map(({ slug }) => ({ codeProjectSlug: slug }));
+
+const findProject = (codeProjectSlug: string) =>
+  CODE_PROJECTS.find(({ slug }) => codeProjectSlug === slug);
+
+export const generateMetadata = async ({
+  params,
+}: CodeProjectPageProps): Promise<Metadata> => {
+  const { codeProjectSlug } = await params;
+  const project = findProject(codeProjectSlug);
+  if (!project) notFound();
 
   const poster = project.previews?.find(
     (preview) => preview.variant === "video",
   );
 
+  return pageMetadata({
+    title: `${project.name} — Ben Werner`,
+    description: project.description,
+    path: `/work/code/${codeProjectSlug}`,
+    image:
+      poster && poster.variant === "video"
+        ? ogImageUrl(`/work/code/${codeProjectSlug}/${poster.posterFileName}`)
+        : undefined,
+  });
+};
+
+const CodeProjectPage = async ({ params }: CodeProjectPageProps) => {
+  const { codeProjectSlug } = await params;
+  const project = findProject(codeProjectSlug);
+  if (!project) notFound();
+
   return (
     <Container maxWidth="md">
-      <PageHead
-        title={`${project.name} — Ben Werner`}
-        description={project.description}
-        path={`/work/code/${codeProjectSlug}`}
-        image={
-          poster && poster.variant === "video"
-            ? ogImageUrl(
-                `/work/code/${codeProjectSlug}/${poster.posterFileName}`,
-              )
-            : undefined
-        }
-      />
       <Box
         sx={{
           display: "flex",

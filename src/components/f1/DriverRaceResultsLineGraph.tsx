@@ -1,3 +1,5 @@
+"use client";
+
 import React, {
   FC,
   useCallback,
@@ -19,22 +21,9 @@ import {
 } from "@mui/material";
 import { animated, useSprings, useSpring, useTransition } from "react-spring";
 import { interpolatePath } from "d3-interpolate-path";
-import {
-  ErgastApiRace,
-  ErgastApiRaceConstructor,
-  ErgastApiRaceDriver,
-  ErgastApiRaceResult,
-  ErgastApiSeasonRaces,
-} from "./ergastF1Api";
-import { DATA_POINT_RADIUS, getConstructorColor } from "./util";
-
-export type RaceResultWithRound = ErgastApiRaceResult & { round: string };
-
-export type RaceDriverWithResultsAndConstructor = ErgastApiRaceDriver & {
-  Results: RaceResultWithRound[];
-  Constructor: ErgastApiRaceConstructor;
-  totalPoints: number;
-};
+import { ErgastApiRace, ErgastApiSeasonRaces } from "../../lib/f1/ergastF1Api";
+import { RaceDriverWithResultsAndConstructor } from "../../lib/f1/groupResultsByDriver";
+import { DATA_POINT_RADIUS, getConstructorColor } from "../../lib/f1/util";
 
 const driverListWidth = 75;
 

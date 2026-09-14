@@ -1,10 +1,18 @@
 import React from "react";
+import type { Metadata } from "next";
 import { Typography, Container, Box } from "@mui/material";
 import GitHubIcon from "../components/icons/GitHubIcon";
 import LinkedInIcon from "../components/icons/LinkedInIcon";
 import TwitterIcon from "../components/icons/TwitterIcon";
 import SoundCloudIcon from "../components/icons/SoundCloudIcon";
-import PageHead from "../components/PageHead";
+import { pageMetadata } from "../lib/metadata";
+
+export const metadata: Metadata = pageMetadata({
+  title: "Ben Werner",
+  description:
+    "The personal website of Ben Werner: software projects, photography and ways to get in touch.",
+  path: "/",
+});
 
 type Social = {
   name: string;
@@ -35,13 +43,11 @@ const SOCIALS: Social[] = [
   },
 ];
 
+// A server component, so the `sx` props must be serialisable: the theme
+// callbacks are written as sx theme keys and breakpoint objects instead
+// (`common.black`, spacing units, `{ xs, md }`), which produce the same CSS.
 const Home = () => (
   <Container>
-    <PageHead
-      title="Ben Werner"
-      description="The personal website of Ben Werner: software projects, photography and ways to get in touch."
-      path="/"
-    />
     <Box
       sx={{
         my: 10,
@@ -49,16 +55,11 @@ const Home = () => (
     >
       <Typography>Hi, my name is</Typography>
       <Typography
-        sx={({ breakpoints }) => ({
-          fontSize: 100,
-          marginLeft: "-5px",
-          marginBottom: "-10px",
-          [breakpoints.down("md")]: {
-            fontSize: 60,
-            marginLeft: "-2px",
-            marginBottom: "-5px",
-          },
-        })}
+        sx={{
+          fontSize: { xs: 60, md: 100 },
+          marginLeft: { xs: "-2px", md: "-5px" },
+          marginBottom: { xs: "-5px", md: "-10px" },
+        }}
         variant="h1"
       >
         Ben Werner
@@ -79,18 +80,19 @@ const Home = () => (
             aria-label={name}
             title={name}
             sx={{
-              marginRight: ({ spacing }) => spacing(1),
-              backgroundColor: ({ palette }) => palette.common.black,
+              marginRight: 1,
+              backgroundColor: "common.black",
               width: 30,
               height: 30,
               borderRadius: 1,
-              transition: ({ transitions }) => transitions.create("opacity"),
+              // theme.transitions.create("opacity")
+              transition: "opacity 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
               opacity: 1,
               "&:hover": {
                 opacity: 0.75,
               },
               svg: {
-                color: ({ palette }) => palette.common.white,
+                color: "common.white",
               },
               display: "flex",
               alignItems: "center",

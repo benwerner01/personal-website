@@ -86,6 +86,11 @@ const API_BASE_URL = "https://api.jolpi.ca/ergast/f1";
 // can straddle two pages and its results must be merged.
 const PAGE_SIZE = 100;
 
+// Seconds a page of API results stays in Next's data cache. Only 200
+// responses are cached, so a throttled (429) request is retried by the next
+// render; how soon that happens is up to the route's `revalidate`.
+export const API_REVALIDATE_SECONDS = 100;
+
 const fetchSeason = async (
   path: string,
 ): Promise<ErgastApiSeasonRaceResults> => {
@@ -103,7 +108,9 @@ const fetchSeason = async (
 
     // pages must be fetched in order so races are merged in order
     // eslint-disable-next-line no-await-in-loop
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      next: { revalidate: API_REVALIDATE_SECONDS },
+    });
     // unlike axios, fetch resolves on 4xx/5xx; throwing keeps the caller's
     // catch (which renders an empty season and shortens revalidation) working
     // when jolpi.ca throttles

@@ -1,7 +1,9 @@
 // Server-only gallery helpers (they read `public/gallery` from disk).
 //
-// Only import this module from `getStaticProps` / `getStaticPaths`. Types and
-// helpers that page components need live in `./gallery-shared.ts`.
+// Only import this module from server code (pages, `generateMetadata`,
+// `generateStaticParams`, the sitemap). Types and helpers that client
+// components need live in `./gallery-shared.ts`.
+import "server-only";
 import { readdirSync, readFileSync } from "fs";
 import { imageSize } from "image-size";
 import blurdata from "../../public/gallery/blurdata.json";

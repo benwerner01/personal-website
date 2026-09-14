@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material";
@@ -100,22 +102,36 @@ const CollectionImageComponent: React.FC<CollectionImageComponentProps> = ({
       }}
     >
       <Link href={`/gallery/${collectionSlug}/${image.slug}`}>
-        {/* `sizes` only applies to the "responsive" layout, so this wrapper
-            gives the image the same inline box the "intrinsic" layout had */}
+        {/* The inline box of the thumbnail: its intrinsic width, shrunk with
+            the flex item */}
         <Box
           component="span"
           sx={{ display: "inline-block", width, maxWidth: "100%" }}
         >
-          <Image
-            alt={image.slug}
-            src={`/gallery/${collectionSlug}/${image.slug}.jpeg`}
-            width={width}
-            height={IMAGE_HEIGHT}
-            layout="responsive"
-            sizes={sizes}
-            blurDataURL={image.blurDataURL}
-            placeholder={image.blurDataURL ? "blur" : undefined}
-          />
+          {/* The box the image fills reserves the aspect ratio with
+              padding-top, as next/legacy/image's "responsive" layout did,
+              rather than with the image's `aspect-ratio`: the latter follows
+              the natural size of whichever srcset candidate loads, whose
+              rounding to whole pixels would change the row height by a
+              fraction of a pixel. */}
+          <Box
+            component="span"
+            sx={{
+              display: "block",
+              position: "relative",
+              overflow: "hidden",
+              paddingTop: `${(IMAGE_HEIGHT / width) * 100}%`,
+            }}
+          >
+            <Image
+              alt={image.slug}
+              src={`/gallery/${collectionSlug}/${image.slug}.jpeg`}
+              fill
+              sizes={sizes}
+              blurDataURL={image.blurDataURL}
+              placeholder={image.blurDataURL ? "blur" : undefined}
+            />
+          </Box>
         </Box>
       </Link>
     </Box>
