@@ -21,12 +21,7 @@ const emotionTranspilePackages = process.env.TURBOPACK
 // resolve it as ESM instead (the webpack fallback still picks the CommonJS
 // build). The scenes are now client-only (`next/dynamic` with `ssr: false`),
 // so this only matters to the server bundle's module graph.
-const threeTranspilePackages = [
-  "three",
-  "three-stdlib",
-  "@react-three/fiber",
-  "@react-three/drei",
-];
+const threeTranspilePackages = ["three", "three-stdlib", "@react-three/fiber"];
 
 module.exports = {
   transpilePackages: [...emotionTranspilePackages, ...threeTranspilePackages],
