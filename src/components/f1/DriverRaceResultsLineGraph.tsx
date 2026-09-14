@@ -19,7 +19,12 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { animated, useSprings, useSpring, useTransition } from "react-spring";
+import {
+  animated,
+  useSprings,
+  useSpring,
+  useTransition,
+} from "@react-spring/web";
 import { interpolatePath } from "d3-interpolate-path";
 import { ErgastApiRace, ErgastApiSeasonRaces } from "../../lib/f1/ergastF1Api";
 import { RaceDriverWithResultsAndConstructor } from "../../lib/f1/groupResultsByDriver";
